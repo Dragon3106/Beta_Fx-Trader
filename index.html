@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BETA_FX V5.2 FIXED - By Duncan Rono</title>
+<title>BETA_FX V6 MANUAL WALLET - By Duncan Rono 0716580098</title>
 <script src="https://s3.tradingview.com/tv.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0e1a;color:#fff;font-family:system-ui,Arial}
+body{background:#0a0e1a;color:#fff;font-family:system-ui}
 .top{background:#00d084;color:#000;text-align:center;padding:9px;font-weight:900;font-size:12px}
 .hdr{background:#111827;padding:12px;display:flex;justify-content:space-between;align-items:center}
 .logo{color:#00d084;font-weight:900;font-size:18px}
@@ -17,6 +17,7 @@ body{background:#0a0e1a;color:#fff;font-family:system-ui,Arial}
 .wrap{max-width:960px;margin:0 auto;padding:10px}
 .card{background:#111827;border:1px solid #1f2937;border-radius:12px;padding:14px;margin:8px 0}
 .bal{font-size:30px;font-weight:900;color:#00d084}
+.balReal{font-size:24px;font-weight:900;color:#f59e0b}
 .nav{display:flex;gap:6px;overflow:auto;padding:8px 0}
 .nav button{white-space:nowrap;padding:10px 16px;border-radius:20px;border:1px solid #2a3441;background:#111827;color:#9ca3af;font-weight:700}
 .nav button.on{background:#00d084;color:#000}
@@ -26,19 +27,20 @@ body{background:#0a0e1a;color:#fff;font-family:system-ui,Arial}
 .small{color:#6b7280;font-size:11px}.win{color:#00d084}.loss{color:#ef4444}
 .auth{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:999;padding:16px}
 .authBox{background:#111827;border:1px solid #2a3441;border-radius:16px;padding:22px;width:100%;max-width:360px}
+.realBox{background:linear-gradient(135deg,#451a03,#78350f);border:1px solid #f59e0b;border-radius:12px;padding:14px;margin:10px 0}
 </style>
 </head>
 <body>
-<div class="top">V5.2 FIXED - Real Login Works - By Duncan Rono Thika</div>
+<div class="top">V6 MANUAL WALLET - Real M-Pesa to 0716580098 - By Duncan Rono</div>
 <div class="hdr">
-<div><div class="logo">BETA_FX V5.2 FIXED</div><div class="small" id="userInfo">Not logged in</div></div>
+<div><div class="logo">BETA_FX V6 MANUAL</div><div class="small" id="userInfo">Not logged in</div></div>
 <div><button class="btnG" onclick="showAuth()">Login</button> <button class="btnG" onclick="logout()">Logout</button></div>
 </div>
 
 <div id="authModal" class="auth" style="display:none">
 <div class="authBox">
-<h2 style="color:#00d084">V5.2 Login</h2>
-<p class="small" style="margin:8px 0">Real user system - Each gets $10,000</p>
+<h2 style="color:#00d084">V6 Login</h2>
+<p class="small">Each user: Virtual $10k + Real KES Wallet</p>
 <div style="display:flex;gap:8px;margin:10px 0">
 <button id="btnLogin" class="btn" style="flex:1" onclick="setMode('login')">Login</button>
 <button id="btnSignup" class="btnG" style="flex:1" onclick="setMode('signup')">Signup</button>
@@ -48,124 +50,4 @@ body{background:#0a0e1a;color:#fff;font-family:system-ui,Arial}
 <input id="aPhone" class="inp" placeholder="Phone 2547XXXXXXXX" style="display:none">
 <div id="authMsg" style="color:#f59e0b;font-size:12px;min-height:18px;margin:6px 0"></div>
 <button class="btn" style="width:100%;padding:14px" onclick="doAuth()">Continue</button>
-<button class="btnG" style="width:100%;margin-top:8px" onclick="hideAuth()">Cancel</button>
-</div>
-</div>
-
-<div id="land" class="wrap" style="text-align:center;padding:50px 18px">
-<h1>Beta_Fx-Trader<br><span style="color:#00d084">V5.2 FIXED</span></h1>
-<p class="small" style="margin:12px 0">Fixed: Login popup now works 100% - By Duncan Rono</p>
-<button class="btn" style="padding:18px 42px;font-size:19px;border-radius:14px;margin-top:20px" onclick="showAuth()">SIGNUP / LOGIN TO V5.2</button>
-<div class="card" style="text-align:left;margin-top:22px">
-<b style="color:#00d084">V5.2 FIXED:</b><br>
-<span class="small">✅ Fixed vertical text bug in VS Code<br>✅ Login popup works on tap<br>✅ Formatted code (not single line)<br>✅ All V5 features kept</span>
-</div>
-</div>
-
-<div id="dash" class="wrap" style="display:none">
-<div class="nav">
-<button class="on" onclick="openTab('trade',this)">Trading</button>
-<button onclick="openTab('port',this)">Portfolio</button>
-<button onclick="openTab('mpesa',this)">M-Pesa V5</button>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-<div class="card"><div class="small">BALANCE (<span id="balUser">-</span>)</div><div class="bal" id="bal">$10,000.00</div><div class="small" id="stats">Trades:0</div></div>
-<div class="card"><div class="small">P&L</div><div id="pnl" style="font-size:26px;font-weight:900">+$0.00</div></div>
-</div>
-<div id="tab-trade" class="tab on">
-<div id="tvBox"><div id="tv" style="height:100%"></div></div>
-<div class="card">
-<select id="pair" class="inp" onchange="changePair()">
-<option value="FX:EURUSD">EUR/USD</option>
-<option value="FX:GBPUSD">GBP/USD</option>
-<option value="BINANCE:BTCUSDT">BTC/USD</option>
-<option value="OANDA:XAUUSD">GOLD</option>
-<option value="FX:USDKES">USD/KES</option>
-</select>
-<input id="amt" class="inp" type="number" value="100">
-<div style="display:flex;gap:8px;margin-top:8px">
-<button class="btn" style="flex:1;padding:15px" onclick="doTrade('BUY')">BUY ▲</button>
-<button class="btn btnR" style="flex:1;padding:15px" onclick="doTrade('SELL')">SELL ▼</button>
-</div>
-<div id="msg" style="min-height:20px;font-weight:800;margin-top:8px"></div>
-</div>
-<div class="card"><b>Trades</b><div id="hist" class="small">No trades</div></div>
-</div>
-<div id="tab-port" class="tab"><div class="card"><b>Portfolio</b><div id="portList" class="small">No trades</div></div></div>
-<div id="tab-mpesa" class="tab"><div class="card">
-<b>M-Pesa V5 - Daraja Ready</b>
-<p style="background:#052e1a;color:#00d084;padding:10px;border-radius:8px;font-size:11px;margin:8px 0">Phone ENABLED! STK simulation works.</p>
-<input id="mpPhone" class="inp" placeholder="2547XXXXXXXX">
-<input id="mpAmt" class="inp" type="number" value="1000" placeholder="KES Amount">
-<div style="display:flex;gap:8px;margin-top:10px">
-<button class="btn" style="flex:1" onclick="mpesaDeposit()">DEPOSIT</button>
-<button class="btn btnR" style="flex:1" onclick="mpesaWithdraw()">WITHDRAW</button>
-</div>
-<div id="mpesaMsg" style="min-height:22px;font-weight:700;margin-top:10px"></div>
-<div id="mpesaHist" class="small" style="margin-top:10px">No M-Pesa yet</div>
-</div></div>
-</div>
-
-<script>
-let mode='login';
-let users=JSON.parse(localStorage.getItem('bfx_users')||'{}');
-let curUser=localStorage.getItem('bfx_cur')||'';
-let trades=JSON.parse(localStorage.getItem('bfx_t_'+curUser)||'[]');
-let mpesaTx=JSON.parse(localStorage.getItem('bfx_mpesa_'+curUser)||'[]');
-let bal=parseFloat(localStorage.getItem('bfx_b_'+curUser)||'10000');
-let curPair=localStorage.getItem('bfx_p')||'FX:EURUSD';
-
-function setMode(m){
-mode=m;
-document.getElementById('btnLogin').className=m=='login'?'btn':'btnG';
-document.getElementById('btnSignup').className=m=='signup'?'btn':'btnG';
-document.getElementById('aPhone').style.display=m=='signup'?'block':'none';
-document.getElementById('authMsg').innerText=m=='signup'?'Signup: New user $10k':'Login: Enter pass';
-}
-function showAuth(){
-document.getElementById('authModal').style.display='flex';
-setMode(mode);
-}
-function hideAuth(){document.getElementById('authModal').style.display='none';}
-function doAuth(){
-let u=document.getElementById('aUser').value.trim();
-let p=document.getElementById('aPass').value.trim();
-let ph=document.getElementById('aPhone').value.trim();
-if(!u||!p){document.getElementById('authMsg').innerText='Enter user & pass';return;}
-if(mode=='signup'){
-if(users[u]){document.getElementById('authMsg').innerText='Exists, Login';return;}
-if(!ph.startsWith('254')){document.getElementById('authMsg').innerText='Phone 2547...';return;}
-users[u]={pass:p,phone:ph};localStorage.setItem('bfx_users',JSON.stringify(users));
-localStorage.setItem('bfx_b_'+u,'10000');localStorage.setItem('bfx_t_'+u,'[]');localStorage.setItem('bfx_mpesa_'+u,'[]');
-curUser=u;localStorage.setItem('bfx_cur',u);hideAuth();loadUser();
-}else{
-if(!users[u]||users[u].pass!==p){document.getElementById('authMsg').innerText='Wrong pass';return;}
-curUser=u;localStorage.setItem('bfx_cur',u);hideAuth();loadUser();
-}
-}
-function loadUser(){
-if(!curUser){showAuth();return;}
-trades=JSON.parse(localStorage.getItem('bfx_t_'+curUser)||'[]');
-mpesaTx=JSON.parse(localStorage.getItem('bfx_mpesa_'+curUser)||'[]');
-bal=parseFloat(localStorage.getItem('bfx_b_'+curUser)||'10000');
-document.getElementById('userInfo').innerText='Logged: '+curUser;
-document.getElementById('balUser').innerText=curUser;
-document.getElementById('mpPhone').value=users[curUser]?.phone||'';
-document.getElementById('land').style.display='none';
-document.getElementById('dash').style.display='block';
-document.getElementById('pair').value=curPair;
-setTimeout(()=>{loadTV(curPair);updateUI();},400);
-}
-function logout(){localStorage.removeItem('bfx_cur');curUser='';document.getElementById('dash').style.display='none';document.getElementById('land').style.display='block';document.getElementById('userInfo').innerText='Not logged in';}
-function loadTV(sym){try{document.getElementById('tv').innerHTML='';new TradingView.widget({autosize:true,symbol:sym,interval:"15",timezone:"Africa/Nairobi",theme:"dark",style:"1",locale:"en",toolbar_bg:"#0f141f",enable_publishing:false,container_id:"tv"});}catch(e){document.getElementById('tv').innerHTML='<div style="padding:40px;color:#666">Chart '+sym+'</div>';}}
-function changePair(){let s=document.getElementById('pair').value;curPair=s;localStorage.setItem('bfx_p',s);loadTV(s);}
-function doTrade(type){if(!curUser){showAuth();return;}let amt=parseFloat(document.getElementById('amt').value)||0;if(amt>bal){alert('No funds');return;}let pair=document.getElementById('pair').value.split(':')[1];let win=Math.random()>0.44;let pnl=win?amt*0.085:-amt*0.06;bal+=pnl;trades.push({type,pair,amt,pnl,time:new Date().toLocaleTimeString(),win});localStorage.setItem('bfx_b_'+curUser,bal);localStorage.setItem('bfx_t_'+curUser,JSON.stringify(trades));document.getElementById('msg').innerText=(win?'WIN ':'LOSS ')+pnl.toFixed(2);document.getElementById('msg').className=win?'win':'loss';updateUI();}
-function updateUI(){document.getElementById('bal').innerText='$'+bal.toFixed(2);let total=bal-10000;document.getElementById('pnl').innerText=(total>=0?'+$':'-$')+Math.abs(total).toFixed(2);document.getElementById('stats').innerText='Trades: '+trades.length;document.getElementById('hist').innerHTML=trades.length?trades.slice(-10).reverse().map(t=>'<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #1f2937"><span>'+t.type+' '+t.pair+' $'+t.amt+'</span><span class="'+(t.pnl>=0?'win':'loss')+'">'+t.pnl.toFixed(2)+'</span></div>').join(''):'No trades';document.getElementById('portList').innerHTML=trades.map(t=>t.time+' '+t.type+' '+t.pair+' '+t.pnl.toFixed(2)).join('<br>')||'No trades';}
-function openTab(id,btn){document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));document.getElementById('tab-'+id).classList.add('on');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('on'));btn.classList.add('on');if(id=='trade')setTimeout(()=>loadTV(curPair),100);}
-function mpesaDeposit(){if(!curUser){showAuth();return;}let phone=document.getElementById('mpPhone').value.trim();let amt=parseFloat(document.getElementById('mpAmt').value)||0;if(!phone.startsWith('254')){document.getElementById('mpesaMsg').innerText='Phone 254...';return;}let usd=amt/129;bal+=usd;localStorage.setItem('bfx_b_'+curUser,bal);mpesaTx.push({type:'DEPOSIT',amtKES:amt,amtUSD:usd,time:new Date().toLocaleString()});localStorage.setItem('bfx_mpesa_'+curUser,JSON.stringify(mpesaTx));document.getElementById('mpesaMsg').innerHTML='<span class="win">✅ KES '+amt+' → $'+usd.toFixed(2)+' added!</span>';updateUI();renderMpesa();}
-function mpesaWithdraw(){if(!curUser){showAuth();return;}let amt=parseFloat(document.getElementById('mpAmt').value)||0;let usd=amt/129;if(usd>bal){document.getElementById('mpesaMsg').innerText='No funds';return;}bal-=usd;localStorage.setItem('bfx_b_'+curUser,bal);mpesaTx.push({type:'WITHDRAW',amtKES:amt,amtUSD:usd,time:new Date().toLocaleString()});localStorage.setItem('bfx_mpesa_'+curUser,JSON.stringify(mpesaTx));document.getElementById('mpesaMsg').innerHTML='<span class="win">✅ Withdraw KES '+amt+'</span>';updateUI();renderMpesa();}
-function renderMpesa(){document.getElementById('mpesaHist').innerHTML=mpesaTx.length?mpesaTx.slice(-10).reverse().map(t=>t.type+' KES '+t.amtKES+' ($'+t.amtUSD.toFixed(2)+') '+t.time).join('<br>'):'No M-Pesa';}
-if(curUser&&users[curUser]){loadUser();}
-</script>
-</body>
-</html>
+<button class="btnG" style="width:100%;margin-top:
