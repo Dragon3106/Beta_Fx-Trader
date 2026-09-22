@@ -1,101 +1,205 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA FX</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:system-ui;overflow-x:hidden}.top{display:flex;align-items:center;gap:8px;padding:10px;background:#0a1628;border-bottom:1px solid #1a2a3a}.logo{width:36px;height:36px;background:linear-gradient(135deg,#00e080,#00aaff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900}.pill{padding:6px 12px;border-radius:20px;font-weight:900;font-size:12px;border:1px solid #333;cursor:pointer}.demo{border-color:#f59e0b;color:#f59e0b;background:#000}.demo.real{border-color:#ff2040;color:#ff2040}.bal{background:#111e2f;color:#f59e0b;border:1px solid #1a2a3a}.plus{width:32px;height:32px;background:#00e080;color:#000;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;margin-left:auto;cursor:pointer}.head{display:flex;align-items:center;gap:8px;padding:10px 12px}.price{font-size:26px;font-weight:900}.green{color:#00e080}.red{color:#ff2040}.pct{padding:4px 8px;border-radius:6px;font-size:12px;font-weight:900}.pct.g{background:#00331a;color:#00e080}.pct.r{background:#33000a;color:#ff2040}.rateBox{margin-left:auto;background:#111;border:1px solid #444;padding:6px 12px;border-radius:8px;font-weight:900}.tf{display:flex;gap:6px;padding:6px 12px}.tfb{padding:8px 16px;background:#111e2f;color:#6b7a90;border:none;border-radius:10px;font-weight:800;cursor:pointer}.tfb.on{background:#1a3a2a;color:#00e080;border:1px solid #00e080}canvas{width:100%;height:46vh;background:#000;display:block}.panel{background:#0a1628;padding:12px}.amts{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}.chip{padding:12px 18px;background:#111e2f;border:1px solid #1e2d45;border-radius:12px;font-weight:900;cursor:pointer;white-space:nowrap}.chip.on{border-color:#00e080;background:#1a3a2a}.chip small{color:#55657a}.stakeRow{display:flex;gap:8px;margin:8px 0}.stakeIn{flex:1;padding:12px;background:#000;border:1px solid #1e2d45;border-radius:10px;color:#fff;font-weight:900;font-size:16px}.info{display:flex;justify-content:space-between;padding:10px 0;color:#6b7a90;font-size:12px;font-weight:700}.dot{width:32px;height:32px;border:2px solid #00e080;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#00e080;font-weight:900;cursor:pointer}.buySell{display:grid;grid-template-columns:1fr 1fr;gap:12px}.buy{background:#00e080;color:#000;padding:18px;border:none;border-radius:14px;font-weight:900;font-size:18px;cursor:pointer}.sell{background:#ff2040;color:#fff;padding:18px;border:none;border-radius:14px;font-weight:900;font-size:18px;cursor:pointer}.buy:disabled,.sell:disabled{opacity:0.4}.nav{display:flex;justify-content:space-around;padding:12px;background:#0a1628;border-top:1px solid #1a2d45}.nav div{color:#55657a;font-size:10px;font-weight:800;text-align:center;cursor:pointer}.nav div.on{color:#00e080}#profileModal{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;padding:16px}.card{background:#111e2f;border:1px solid #1e2d45;border-radius:16px;padding:16px;width:100%;max-width:380px}.inp{width:100%;padding:14px;background:#000;border:1px solid #1e2d45;border-radius:10px;color:#fff;margin:6px 0}.tradeLine{position:absolute;background:#f59e0b;height:2px;z-index:5;pointer-events:none}.countdown{position:absolute;background:#f59e0b;color:#000;padding:2px 6px;border-radius:4px;font-size:11px;font-weight:900;z-index:6}</style></head><body>
-<div class="top"><div class="logo" onclick="location.reload()">B</div><b>BETA <span style="color:#00e080">FX</span></b><span class="pill demo" id="modePill" onclick="toggleMode()">DEMO</span><span class="bal" id="bal">K 10,000.00</span><div class="plus" onclick="openPage('deposit')">+</div></div>
-<div class="head"><div class="price green" id="price">0.5516</div><div class="pct g" id="pct">+0.00%</div><div class="rateBox">Rate: <span id="rate">0.5516</span></div></div>
-<div class="tf"><button class="tfb on" id="t3" onclick="setTF(3)">3s</button><button class="tfb" id="t5" onclick="setTF(5)">5s</button><button class="tfb" id="t10" onclick="setTF(10)">10s</button><button class="tfb" id="t30" onclick="setTF(30)">30s</button></div>
-<div style="position:relative"><canvas id="c"></canvas><div id="overlays" style="position:absolute;inset:0;pointer-events:none"></div></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"><title>BETA FX</title><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:system-ui} .top{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#0a1628;border-bottom:1px solid #1e2d45} .logo{width:36px;height:36px;background:linear-gradient(135deg,#00e080,#00aaff);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:20px;cursor:pointer} .pill{padding:7px 14px;border-radius:20px;font-weight:900;font-size:12px;border:1px solid #444;cursor:pointer;background:#000} .pill.demo{border-color:#f59e0b;color:#f59e0b} .pill.real{border-color:#ff2040;color:#ff2040;background:#33000a} .bal{padding:7px 14px;border-radius:20px;background:#111e2f;border:1px solid #1e2d45;color:#f59e0b;font-weight:900;font-size:13px} .plus{margin-left:auto;width:34px;height:34px;background:#00e080;color:#000;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;cursor:pointer} .head2{display:flex;align-items:center;gap:8px;padding:10px 14px} .price{font-size:28px;font-weight:900} .green{color:#00e080} .red{color:#ff2040} .pct{padding:4px 10px;border-radius:8px;font-size:12px;font-weight:900} .pct.g{background:#00331a;color:#00e080} .pct.r{background:#33000a;color:#ff2040} .rate{margin-left:auto;background:#121212;border:1px solid #333;padding:7px 14px;border-radius:10px;font-weight:900} .tf{display:flex;gap:8px;padding:8px 12px} .tfb{flex:1;padding:10px;background:#111e2f;border:1px solid #1e2d45;color:#6b7a90;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer} .tfb.on{background:#002e1f;color:#00e080;border-color:#00e080;box-shadow:0 0 10px #00e08055} canvas{width:100%;height:48vh;background:#000;display:block} .panel{background:#0a1628;padding:14px} .amts{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px} .chip{padding:12px 20px;background:#111e2f;border:1px solid #1e2d45;border-radius:14px;font-weight:900;cursor:pointer;white-space:nowrap;display:flex;gap:6px;align-items:center} .chip.on{border-color:#00e080;background:#142a22;color:#fff} .chip small{color:#55657a;font-size:11px} .inputRow{display:flex;gap:8px;margin:8px 0} .stake{flex:1;padding:14px;background:#000;border:2px solid #1e2d45;border-radius:12px;color:#fff;font-size:18px;font-weight:900} .stake:focus{border-color:#00e080;outline:none} .info{display:flex;justify-content:space-between;align-items:center;padding:12px 0} .dot{width:36px;height:36px;border:2px solid #00e080;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#00e080;font-weight:900;cursor:pointer;font-size:16px} .buySell{display:grid;grid-template-columns:1fr 1fr;gap:14px} .buy{background:#00e080;color:#000;padding:20px;border:none;border-radius:16px;font-weight:900;font-size:20px;cursor:pointer} .sell{background:#ff2040;color:#fff;padding:20px;border:none;border-radius:16px;font-weight:900;font-size:20px;cursor:pointer} .buy:active,.sell:active{transform:scale(0.97)} .nav{display:flex;justify-content:space-around;padding:14px 0;background:#0a1628;border-top:1px solid #1e2d45;margin-top:12px} .nav div{text-align:center;color:#55657a;font-size:11px;font-weight:800;cursor:pointer;padding:6px 14px;border-radius:10px} .nav div.on{color:#00e080;background:#142a22} /* modals */ .modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;display:none;overflow:auto;padding:16px} .card{background:#111e2f;border:1px solid #1e2d45;border-radius:18px;padding:18px;max-width:420px;margin:20px auto} .inp{width:100%;padding:14px;background:#000;border:1px solid #1e2d45;border-radius:12px;color:#fff;margin:8px 0;font-size:15px} .lineMark{position:absolute;height:2px;left:0;right:0;z-index:5} .cdMark{position:absolute;right:10px;padding:4px 8px;border-radius:6px;background:#f59e0b;color:#000;font-weight:900;font-size:12px;z-index:6}</style></head><body>
+<div class="top"><div class="logo" onclick="alert('BETA FX v8.2 - Thika')">B</div><b>BETA <span style="color:#00e080">FX</span></b><span class="pill demo" id="modeBtn" onclick="toggleMode()">DEMO</span><span class="bal" id="balTop">K 10,000.00</span><div class="plus" onclick="openModal('deposit')">+</div></div>
+<div class="head2"><div class="price green" id="price">0.5516</div><div class="pct g" id="pct">+0.00%</div><div class="rate">Rate: <span id="rate">0.5516</span></div></div>
+<div class="tf"><button class="tfb on" id="btn3" onclick="setTF(3)">3s</button><button class="tfb" id="btn5" onclick="setTF(5)">5s</button><button class="tfb" id="btn10" onclick="setTF(10)">10s</button><button class="tfb" id="btn30" onclick="setTF(30)">30s</button></div>
+<div style="position:relative" id="chartBox"><canvas id="c"></canvas><div id="marks" style="position:absolute;inset:0;pointer-events:none"></div></div>
 <div class="panel">
-<div class="amts"><div class="chip on" data-v="100" onclick="setAmt(100,this)"><small>KES</small>100</div><div class="chip" data-v="500" onclick="setAmt(500,this)">500</div><div class="chip" data-v="1000" onclick="setAmt(1000,this)">1,000</div><div class="chip" data-v="2500" onclick="setAmt(2500,this)">2,500</div><div class="chip" data-v="5000" onclick="setAmt(5000,this)">5,000</div></div>
-<div class="stakeRow"><input id="stake" class="stakeIn" type="number" value="100" oninput="syncChip()"><button style="padding:12px;background:#1e2d45;border:none;border-radius:10px;color:#fff;font-weight:900" onclick="document.getElementById('stake').value=100;setAmt(100,document.querySelector('[data-v=100]'))">MIN</button></div>
-<div class="info"><div style="display:flex;align-items:center;gap:8px"><div class="dot" id="durDot" onclick="cycleDur()">3</div><span id="durTxt">DURATION 3s • Orderly Move</span></div><div>P&L <span id="pnl" style="color:#fff;font-size:15px">KES 0.00</span></div></div>
-<div class="buySell"><button class="buy" id="buyBtn" onclick="place('BUY')">BUY</button><button class="sell" id="sellBtn" onclick="place('SELL')">SELL</button></div>
-<div class="nav"><div class="on" id="nTrade" onclick="openPage('trade')">⌂<br>TRADE</div><div id="nDep" onclick="openPage('deposit')">$<br>DEPOSIT</div><div id="nHist" onclick="openPage('history')">📊<br>HISTORY</div><div id="nProf" onclick="openProfile()">👤<br>PROFILE</div></div>
+<div class="amts"><div class="chip on" data-v="100" onclick="setStake(100,this)"><small>KES</small>100</div><div class="chip" data-v="500" onclick="setStake(500,this)">500</div><div class="chip" data-v="1000" onclick="setStake(1000,this)">1,000</div><div class="chip" data-v="2500" onclick="setStake(2500,this)">2,500</div><div class="chip" data-v="5000" onclick="setStake(5000,this)">5,000</div></div>
+<div class="inputRow"><input id="stakeInput" class="stake" type="number" value="100" oninput="onStakeInput()"><button class="pill demo" onclick="setStake(100,document.querySelector('[data-v=100]'))" style="padding:14px 18px">MIN</button><button class="pill demo" onclick="setStake(5000,document.querySelector('[data-v=5000]'))" style="padding:14px 18px">MAX</button></div>
+<div class="info"><div style="display:flex;align-items:center;gap:10px"><div class="dot" id="durDot" onclick="nextTF()">3</div><div><div style="color:#fff;font-size:13px;font-weight:900" id="durLabel">DURATION 3s</div><div style="font-size:10px;color:#55657a">Orderly move • Tap to change</div></div></div><div style="text-align:right"><div style="font-size:10px;color:#55657a">P&L TODAY</div><div id="pnlToday" style="color:#fff;font-weight:900;font-size:16px">KES 0.00</div></div></div>
+<div class="buySell"><button class="buy" id="buyBtn" onclick="placeTrade('BUY')">BUY</button><button class="sell" id="sellBtn" onclick="placeTrade('SELL')">SELL</button></div>
+<div class="nav"><div class="on" onclick="openModal('trade')">⌂<br>TRADE</div><div onclick="openModal('deposit')">$<br>DEPOSIT</div><div onclick="openModal('history')">📊<br>HISTORY</div><div onclick="openModal('profile')">👤<br>PROFILE</div></div>
 </div>
 
-<!-- PAGES -->
-<div id="pageDeposit" style="display:none;position:fixed;inset:0;background:#000;z-index:100;padding:16px;overflow:auto"><div class="card" style="max-width:420px;margin:20px auto"><h3>💰 M-Pesa <span style="color:#f59e0b">0716580098</span></h3><p style="color:#6b7a90;font-size:12px;margin:8px 0">Float 500 KES Beta - Min 100 Max 200 real. Demo unlimited.</p><div style="display:flex;gap:8px"><button class="pill demo on" id="dDemo" onclick="setDepMode('demo')" style="flex:1">DEMO</button><button class="pill demo" id="dReal" onclick="setDepMode('real')" style="flex:1">REAL 🔴</button></div><input id="da" class="inp" type="number" placeholder="Amount"><input id="dc" class="inp" placeholder="M-Pesa Code (Real only)"><button class="buy" style="width:100%;background:#f59e0b" onclick="doDep()">DEPOSIT</button><div id="depHist" style="font-size:12px;margin-top:10px;color:#6b7a90"></div><button class="inp" onclick="openPage('trade')">← Back to Trade</button></div></div>
-<div id="pageHistory" style="display:none;position:fixed;inset:0;background:#000;z-index:100;padding:16px;overflow:auto"><div class="card" style="max-width:420px;margin:20px auto"><h3>📊 History</h3><div id="histList" style="font-size:12px;margin-top:10px"></div><button class="inp" onclick="openPage('trade')">← Back</button></div></div>
+<!-- DEPOSIT MODAL -->
+<div id="modal-deposit" class="modal"><div class="card"><h3>💰 BETA FX Wallet</h3><p style="font-size:12px;color:#6b7a90;margin:8px 0">M-Pesa <b style="color:#f59e0b">0716580098</b> • Float 500 KES Beta</p><div style="display:flex;gap:8px;margin:10px 0"><button class="pill demo on" id="depDemoBtn" style="flex:1" onclick="setDepMode('demo')">DEMO</button><button class="pill real" id="depRealBtn" style="flex:1" onclick="setDepMode('real')">REAL 🔴</button></div><div style="background:#000;padding:10px;border-radius:10px;display:flex;justify-content:space-between"><span>Demo</span><b id="dDemoBal" style="color:#00e080">10000</b></div><div style="background:#33000a;padding:10px;border-radius:10px;display:flex;justify-content:space-between;margin:6px 0;border:1px solid #ff204055"><span>Real</span><b id="dRealBal" style="color:#f59e0b">0</b></div><input id="depAmt" class="inp" type="number" placeholder="Amount 100-200 real"><input id="depCode" class="inp" placeholder="M-Pesa Code (real only) QJ..."><button class="buy" style="width:100%;background:#f59e0b" onclick="doDeposit()">DEPOSIT NOW</button><div id="depList" style="font-size:11px;margin-top:10px;color:#6b7a90"></div><button class="inp" onclick="closeAll()">← Back to Trading</button></div></div>
 
-<!-- PROFILE MODAL - FUNCTIONS -->
-<div id="profileModal"><div class="card"><h3 style="color:#00e080">👤 BETA FX Account</h3><div style="background:#000;padding:12px;border-radius:10px;margin:10px 0"><div>Username: <b id="pUser">Guest</b></div><div>Demo: <b id="pDemo" style="color:#00e080">K 10,000</b></div><div>Real: <b id="pReal" style="color:#f59e0b">KES 0</b></div><div>Total Trades: <b id="pTrades">0</b></div><div>Win Rate: <b id="pWin">0%</b></div><div>Float: <b style="color:#f59e0b">500 KES (Beta)</b></div></div><input id="pName" class="inp" placeholder="Change username"><button class="buy" style="width:100%" onclick="saveProfile()">Save Name</button><button class="inp" style="background:#ff2040;color:#fff;border:none" onclick="resetAcc()">Reset Demo</button><button class="inp" onclick="closeProfile()">Close</button></div></div>
+<!-- HISTORY MODAL -->
+<div id="modal-history" class="modal"><div class="card"><h3>📊 Trade History</h3><div style="display:flex;gap:8px;margin:10px 0"><span id="hTotal" style="background:#000;padding:6px 12px;border-radius:8px;font-size:12px"></span><span id="hWinRate" style="background:#00331a;color:#00e080;padding:6px 12px;border-radius:8px;font-size:12px"></span></div><div id="hList" style="max-height:60vh;overflow:auto"></div><button class="inp" onclick="closeAll()">Close</button></div></div>
+
+<!-- PROFILE MODAL - TAP FUNCTIONS -->
+<div id="modal-profile" class="modal"><div class="card"><h3 style="color:#00e080">👤 Account Details - Tap to Edit</h3><div style="background:#000;border-radius:12px;padding:14px;margin:12px 0;border:1px solid #1e2d45"><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111"><span style="color:#6b7a90">Username</span><b id="prName">Guest</b></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111"><span style="color:#6b7a90">Demo Balance</span><b id="prDemo" style="color:#00e080">K 10,000</b></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111"><span style="color:#6b7a90">Real Balance</span><b id="prReal" style="color:#f59e0b">KES 0</b></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111"><span style="color:#6b7a90">Total Trades</span><b id="prTrades">0</b></div><div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #111"><span style="color:#6b7a90">Win Rate</span><b id="prWin">0%</b></div><div style="display:flex;justify-content:space-between;padding:6px 0"><span style="color:#6b7a90">M-Pesa Float</span><b style="color:#f59e0b">500 KES</b></div></div><input id="newName" class="inp" placeholder="Tap to change username"><button class="buy" style="width:100%" onclick="saveName()">SAVE NAME</button><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><button class="inp" style="background:#1a3a2a;color:#00e080;border:1px solid #00e080" onclick="resetDemo()">Reset Demo 10k</button><button class="inp" style="background:#33000a;color:#ff2040;border:1px solid #ff2040" onclick="clearAll()">Clear All</button></div><button class="inp" onclick="closeAll()">Close Profile</button><div style="font-size:10px;color:#444;text-align:center;margin-top:8px">BETA FX Thika • 0716580098 • Tap any value to edit</div></div></div>
 
 <script>
-let mode='demo',tf=3,amount=100,depMode='demo',balance={demo:10000,real:0},trades=[],active=[],graphData=[],lastVal=0,intervalId;
-let canvas=document.getElementById('c'),ctx=canvas.getContext('2d');
-function resize(){canvas.width=canvas.offsetWidth*2;canvas.height=canvas.offsetHeight*2}resize();window.onresize=resize;
-for(let i=0;i<80;i++)graphData.push(0);
-let target=0;
-function orderlyMove(){
- // smooth orderly movement like MaliCrush - not random jumps
- target+=(Math.random()-0.5)*0.08;
- target=Math.max(-2.2,Math.min(2.2,target));
- let cur=graphData[graphData.length-1];
- cur+=(target-cur)*0.15 + (Math.random()-0.5)*0.05;
- graphData.push(cur); if(graphData.length>80)graphData.shift();
- draw();
- let show=(0.5516+cur*0.02).toFixed(4);
- document.getElementById('rate').innerText=show;
- document.getElementById('price').innerText=show;
- document.getElementById('price').className='price '+(cur>=0?'green':'red');
- document.getElementById('pct').innerText=(cur>=0?'+':'')+(cur*2.5).toFixed(2)+'%';
- document.getElementById('pct').className='pct '+(cur>=0?'g':'r');
- updateActive();
+let mode='demo', tf=3, stake=100, depMode='demo';
+let balances={demo:10000,real:0}, trades=[], activeTrades=[], data=[], target=0, timer;
+let canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
+function resize(){canvas.width=canvas.offsetWidth*2; canvas.height=canvas.offsetHeight*2} resize(); window.onresize=resize;
+for(let i=0;i<85;i++) data.push(0);
+
+function orderlyTick(){
+ // ORDERLY MOVE - smooth, not noisy - drift + momentum
+ target += (Math.random()-0.5)*0.07;
+ target = Math.max(-2.3, Math.min(2.3, target));
+ let last=data[data.length-1];
+ let next = last + (target-last)*0.12 + (Math.random()-0.5)*0.04;
+ data.push(next); if(data.length>85) data.shift();
+ drawChart();
+ let price=(0.5516+next*0.018).toFixed(4);
+ document.getElementById('rate').innerText=price;
+ document.getElementById('price').innerText=price;
+ let isGreen=next>=0;
+ document.getElementById('price').className='price '+(isGreen?'green':'red');
+ document.getElementById('pct').innerText=(isGreen?'+':'')+(next*2.2).toFixed(2)+'%';
+ document.getElementById('pct').className='pct '+(isGreen?'g':'r');
+ updateActiveMarks();
 }
-function draw(){
- let W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
- ctx.strokeStyle='#111';[0.25,0.5,0.75].forEach(p=>{ctx.beginPath();ctx.moveTo(0,H*p);ctx.lineTo(W,H*p);ctx.stroke()});
- ctx.strokeStyle='#1a2a3a';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,H/2);ctx.lineTo(W,H/2);ctx.stroke();
- ctx.fillStyle='#333';ctx.font='bold 18px monospace';ctx.fillText('3.0',10,H*0.1);ctx.fillText('1.5',10,H*0.3);ctx.fillText('0.0',10,H*0.52);ctx.fillText('-1.5',10,H*0.74);ctx.fillText('-3.0',10,H*0.94);
- let step=W/(graphData.length-1);
- // green
- ctx.beginPath();let s=false;graphData.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14;if(v>=0){if(!s){ctx.moveTo(x,y);s=true}else ctx.lineTo(x,y)}else s=false});ctx.strokeStyle='#00e080';ctx.lineWidth=3;ctx.stroke();
- ctx.beginPath();ctx.moveTo(0,H/2);graphData.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14;if(v>=0)ctx.lineTo(x,y);else ctx.lineTo(x,H/2)});for(let i=graphData.length-1;i>=0;i--)if(graphData[i]>=0)ctx.lineTo(i*step,H/2);ctx.closePath();ctx.fillStyle='rgba(0,224,128,0.25)';ctx.fill();
- // red
- ctx.beginPath();s=false;graphData.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14;if(v<0){if(!s){ctx.moveTo(x,y);s=true}else ctx.lineTo(x,y)}else s=false});ctx.strokeStyle='#ff2040';ctx.lineWidth=3;ctx.stroke();
- ctx.beginPath();ctx.moveTo(0,H/2);graphData.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14;if(v<0)ctx.lineTo(x,y);else ctx.lineTo(x,H/2)});for(let i=graphData.length-1;i>=0;i--)if(graphData[i]<0)ctx.lineTo(i*step,H/2);ctx.closePath();ctx.fillStyle='rgba(255,32,64,0.25)';ctx.fill();
- let last=graphData[graphData.length-1],lx=(graphData.length-1)*step,ly=H/2 - last*H*0.14;
- ctx.fillStyle=last>=0?'#00e080':'#ff2040';ctx.beginPath();ctx.arc(lx,ly,9,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(lx,ly,3.5,0,Math.PI*2);ctx.fill();
+
+function drawChart(){
+ let W=canvas.width,H=canvas.height;
+ ctx.fillStyle='#000'; ctx.fillRect(0,0,W,H);
+ // grid
+ ctx.strokeStyle='#0e0e0e'; ctx.lineWidth=1;
+ [0.2,0.4,0.6,0.8].forEach(p=>{ctx.beginPath();ctx.moveTo(0,H*p);ctx.lineTo(W,H*p);ctx.stroke()});
+ // center 0 line
+ ctx.strokeStyle='#1e2d45'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke();
+ // labels
+ ctx.fillStyle='#444'; ctx.font='bold 16px monospace';
+ ctx.fillText('3.0',12,H*0.12); ctx.fillText('1.5',12,H*0.32); ctx.fillText('0.0',12,H*0.53); ctx.fillText('-1.5',12,H*0.73); ctx.fillText('-3.0',12,H*0.94);
+ let step=W/(data.length-1);
+ // green line + fill
+ ctx.beginPath(); let started=false;
+ data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14; if(v>=0){if(!started){ctx.moveTo(x,y);started=true}else ctx.lineTo(x,y)}else started=false});
+ ctx.strokeStyle='#00e080'; ctx.lineWidth=3.5; ctx.lineJoin='round'; ctx.stroke();
+ ctx.beginPath(); ctx.moveTo(0,H/2);
+ data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14; if(v>=0)ctx.lineTo(x,y); else ctx.lineTo(x,H/2)});
+ for(let i=data.length-1;i>=0;i--) if(data[i]>=0) ctx.lineTo(i*step,H/2);
+ ctx.closePath(); ctx.fillStyle='rgba(0,224,128,0.22)'; ctx.fill();
+ // red line + fill
+ ctx.beginPath(); started=false;
+ data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14; if(v<0){if(!started){ctx.moveTo(x,y);started=true}else ctx.lineTo(x,y)}else started=false});
+ ctx.strokeStyle='#ff2040'; ctx.lineWidth=3.5; ctx.stroke();
+ ctx.beginPath(); ctx.moveTo(0,H/2);
+ data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.14; if(v<0)ctx.lineTo(x,y); else ctx.lineTo(x,H/2)});
+ for(let i=data.length-1;i>=0;i--) if(data[i]<0) ctx.lineTo(i*step,H/2);
+ ctx.closePath(); ctx.fillStyle='rgba(255,32,64,0.22)'; ctx.fill();
+ // last dot
+ let last=data[data.length-1], lx=(data.length-1)*step, ly=H/2 - last*H*0.14;
+ ctx.fillStyle=last>=0?'#00e080':'#ff2040'; ctx.beginPath(); ctx.arc(lx,ly,10,0,Math.PI*2); ctx.fill();
+ ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(lx,ly,4,0,Math.PI*2); ctx.fill();
 }
-function setTF(v){tf=v;document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('on'));document.getElementById('t'+v).classList.add('on');document.getElementById('durDot').innerText=v;document.getElementById('durTxt').innerText='DURATION '+v+'s • Orderly Move';clearInterval(intervalId);intervalId=setInterval(orderlyMove, v===3?110: v===5?180: v===10?320:600);}
-function setAmt(v,el){amount=v;document.getElementById('stake').value=v;document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));el.classList.add('on')}
-function syncChip(){amount=parseFloat(document.getElementById('stake').value)||0;document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on', parseInt(c.dataset.v)===amount))}
-function toggleMode(){mode=mode==='demo'?'real':'demo';document.getElementById('modePill').innerText=mode.toUpperCase();document.getElementById('modePill').className='pill demo '+(mode==='real'?'real':'');document.getElementById('bal').innerText=(mode==='demo'?'K ':'KES ')+balance[mode].toFixed(2);if(mode==='real'&&balance.real>200){alert('Beta float 500 - Max KES 200 real per user!')}}
-function setDepMode(m){depMode=m;document.getElementById('dDemo').className='pill demo '+(m==='demo'?'on':'');document.getElementById('dReal').className='pill demo '+(m==='real'?'on':'')}
-function place(type){
- if(amount>balance[mode]){alert('Low balance! '+mode+' '+balance[mode]);return}
- if(mode==='real'&&amount>200){alert('Max KES 200 real beta - Float 500 only');return}
- balance[mode]-=amount;updateBal();
- let entry=graphData[graphData.length-1],id=Date.now();
- active.push({id,type,amount,entry,start:Date.now(),dur:tf*1000,mode});
- let ov=document.getElementById('overlays');let line=document.createElement('div');line.className='tradeLine';line.id='line'+id;line.style.top='50%';line.style.left='0';line.style.width='100%';line.style.background=type==='BUY'?'#00e080':'#ff2040';ov.appendChild(line);
- let cd=document.createElement('div');cd.className='countdown';cd.id='cd'+id;cd.style.top='48%';cd.style.right='10px';cd.innerText=tf+'s';ov.appendChild(cd);
- document.getElementById('buyBtn').disabled=true;document.getElementById('sellBtn').disabled=true;
- setTimeout(()=>{document.getElementById('buyBtn').disabled=false;document.getElementById('sellBtn').disabled=false},800);
+
+function setTF(v){
+ tf=v;
+ document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('on'));
+ document.getElementById('btn'+v).classList.add('on');
+ document.getElementById('durDot').innerText=v;
+ document.getElementById('durLabel').innerText='DURATION '+v+'s';
+ clearInterval(timer);
+ let speed = v===3?110 : v===5?180 : v===10?320 : 580;
+ timer=setInterval(orderlyTick, speed);
+ // vibration feedback
+ if(navigator.vibrate) navigator.vibrate(30);
 }
-function updateActive(){
+
+function setStake(v,el){
+ stake=v;
+ document.getElementById('stakeInput').value=v;
+ document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+ if(el) el.classList.add('on');
+}
+
+function onStakeInput(){
+ stake=parseFloat(document.getElementById('stakeInput').value)||0;
+ document.querySelectorAll('.chip').forEach(c=>{
+   c.classList.toggle('on', parseInt(c.dataset.v)===stake);
+ });
+}
+
+function toggleMode(){
+ mode = mode==='demo'?'real':'demo';
+ document.getElementById('modeBtn').innerText=mode.toUpperCase();
+ document.getElementById('modeBtn').className='pill '+(mode==='demo'?'demo':'real');
+ updateBalances();
+ if(mode==='real' && balances.real>200) alert('REAL BETA - Max KES 200 with 500 float!');
+}
+
+function setDepMode(m){
+ depMode=m;
+ document.getElementById('depDemoBtn').className='pill '+(m==='demo'?'demo on':'demo');
+ document.getElementById('depRealBtn').className='pill '+(m==='real'?'real on':'real');
+}
+
+function placeTrade(type){
+ if(stake<=0) return alert('Set amount!');
+ if(stake>balances[mode]) return alert('Low '+mode+' balance! You have '+balances[mode].toFixed(2));
+ if(mode==='real' && stake>200) return alert('Beta limit KES 200 - float 500 only!');
+ if(mode==='real' && balances.real<stake) return alert('Deposit real first! M-Pesa 0716580098');
+ balances[mode]-=stake;
+ updateBalances();
+ let entry=data[data.length-1];
+ let id=Date.now();
+ activeTrades.push({id,type,stake,entry,start:Date.now(),dur:tf*1000,mode});
+ // visual marker
+ let marks=document.getElementById('marks');
+ let line=document.createElement('div'); line.className='lineMark'; line.id='l'+id;
+ line.style.background=type==='BUY'?'#00e080':'#ff2040'; line.style.top='50%'; line.style.opacity='0.8';
+ marks.appendChild(line);
+ let cd=document.createElement('div'); cd.className='cdMark'; cd.id='c'+id;
+ cd.style.top='46%'; cd.innerText=tf+'s'; cd.style.background=type==='BUY'?'#00e080':'#ff2040';
+ marks.appendChild(cd);
+ document.getElementById('buyBtn').disabled=true; document.getElementById('sellBtn').disabled=true;
+ setTimeout(()=>{document.getElementById('buyBtn').disabled=false; document.getElementById('sellBtn').disabled=false},700);
+ if(navigator.vibrate) navigator.vibrate(40);
+}
+
+function updateActiveMarks(){
  let now=Date.now();
- active.forEach(a=>{
-   let left=Math.ceil((a.dur-(now-a.start))/1000);let el=document.getElementById('cd'+a.id);if(el)el.innerText=(left>0?left:0)+'s';
-   if(now-a.start>=a.dur){
-     let exit=graphData[graphData.length-1],win=(a.type==='BUY'&&exit>a.entry)||(a.type==='SELL'&&exit<a.entry);
-     let pnl=win?a.amount*0.85:-a.amount;
-     balance[a.mode]+=a.amount+pnl; if(a.mode===mode)updateBal();
-     trades.unshift({type:a.type,amount:a.amount,pnl,mode:a.mode,time:new Date().toLocaleTimeString()});
-     document.getElementById('pnl').innerText='KES '+(trades.slice(0,5).reduce((s,t)=>s+t.pnl,0)).toFixed(2));
-     document.getElementById('pnl').style.color=pnl>=0?'#00e080':'#ff2040';
-     document.getElementById('line'+a.id)?.remove();document.getElementById('cd'+a.id)?.remove();
-     active=active.filter(x=>x.id!==a.id);save();
+ activeTrades.slice().forEach(t=>{
+   let left=Math.ceil((t.dur-(now-t.start))/1000);
+   let el=document.getElementById('c'+t.id); if(el) el.innerText=(left>0?left+'s':'0s');
+   if(now-t.start>=t.dur){
+     let exit=data[data.length-1];
+     let win = (t.type==='BUY' && exit>t.entry) || (t.type==='SELL' && exit<t.entry);
+     let pnl = win ? t.stake*0.85 : -t.stake;
+     balances[t.mode]+=t.stake+pnl;
+     trades.unshift({type:t.type,stake:t.stake,pnl:pnl,mode:t.mode,time:new Date().toLocaleTimeString(),price:exit.toFixed(4)});
+     document.getElementById('l'+t.id)?.remove(); document.getElementById('c'+t.id)?.remove();
+     activeTrades=activeTrades.filter(x=>x.id!==t.id);
+     updateBalances();
+     // pnl today
+     let todayPnl=trades.slice(0,20).reduce((s,x)=>s+x.pnl,0);
+     let pnlEl=document.getElementById('pnlToday');
+     pnlEl.innerText='KES '+todayPnl.toFixed(2);
+     pnlEl.style.color=todayPnl>=0?'#00e080':'#ff2040';
+     if(navigator.vibrate) navigator.vibrate(win?[60,40,60]:[200]);
+     saveAll();
    }
  });
 }
-function updateBal(){document.getElementById('bal').innerText=(mode==='demo'?'K ':'KES ')+balance[mode].toFixed(2);save()}
-function openPage(p){document.getElementById('pageDeposit').style.display=p==='deposit'?'block':'none';document.getElementById('pageHistory').style.display=p==='history'?'block':'none';if(p==='trade'){document.getElementById('pageDeposit').style.display='none';document.getElementById('pageHistory').style.display='none'}document.getElementById('nTrade').className=p==='trade'?'on':'';document.getElementById('nDep').className=p==='deposit'?'on':'';document.getElementById('nHist').className=p==='history'?'on':'';if(p==='history'){document.getElementById('histList').innerHTML=trades.map(t=>`<div style="display:flex;justify-content:space-between;padding:8px;border-bottom:1px solid #111"><span>${t.type} ${t.mode} KES ${t.amount}</span><span style="color:${t.pnl>=0?'#00e080':'#ff2040'}">${t.pnl>=0?'+':''}${t.pnl.toFixed(2)}</span></div>`).join('')||'No trades';}if(p==='deposit'){let ds=JSON.parse(localStorage.getItem('beta_deps')||'[]');document.getElementById('depHist').innerHTML=ds.map(d=>`${d.mode} KES ${d.amount} ${d.code||''} ${d.status}`).join('<br>')||'No deposits';}}
-function openProfile(){document.getElementById('profileModal').style.display='flex';document.getElementById('pUser').innerText=localStorage.getItem('beta_user')||'Guest';document.getElementById('pDemo').innerText='K '+balance.demo.toFixed(2);document.getElementById('pReal').innerText='KES '+balance.real.toFixed(2);document.getElementById('pTrades').innerText=trades.length;document.getElementById('pWin').innerText=(trades.length?Math.round(trades.filter(t=>t.pnl>0).length/trades.length*100):0)+'%';}
-function closeProfile(){document.getElementById('profileModal').style.display='none'}
-function saveProfile(){let n=document.getElementById('pName').value.trim();if(n){localStorage.setItem('beta_user',n);document.getElementById('pUser').innerText=n;alert('Saved!')}closeProfile()}
-function resetAcc(){balance.demo=10000;updateBal();trades=[];save();alert('Demo reset to 10000')}
-function doDep(){let a=parseFloat(document.getElementById('da').value)||0,c=document.getElementById('dc').value.trim();if(!a)return;if(depMode==='real'){if(a<100||a>200){alert('Real Beta Min 100 Max 200 - Float 500');return}if(!c){alert('Enter M-Pesa code');return}let ds=JSON.parse(localStorage.getItem('beta_deps')||'[]');ds.push({mode:'REAL',amount:a,code:c,status:'PENDING - Admin approve'});localStorage.setItem('beta_deps',JSON.stringify(ds));alert('Real deposit KES '+a+' submitted! Code '+c+' Wait admin approval. M-Pesa 0716580098');}else{balance.demo+=a;updateBal();let ds=JSON.parse(localStorage.getItem('beta_deps')||'[]');ds.push({mode:'DEMO',amount:a,status:'APPROVED'});localStorage.setItem('beta_deps',JSON.stringify(ds));alert('Demo +KES '+a)}document.getElementById('depHist').innerHTML=JSON.parse(localStorage.getItem('beta_deps')||'[]').map(d=>`${d.mode} KES ${d.amount} ${d.code||''} ${d.status}`).join('<br>')}
-function save(){localStorage.setItem('beta_bal',JSON.stringify(balance));localStorage.setItem('beta_trades',JSON.stringify(trades))}
-function load(){try{balance=JSON.parse(localStorage.getItem('beta_bal')||'{"demo":10000,"real":0}');trades=JSON.parse(localStorage.getItem('beta_trades')||'[]')}catch(e){}updateBal()}
-function cycleDur(){let seq=[3,5,10,30];let idx=seq.indexOf(tf);setTF(seq[(idx+1)%seq.length])}
-load();setTF(3);
-</script></body></html>
+
+function updateBalances(){
+ document.getElementById('balTop').innerText=(mode==='demo'?'K ':'KES ')+balances[mode].toFixed(2);
+ document.getElementById('dDemoBal').innerText=balances.demo.toFixed(2);
+ document.getElementById('dRealBal').innerText=balances.real.toFixed(2);
+ saveAll();
+}
+
+function openModal(name){
+ document.querySelectorAll('.modal').forEach(m=>m.style.display='none');
+ if(name==='trade') {closeAll(); return;}
+ document.getElementById('modal-'+name).style.display='block';
+ if(name==='profile'){
+   document.getElementById('prName').innerText=localStorage.getItem('beta_user')||'Guest';
+   document.getElementById('prDemo').innerText='K '+balances.demo.toFixed(2);
+   document.getElementById('prReal').innerText='KES '+balances.real.toFixed(2);
+   document.getElementById('prTrades').innerText=trades.length;
+   let wr=trades.length?Math.round(trades.filter(t=>t.pnl>0).length/trades.length*100):0;
+   document.getElementById('prWin').innerText=wr+'%';
+ }
+ if(name==='history'){
+   document.getElementById('hTotal').innerText='Total: '+trades.length;
+   let wr=trades.length?Math.round(trades.filter(t=>t.pnl>0).length/trades.length*100):0;
+   document.getElementById('hWinRate').innerText='Win: '+wr+'%';
+   document.getElementById('hList').innerHTML=trades.map(t=>`<div style="display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #111"><div><b style="color:${t.type==='BUY'?'#00e080':'#ff2040'}">${t.type}</b> ${t.mode.toUpperCase()} KES ${t.stake} <span style="color:#555;font-size:10px">${t.time}</span></div><b style="color:${t.pnl>=0?'#00e080':'#ff2040'}">${t.pnl>=0?'+':''}${t.pnl.toFixed(2)}</b></div>`).join('')||'<div style="padding:20px;color:#555">No trades yet - Tap BUY/SELL</div>';
+ }
+ if(name==='deposit'){
+   let deps=JSON.parse(localStorage.getItem('beta_deps')||'[]');
+   document.getElementById('depList').innerHTML=deps.slice(-10).reverse().map(d=>`${d.mode} KES ${d.amount} ${d.code||''} <span style="color:${d.status.includes('PENDING')?'#f59e0b':'#00e080'}">${d.status}</span>`).join('<br>')||'No deposits yet';
+ }
+}
+
+function closeAll(){document.querySelectorAll('.modal').forEach(m=>m.style.display='none');}
+function saveName(){let n=document.getElementById('newName').value.trim(); if(!n) return alert('Enter name'); localStorage.setItem('beta_user',n); document.getElementById('prName').innerText=n; alert('Name saved: '+n); saveAll();}
+function resetDemo(){balances.demo=10000; updateBalances(); alert('Demo reset to 10,000');}
+function clearAll(){if(!confirm('Clear all trades?'))return; t
