@@ -1,87 +1,32 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA_FX V16 - New Customer Login</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0e1a;color:#e5e7eb;font-family:system-ui}.verBar{display:flex;gap:6px;padding:8px;background:#000;position:sticky;top:0;z-index:100;overflow-x:auto}.verBtn{padding:10px 14px;border-radius:20px;border:2px solid #1f2937;background:#1a2332;color:#fff;font-weight:900;font-size:11px;white-space:nowrap}.verBtn.active{background:#00d084;color:#000}.balRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px 12px}.balCard{background:#1a2332;border:1px solid #1f2a3a;border-radius:14px;padding:14px}.balV{font-size:26px;font-weight:900}.vb{color:#00d084}.rb{color:#f59e0b}.card{background:#1a2332;border:1px solid #1f2a3a;border-radius:14px;padding:14px;margin:8px 12px}.inp{width:100%;padding:14px;background:#0f141f;border:2px solid #1f2a3a;color:#fff;border-radius:12px;margin:8px 0;font-size:16px}.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:900;font-size:16px;cursor:pointer}.g{background:#00d084;color:#000}.sell{background:#ef4444;color:#fff}.yel{background:#f59e0b;color:#000}#auth{position:fixed;inset:0;background:#0a0e1a;display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px}.box{background:#1a2332;border:2px solid #00d084;border-radius:16px;padding:20px;width:100%;max-width:380px}.ltab{flex:1;padding:12px;border-radius:12px;border:2px solid #1f2937;background:#0f141f;color:#9ca3af;font-weight:900;cursor:pointer}.ltab.active{background:#00d084;color:#000;border-color:#00d084}</style></head><body>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA_FX V17 SIMPLE LOGIN</title><script src="https://cdn.jsdelivr.net/npm/chart.js"></script><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0e1a;color:#e5e7eb;font-family:system-ui}.verBar{display:flex;gap:6px;padding:8px;background:#000;position:sticky;top:0;z-index:100;overflow-x:auto}.verBtn{padding:12px 16px;border-radius:20px;border:2px solid #1f2937;background:#1a2332;color:#fff;font-weight:900;font-size:12px;white-space:nowrap}.verBtn.active{background:#00d084;color:#000}.balRow{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:10px 12px}.balCard{background:#1a2332;border:1px solid #1f2a3a;border-radius:16px;padding:16px}.balV{font-size:30px;font-weight:900}.vb{color:#00d084}.rb{color:#f59e0b}.card{background:#1a2332;border:1px solid #1f2a3a;border-radius:16px;padding:16px;margin:10px 12px}.inp{width:100%;padding:18px;background:#0f141f;border:2px solid #1f2a3a;color:#fff;border-radius:14px;margin:10px 0;font-size:18px}.btn{width:100%;padding:18px;border:none;border-radius:14px;font-weight:900;font-size:18px;cursor:pointer}.g{background:#00d084;color:#000}.sell{background:#ef4444;color:#fff}.yel{background:#f59e0b;color:#000}#auth{position:fixed;inset:0;background:#0a0e1a;display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px}.box{background:#1a2332;border:3px solid #00d084;border-radius:20px;padding:28px;width:100%;max-width:400px}</style></head><body>
 <div id="auth"><div class="box">
-<h2 style="text-align:center;color:#00d084">BETA_FX V16</h2>
-<p style="text-align:center;color:#9ca3af;font-size:12px;margin:6px 0">New Customer vs Existing Login</p>
+<h1 style="text-align:center;color:#00d084;font-size:28px">BETA_FX</h1>
+<p style="text-align:center;color:#fff;font-weight:800;margin:8px 0">V17 SIMPLE LOGIN</p>
+<p style="text-align:center;color:#9ca3af;font-size:13px;margin-bottom:16px">New? Type new name → Get $10000<br>Old? Type same name → Load balance</p>
 
-<!-- LOGIN TABS -->
-<div style="display:flex;gap:8px;margin:12px 0">
-<button id="ltNew" class="ltab active" onclick="setLoginTab('new')">🆕 New Customer</button>
-<button id="ltExist" class="ltab" onclick="setLoginTab('exist')">🔑 Existing</button>
+<input id="u" class="inp" placeholder="Enter Your Name e.g. John" autofocus>
+
+<button class="btn g" onclick="go()" style="font-size:20px">🚀 ENTER NOW - 1 CLICK</button>
+
+<div id="msg" style="text-align:center;margin-top:14px;font-weight:800;min-height:20px;color:#00d084"></div>
+
+<div style="margin-top:20px;background:#000;padding:14px;border-radius:14px">
+<p style="text-align:center;color:#6b7280;font-size:12px;margin-bottom:10px">QUICK LOGIN:</p>
+<button class="btn yel" onclick="quick('Dragon 3106')" style="padding:12px;font-size:14px;margin:6px 0">👑 Dragon 3106 - ADMIN $10044</button>
+<button class="btn" style="background:#1f2937;color:#fff;padding:12px;font-size:14px;margin:6px 0" onclick="quick('Test User')">👤 Test User - Demo $10000</button>
+<button class="btn" style="background:#1f2937;color:#fff;padding:12px;font-size:14px;margin:6px 0" onclick="document.getElementById('u').value='';document.getElementById('u').focus()">🆕 New Customer - Create New Name</button>
 </div>
 
-<!-- NEW CUSTOMER FORM -->
-<div id="formNew">
-<p style="color:#00d084;font-weight:800;font-size:12px;margin-bottom:6px">NEW CUSTOMER - Create Account - Get $10000 Free!</p>
-<input id="uNew" class="inp" placeholder="Choose Username e.g. John254">
-<input id="phNew" class="inp" placeholder="Phone e.g. 0712345678">
-<input id="pwNew" class="inp" type="password" placeholder="Create Password e.g. 1234">
-<input id="pwNew2" class="inp" type="password" placeholder="Confirm Password">
-<button class="btn g" onclick="registerNew()">✅ CREATE ACCOUNT - $10000 FREE</button>
-<div id="msgNew" style="text-align:center;margin-top:10px;font-weight:800;min-height:20px"></div>
-</div>
-
-<!-- EXISTING CUSTOMER FORM -->
-<div id="formExist" style="display:none">
-<p style="color:#f59e0b;font-weight:800;font-size:12px;margin-bottom:6px">EXISTING CUSTOMER - Login to Your Account</p>
-<input id="uExist" class="inp" placeholder="Your Username e.g. Dragon 3106">
-<input id="pwExist" class="inp" type="password" placeholder="Your Password">
-<button class="btn yel" onclick="loginExist()">🔓 LOGIN TO MY ACCOUNT</button>
-<div id="msgExist" style="text-align:center;margin-top:10px;font-weight:800;min-height:20px"></div>
-<div style="margin-top:12px;text-align:center"><span onclick="emergency()" style="background:#1f2937;color:#f59e0b;padding:6px 12px;border-radius:20px;font-size:11px;cursor:pointer">👑 Admin: Dragon 3106 / 1234</span></div>
-</div>
-
-<div style="margin-top:12px;background:#000;padding:10px;border-radius:10px;font-size:11px;color:#6b7280">
-<b>New?</b> Click 🆕 New Customer → Create → Get $10000 Virtual + KES 0 Real<br>
-<b>Old?</b> Click 🔑 Existing → Enter Username + Password → Load your balance
-</div>
+<p style="text-align:center;color:#333;font-size:10px;margin-top:14px">Thika • 0716580098 • No password needed!</p>
 </div></div>
 
-<div class="verBar"><button id="b1" class="verBtn active" onclick="setPage('t1')">PAGE1 Trading</button><button id="b2" class="verBtn" onclick="setPage('t2')">PAGE2 Graphs 📊</button><button id="b3" class="verBtn" onclick="setPage('dep')">Deposit 💰</button><button id="b4" class="verBtn" onclick="setPage('with')">Withdraw 🏧</button><button class="verBtn" style="background:#1f2937" onclick="logout()">Logout</button></div>
-<div style="background:#00d084;color:#000;text-align:center;padding:6px;font-size:11px;font-weight:900">V16 NEW CUSTOMER LOGIN • <span id="ui"></span> • 0716580098</div>
-<div style="max-width:500px;margin:0 auto">
-<div class="balRow"><div class="balCard"><small>BALANCE</small><div class="balV vb" id="vb">$10000</div><div style="font-size:11px;color:#6b7280" id="trInfo">Trades:0</div></div><div class="balCard"><small>REAL KES</small><div class="balV rb" id="rb">KES 0</div></div></div>
-<div id="pgT1"><div class="card" style="padding:0;overflow:hidden"><canvas id="live1" style="width:100%;height:280px;background:#000"></canvas></div><div class="card"><input id="amt1" class="inp" type="number" value="100"><button class="btn g" onclick="trade('BUY','1')">BUY ▲ +8.5%</button><button class="btn sell" style="margin-top:6px" onclick="trade('SELL','1')">SELL ▼</button><div id="tmsg1" style="text-align:center;font-weight:900;margin-top:8px"></div><div id="hist1" style="margin-top:10px;font-size:12px"></div></div></div>
-<div id="pgT2" style="display:none"><div class="card" style="padding:0;overflow:hidden"><div style="padding:8px;background:#000;color:#00d084;font-weight:800">📊 PAGE 2 - Trading + Bar Graphs</div><canvas id="live2" style="width:100%;height:220px;background:#000"></canvas></div><div class="card"><b>Bar Graphs - Page 2</b><canvas id="barA" style="max-height:220px"></canvas><canvas id="barB" style="max-height:180px;margin-top:12px"></canvas></div><div class="card"><input id="amt2" class="inp" type="number" value="100"><button class="btn g" onclick="trade('BUY','2')">BUY Page2</button><button class="btn sell" style="margin-top:6px" onclick="trade('SELL','2')">SELL Page2</button><div id="tmsg2" style="text-align:center;font-weight:900;margin-top:8px"></div><div id="hist2" style="font-size:12px"></div><div id="stats2" style="font-size:12px;margin-top:8px"></div></div></div>
-<div id="pgDep" style="display:none"><div class="card" style="border-color:#f59e0b"><b style="color:#f59e0b">💰 DEPOSIT 0716580098</b><input id="depAmt" class="inp" type="number" placeholder="Amount 500"><input id="depCode" class="inp" placeholder="M-Pesa Code"><button class="btn yel" onclick="doDeposit()">✅ SUBMIT CODE</button><div id="depMsg" style="margin-top:10px;font-weight:800"></div></div><div class="card"><div id="depHist" style="font-size:12px"></div></div></div>
-<div id="pgWith" style="display:none"><div class="card" style="border-color:#00d084"><b style="color:#00d084">🏧 WITHDRAW</b><div style="font-size:12px">Real: <span id="realBalW"></span> Min 200</div><input id="withAmt" class="inp" type="number" placeholder="Amount"><input id="withPhone" class="inp" placeholder="M-Pesa Number"><button class="btn g" onclick="doWithdraw()">💸 REQUEST WITHDRAW</button><div id="withMsg" style="margin-top:10px;font-weight:800"></div></div><div class="card"><div id="withHist" style="font-size:12px"></div></div></div>
-<div id="adminBox" style="display:none" class="card"><b style="color:#f59e0b">ADMIN - Approve</b><div id="apDep"></div><div id="apWith"></div><div id="au" style="font-size:11px;margin-top:8px"></div></div>
-</div>
+<div class="verBar"><button id="b1" class="verBtn active" onclick="setPage('t1')">PAGE1 Trading</button><button id="b2" class="verBtn" onclick="setPage('t2')">PAGE2 Graphs 📊</button><button id="b3" class="verBtn" onclick="setPage('dep')">Deposit 💰</button><button id="b4" class="verBtn" onclick="setPage('with')">Withdraw 🏧</button><button class="verBtn" style="background:#ef4444;color:#fff" onclick="logout()">Logout</button></div>
+<div style="background:#00d084;color:#000;text-align:center;padding:8px;font-size:12px;font-weight:900">V17 SIMPLE • <span id="ui"></span> • 0716580098</div>
+<div style="max-width:520px;margin:0 auto">
+<div class="balRow"><div class="balCard"><small style="color:#6b7280">VIRTUAL BALANCE</small><div class="balV vb" id="vb">$10000</div><div style="font-size:12px;color:#6b7280" id="trInfo">Trades:0 Win:0%</div></div><div class="balCard"><small style="color:#6b7280">REAL KES</small><div class="balV rb" id="rb">KES 0</div><div style="font-size:11px;color:#f59e0b">M-Pesa 0716580098</div></div></div>
 
-<script>
-let cur=null,users=[],deps=[],withs=[],charts=[],liveInt=null;
-function loadAll(){let all=[];['v11_u','v12_u','v13_u','v14_u','v15_u','v16_u'].forEach(k=>{try{let d=JSON.parse(localStorage.getItem(k)||'[]');if(d.length)all=all.concat(d)}catch(e){}});let uniq={};all.forEach(u=>{uniq[u.user.toLowerCase()]=u});return Object.values(uniq);}
-try{users=loadAll()}catch(e){users=[]}try{deps=JSON.parse(localStorage.getItem('v16_d')||localStorage.getItem('v15_d')||'[]')}catch(e){deps=[]}try{withs=JSON.parse(localStorage.getItem('v16_w')||localStorage.getItem('v15_w')||'[]')}catch(e){withs=[]}
-function save(){localStorage.setItem('v16_u',JSON.stringify(users));localStorage.setItem('v16_d',JSON.stringify(deps));localStorage.setItem('v16_w',JSON.stringify(withs));if(cur)localStorage.setItem('v16_c',cur.user)}
+<div id="pgT1"><div class="card" style="padding:0;overflow:hidden"><div style="padding:10px;background:#000;display:flex;justify-content:space-between"><b style="color:#00d084">📈 LIVE CHART</b><span style="color:#9ca3af;font-size:11px">EUR/USD 1.0850 ▲</span></div><canvas id="live1" style="width:100%;height:300px;background:#000"></canvas><div style="display:flex;gap:6px;padding:10px;background:#0a0e1a"><button class="verBtn active" style="flex:1;padding:8px">EUR/USD</button><button class="verBtn" style="flex:1;padding:8px">BTC</button><button class="verBtn" style="flex:1;padding:8px">GOLD</button></div></div><div class="card"><b style="font-size:16px">Trade Panel</b><input id="amt1" class="inp" type="number" value="100" style="font-size:18px"><button class="btn g" onclick="trade('BUY','1')" style="font-size:18px">BUY ▲ +8.5%</button><button class="btn sell" style="margin-top:8px;font-size:18px" onclick="trade('SELL','1')">SELL ▼ -6%</button><div id="tmsg1" style="text-align:center;font-weight:900;margin-top:10px;font-size:16px"></div><div id="hist1" style="margin-top:12px;font-size:13px"></div></div></div>
 
-function setLoginTab(t){document.getElementById('formNew').style.display=t==='new'?'block':'none';document.getElementById('formExist').style.display=t==='exist'?'block':'none';document.getElementById('ltNew').classList.toggle('active',t==='new');document.getElementById('ltExist').classList.toggle('active',t==='exist');}
+<div id="pgT2" style="display:none"><div class="card" style="padding:0;overflow:hidden"><div style="padding:10px;background:#000;color:#00d084;font-weight:900">📊 PAGE 2 - Trading + Bar Graphs</div><canvas id="live2" style="width:100%;height:240px;background:#000"></canvas></div><div class="card"><b>📊 Your Trading Bar Graphs</b><canvas id="barA" style="max-height:240px;margin-top:10px"></canvas><canvas id="barB" style="max-height:200px;margin-top:14px"></canvas><div id="stats2" style="margin-top:12px;font-size:13px;background:#000;padding:10px;border-radius:10px"></div></div><div class="card"><input id="amt2" class="inp" type="number" value="100"><button class="btn g" onclick="trade('BUY','2')">BUY Page2</button><button class="btn sell" style="margin-top:8px" onclick="trade('SELL','2')">SELL Page2</button><div id="tmsg2" style="text-align:center;font-weight:900;margin-top:8px"></div><div id="hist2" style="font-size:13px;margin-top:8px"></div></div></div>
 
-function registerNew(){
- let u=document.getElementById('uNew').value.trim();
- let ph=document.getElementById('phNew').value.trim();
- let pw=document.getElementById('pwNew').value.trim();
- let pw2=document.getElementById('pwNew2').value.trim();
- let msg=document.getElementById('msgNew');
- if(!u||u.length<3){msg.style.color='#ef4444';msg.innerText='❌ Enter username min 3 letters!';return}
- if(!ph||ph.length<9){msg.style.color='#ef4444';msg.innerText='❌ Enter phone e.g. 0712345678';return}
- if(!pw||pw.length<3){msg.style.color='#ef4444';msg.innerText='❌ Create password min 3!';return}
- if(pw!==pw2){msg.style.color='#ef4444';msg.innerText='❌ Passwords not matching!';return}
- let exists=users.find(x=>x.user.toLowerCase()===u.toLowerCase());
- if(exists){msg.style.color='#ef4444';msg.innerText='❌ Username '+u+' exists! Go to Existing Login!';setLoginTab('exist');document.getElementById('uExist').value=u;return}
- cur={user:u,phone:ph,pass:pw,v:10000,r:0,tr:[]};
- users.push(cur);save();
- msg.style.color='#00d084';msg.innerText='✅ Account created! $10000 free! Loading...';
- setTimeout(()=>{document.getElementById('auth').style.display='none';upd();setPage('t1');startLive();},800);
-}
-
-function loginExist(){
- let u=document.getElementById('uExist').value.trim();
- let pw=document.getElementById('pwExist').value.trim();
- let msg=document.getElementById('msgExist');
- if(!u){msg.style.color='#ef4444';msg.innerText='❌ Enter username!';return}
- if(!pw){msg.style.color='#ef4444';msg.innerText='❌ Enter password!';return}
- let f=users.find(x=>x.user.toLowerCase()===u.toLowerCase());
- if(!f){msg.style.color='#ef4444';msg.innerText='❌ No account '+u+'! Click New Customer to create!';setLoginTab('new');document.getElementById('uNew').value=u;return}
- if(f.pass!==pw){msg.style.color='#ef4444';msg.innerText='❌ Wrong password! Hint: '+f.pass.charAt(0)+'***'+f.pass.slice(-1);return}
- cur=f;save();
- msg.style.color='#00d084';msg.innerText='✅ Welcome back '+cur.user+'! $'+cur.v.toFixed(0);
- setTimeout(()=>{document.getElementById('auth').style.display='none';upd();setPage('t
+<div id="pgDep" style="display:none"><div class="card" style="border:2px solid #f59e0b"><b style="color:#f59e0b;font-size:16px">💰 DEPOSIT - M-Pesa 0716580098</b><div style="margin:12px 0;background:#000;padding:12px;border-radius:12px;font-size:13px;line-height:1.6">1. M-Pesa → Send Money<br>2. To: <b style="color:#f59e0b;font-size:15px">0716580098</b><br>3. Amount: 500, 1000 etc<br>4. Paste Code Below</div><input id="depAmt" class="inp" type="number" placeholder="Amount e.g. 500"><input id="depCode" class="inp" placeholder="M-Pesa Code e.g. QJ12AB34CD"><button class="btn yel" onclick="doDeposit()" style="font-size:18px">✅ SUBMIT
