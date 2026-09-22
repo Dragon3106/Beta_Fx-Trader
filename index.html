@@ -1,95 +1,111 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA FX - MaliCrush Clone</title><style>
-*{margin:0;padding:0;box-sizing:border-box}body{background:#0a0f1a;color:#fff;font-family:system-ui,Arial;min-height:100vh}
-.top{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:10px;padding:10px 12px;background:#111827;border-bottom:1px solid #1e293b}
-.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#00ff88,#00aaff);display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:20px}
-.real{padding:6px 14px;border-radius:20px;border:1px solid #00ff88;color:#00ff88;background:#001a0f;font-weight:800;font-size:12px;cursor:pointer}
-.real.demoMode{border-color:#f59e0b;color:#f59e0b}
-.kBal{padding:6px 12px;border-radius:20px;background:#1f2937;border:1px solid #334155;color:#f59e0b;font-weight:900;display:flex;gap:6px;align-items:center}
-.add{width:36px;height:36px;background:#00ff88;color:#000;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;cursor:pointer}
-.menuBtn{margin-left:auto;padding:8px 14px;border-radius:10px;background:#1f2937;border:1px solid #334155;color:#fff;font-weight:700;cursor:pointer}
-.dropdown{position:absolute;top:60px;right:12px;width:270px;background:#1e293b;border:1px solid #334155;border-radius:16px;padding:8px;z-index:100;display:none}
-.dropdown div{padding:14px 12px;border-radius:10px;cursor:pointer;display:flex;gap:10px;align-items:center;color:#94a3b8}
-.dropdown div:hover{background:#0f172a;color:#fff}
-.priceRow{display:flex;align-items:center;gap:10px;padding:10px 14px}
-.price{font-size:28px;font-weight:900;color:#00ff88}.pct{padding:4px 10px;border-radius:8px;background:#00331a;color:#00ff88;font-weight:900;font-size:13px}
-.tf{display:flex;gap:8px;padding:8px 14px}.tfb{padding:8px 16px;border-radius:10px;background:#1e293b;color:#64748b;border:1px solid #334155;font-weight:800;cursor:pointer}.tfb.on{background:#002e1f;color:#00ff88;border-color:#00ff88}
-canvas{width:100%;height:52vh;background:#000;display:block}
-.stakeRow{display:flex;gap:8px;padding:12px;overflow-x:auto;background:#0f172a;border-top:1px solid #1e293b}
-.stakeChip{padding:12px 18px;background:#1e293b;border:1px solid #334155;border-radius:12px;font-weight:900;color:#fff;cursor:pointer;white-space:nowrap;display:flex;gap:6px}.stakeChip.on{border-color:#00ff88;background:#002e1f}.stakeChip small{color:#64748b}
-.mid{ display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#0f172a }.dur{display:flex;gap:10px;align-items:center}.durCircle{width:38px;height:38px;border:2px solid #00ff88;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#00ff88;font-weight:900;cursor:pointer}
-.buySell{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 12px 12px;background:#0f172a}.buy{background:#00ff88;color:#000;padding:20px;border:none;border-radius:16px;font-weight:900;font-size:18px;cursor:pointer}.sell{background:#ff2040;color:#fff;padding:20px;border:none;border-radius:16px;font-weight:900;font-size:18px;cursor:pointer}
-.nav{display:flex;justify-content:space-around;padding:12px;background:#0f172a;border-top:1px solid #1e293b;position:sticky;bottom:0}.nav div{text-align:center;color:#475569;font-size:11px;font-weight:800;cursor:pointer}.nav div.on{color:#00ff88}
-.page{display:none;min-height:100vh;background:#0a0f1a;padding:16px}.page.on{display:block}
-.card{background:#111827;border:1px solid #1e293b;border-radius:20px;padding:18px;max-width:440px;margin:10px auto}
-.inp{width:100%;padding:16px;background:#1e293b;border:1px solid #334155;border-radius:14px;color:#fff;margin:8px 0;font-size:15px}.inp:focus{border-color:#00ff88;outline:none}
-.label{font-size:12px;color:#94a3b8;font-weight:700;letter-spacing:1px;margin:14px 0 4px;display:block}
-.btnGreen{width:100%;padding:18px;background:#00ff88;color:#000;border:none;border-radius:14px;font-weight:900;font-size:16px;cursor:pointer;margin:10px 0}
-.flagRow{display:flex;gap:0}.flag{padding:16px;background:#1e293b;border:1px solid #334155;border-right:none;border-radius:14px 0 0 14px;display:flex;align-items:center;gap:6px;color:#94a3b8}.phoneIn{border-radius:0 14px 14px 0!important}
-.chat{position:fixed;bottom:110px;right:14px;width:56px;height:56px;background:#00ff88;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 4px 20px #00ff8855;cursor:pointer;z-index:40}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA FX</title><style>
+*{margin:0;padding:0;box-sizing:border-box}body{background:#000;color:#fff;font-family:system-ui}
+.top{height:64px;display:flex;align-items:center;gap:8px;padding:0 10px;background:#111827;border-bottom:1px solid #1e293b;overflow:hidden}
+.logo{min-width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#00ff88,#00aaff);display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;font-size:20px}
+.real{padding:8px 16px;border-radius:20px;border:1.5px solid #00ff88;color:#00ff88;background:#001a0f;font-weight:900;font-size:13px;cursor:pointer;white-space:nowrap}
+.kBal{min-width:90px;padding:8px 12px;border-radius:20px;background:#1f2937;border:1px solid #334155;color:#f59e0b;font-weight:900;display:flex;gap:6px;align-items:center}
+.add{min-width:36px;height:36px;background:#00ff88;color:#000;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;cursor:pointer}
+.priceRow{height:44px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#000}
+.price{font-size:26px;font-weight:900;color:#00ff88}.pct{padding:4px 10px;border-radius:8px;background:#00331a;color:#00ff88;font-weight:900;font-size:12px}
+.tf{height:56px;display:flex;gap:8px;padding:8px 12px;background:#000;align-items:center}.tfb{min-width:52px;padding:10px 0;border-radius:10px;background:#1e293b;color:#64748b;border:1px solid #334155;font-weight:800;cursor:pointer;text-align:center}.tfb.on{background:#002e1f;color:#00ff88;border-color:#00ff88}
+#chartWrap{width:100%;height:52vh;background:#000;position:relative}
+#c{width:100%;height:100%;display:block;background:#000}
+.stakeRow{display:flex;gap:8px;padding:10px 12px;background:#0f172a;overflow-x:auto}.chip{padding:12px 18px;background:#1e293b;border:1px solid #334155;border-radius:12px;font-weight:900;cursor:pointer;white-space:nowrap}.chip.on{border-color:#00ff88;background:#002e1f}
+.mid{display:flex;justify-content:space-between;padding:10px 12px;background:#0f172a;align-items:center}.durCircle{width:40px;height:40px;border:2px solid #00ff88;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#00ff88;font-weight:900;cursor:pointer}
+.buySell{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 12px;background:#0f172a}.buy{background:#00ff88;color:#000;padding:18px;border:none;border-radius:14px;font-weight:900;font-size:18px}.sell{background:#ff2040;color:#fff;padding:18px;border:none;border-radius:14px;font-weight:900;font-size:18px}
+.nav{display:flex;justify-content:space-around;padding:10px;background:#0f172a;border-top:1px solid #1e293b}.nav div{color:#475569;font-size:11px;font-weight:800;text-align:center}.nav div.on{color:#00ff88}
 </style></head><body>
-
-<!-- TOP BAR -->
-<div class="top"><div class="logo">B</div><div><b>BETA</b><b style="color:#00ff88"> FX</b></div><div class="real" id="modeToggle" onclick="toggleMode()">REAL</div><div class="kBal"><span style="background:#f59e0b;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px">K</span><span id="balTop">0.00</span></div><div class="add" onclick="showPage('deposit')">+</div><div style="width:36px;height:36px;background:#1e293b;border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer" onclick="showPage('wallet')">−</div><div class="menuBtn" id="dragonBtn" onclick="toggleDrop()">Dragon ▾</div><div class="dropdown" id="drop"><div onclick="showPage('wallet')">👤 Profile & Wallet</div><div onclick="showPage('history')">🕒 Trade History</div><div onclick="showPage('deposit')">+ Deposit Funds</div><div onclick="showPage('withdraw')">↓ Withdraw to M-Pesa</div><div style="border-top:1px solid #334155;margin:6px 0"></div><div onclick="showPage('login')" style="color:#f87171">↪ Sign Out</div></div></div>
-
-<!-- TRADE PAGE -->
-<div id="page-trade" class="page on" style="padding:0">
-<div class="priceRow"><div class="price" id="price">0.6929</div><div class="pct" id="pct">+69.29%</div><div style="margin-left:auto;color:#64748b;font-size:12px">Rate: <span id="rate">0.6929</span></div></div>
-<div class="tf"><button class="tfb on" id="t3" onclick="setTF(3)">3s</button><button class="tfb" id="t5" onclick="setTF(5)">5s</button><button class="tfb" id="t10" onclick="setTF(10)">10s</button><button class="tfb" id="t30" onclick="setTF(30)">30s</button></div>
-<div style="position:relative"><canvas id="c"></canvas><div id="marks" style="position:absolute;inset:0;pointer-events:none"></div><div style="position:absolute;left:8px;top:10%;color:#475569;font-size:12px">3.0<br><br><br>1.5<br><br><br>0.0<br><br><br>-1.5<br><br><br>-3.0</div></div>
-<div class="stakeRow"><div class="stakeChip on" data-v="100" onclick="setStake(100,this)"><small>KES</small>100</div><div class="stakeChip" data-v="500" onclick="setStake(500,this)">500</div><div class="stakeChip" data-v="1000" onclick="setStake(1000,this)">1,000</div><div class="stakeChip" data-v="2500" onclick="setStake(2500,this)">2,500</div></div>
-<div class="mid"><div class="dur"><div class="durCircle" id="durCircle" onclick="cycleTF()">3</div><div style="color:#64748b;font-size:12px">DURATION</div></div><div style="color:#64748b;font-size:12px">P&L <b id="pnl" style="color:#fff;font-size:15px">KES 0.00</b></div></div>
-<div class="buySell"><button class="buy" id="buyBtn" onclick="trade('BUY')">BUY</button><button class="sell" id="sellBtn" onclick="trade('SELL')">SELL</button></div>
-<div class="chat" onclick="alert('WhatsApp Support: 0716580098')">💬</div>
-<div class="nav"><div class="on" onclick="showPage('trade')">⌂<br>TRADE</div><div onclick="showPage('deposit')">$<br>DEPOSIT</div><div onclick="showPage('history')">📊<br>HISTORY</div><div onclick="showPage('wallet')">👤<br>PROFILE</div></div>
-<div style="text-align:center;padding:12px;color:#334155;font-size:10px">Licensed in the Commonwealth of The Bahamas · Licence No BHA-0023-1873201</div>
-</div>
-
-<!-- LOGIN PAGE -->
-<div id="page-login" class="page"><div style="text-align:center;padding:40px 0 20px"><div style="display:flex;align-items:center;justify-content:center;gap:12px"><div class="logo" style="width:56px;height:56px;font-size:26px">M</div><h1>Mali<span style="color:#00ff88">Crush</span> → <span style="color:#00ff88">BETA FX</span></h1></div><p style="color:#64748b;margin-top:10px">Sign in to your trading account</p></div><div class="card"><span class="label">EMAIL OR PHONE</span><input id="loginId" class="inp" placeholder="e.g. 254712345678" value="254716580098"><span class="label">PASSWORD</span><div style="display:flex;justify-content:space-between"><span class="label" style="margin:0">PASSWORD</span><span style="color:#00ff88;font-size:12px;cursor:pointer">Forgot?</span></div><input id="loginPass" class="inp" type="password" placeholder="••••••••"><button class="btnGreen" onclick="doLogin()">Sign In to BETA FX</button></div><div style="text-align:center;margin-top:20px;color:#64748b">Don't have an account? <b style="color:#00ff88;cursor:pointer" onclick="showPage('register')">Sign Up</b></div><div style="text-align:center;padding:20px;color:#334155;font-size:11px">Licensed and regulated in the Commonwealth of The Bahamas under licence number BHA-0023-1873201.</div></div>
-
-<!-- REGISTER PAGE -->
-<div id="page-register" class="page"><div style="text-align:center;padding:30px 0 10px"><div style="display:flex;align-items:center;justify-content:center;gap:12px"><div class="logo" style="width:56px;height:56px;font-size:26px">M</div><h1>Mali<span style="color:#00ff88">Crush</span></h1></div><p style="color:#64748b">Create your trading account</p></div><div class="card"><span class="label">USERNAME</span><input id="rUser" class="inp" placeholder="e.g. trader254" value="Dragon"><span class="label">EMAIL</span><input id="rEmail" class="inp" placeholder="you@email.com" value="kraytim85@gmail.com"><span class="label">PHONE (M-PESA)</span><div class="flagRow"><div class="flag">🇰🇪 +254</div><input id="rPhone" class="inp phoneIn" placeholder="712345678" value="716580098"></div><div style="color:#475569;font-size:11px;margin:4px 0 10px">Enter 9 digits after 254 (e.g. 712345678)</div><span class="label">PASSWORD</span><input id="rPass" type="password" class="inp" placeholder="Min 6 characters"><span class="label">CONFIRM PASSWORD</span><input id="rPass2" type="password" class="inp" placeholder="••••••••"><button class="btnGreen" onclick="doRegister()">Create BETA FX Account</button></div></div>
-
-<!-- WALLET / PROFILE PAGE -->
-<div id="page-wallet" class="page"><h2>Account & Wallet</h2><p style="color:#64748b;font-size:14px">Manage your BETA FX profile, M-Pesa details, and balances</p><div class="card"><div style="display:flex;justify-content:space-between"><span style="color:#94a3b8;font-size:12px">REAL BALANCE</span><span style="width:10px;height:10px;background:#00ff88;border-radius:50%"></span></div><div style="font-size:32px;font-weight:900;margin:12px 0">KES <span id="wReal">0.00</span></div><button class="btnGreen" onclick="showPage('deposit')">Deposit / Trade</button></div><div class="card"><div style="display:flex;justify-content:space-between"><span style="color:#94a3b8;font-size:12px">DEMO BALANCE</span><span style="width:10px;height:10px;background:#f59e0b;border-radius:50%"></span></div><div style="font-size:32px;font-weight:900;margin:12px 0;color:#f59e0b">KES <span id="wDemo">10,000.00</span></div><button style="width:100%;padding:14px;background:#1e293b;border:none;border-radius:12px;color:#fff;font-weight:700;cursor:pointer" onclick="resetDemo()">Reset to 10,000</button></div><div class="card"><h3>👤 Personal Information</h3><span class="label">USERNAME</span><input id="pUser" class="inp" value="Dragon"><span class="label">EMAIL ADDRESS</span><input id="pEmail" class="inp" value="kraytim85@gmail.com"><span class="label">REGISTERED M-PESA PHONE NUMBER</span><div class="flagRow"><div class="flag">🇰🇪 +254</div><input id="pPhone" class="inp phoneIn" value="716580098"></div><div style="color:#475569;font-size:11px;margin:6px 0">All M-Pesa withdrawals are credited directly to this number.</div><button class="btnGreen" style="background:#334155;color:#94a3b8;width:auto;float:right;padding:12px 20px" onclick="saveProfile()">Save Changes</button><div style="clear:both"></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:440px;margin:10px auto"><div class="card" style="text-align:center;cursor:pointer" onclick="showPage('history')">📊<br>Transaction History</div><div class="card" style="text-align:center;cursor:pointer" onclick="showPage('trade')">📈<br>Live Trading</div></div><div class="card" style="text-align:center;cursor:pointer;color:#f87171" onclick="showPage('login')">🚪<br>Sign Out</div></div>
-
-<!-- DEPOSIT PAGE -->
-<div id="page-deposit" class="page"><div class="card"><h3>📱 Safaricom M-Pesa Deposit - BETA FX</h3><p style="color:#f59e0b;font-size:12px;margin:6px 0">Float 500 KES Beta - Real Max 200</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:14px 0"><div style="padding:10px;border:2px solid #00ff88;border-radius:12px;text-align:center;background:#002e1f"><div>📱 M-Pesa</div><div style="font-size:11px;color:#00ff88">Instant STK</div></div><div style="padding:10px;border:1px solid #1e293b;border-radius:12px;text-align:center;color:#475569"><div>💳 Card / PayPal</div><div style="font-size:11px">Visa · MC · Amex</div></div><div style="padding:10px;border:1px solid #1e293b;border-radius:12px;text-align:center;color:#475569"><div>🪙 Crypto</div><div style="font-size:11px">USDT TRC-20</div></div></div><span class="label">SELECT DEPOSIT AMOUNT (KES)</span><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px"><button class="tfb" onclick="setDep(400)">400</button><button class="tfb" onclick="setDep(800)">800</button><button class="tfb" onclick="setDep(2000)">2,000</button><button class="tfb" onclick="setDep(4000)">4,000</button><button class="tfb" onclick="setDep(8000)">8,000</button><button class="tfb" onclick="setDep('custom')">Custom</button></div><span class="label">M-PESA PHONE NUMBER</span><input id="depPhone" class="inp" value="254716580098"><div style="background:#1e293b;padding:10px;border-radius:10px;color:#64748b;font-size:12px;margin:10px 0">⚡ Fast automated STK prompt will appear on your phone screen immediately.</div><button id="depBtn" class="btnGreen" style="background:#1e293b;color:#475569" onclick="doDep()">Select an amount</button><button style="width:100%;padding:14px;background:#1e293b;border:none;border-radius:12px;color:#fff;margin-top:8px;cursor:pointer" onclick="showPage('trade')">Cancel</button><div id="stkBox" style="display:none;background:#e5e7eb;color:#111;border-radius:18px;padding:18px;margin-top:14px"><div>Do you want to pay Kshs. <span id="stkAmt">400</span> to RAYLABS SOLUTIONS HQ (BETA FX)</div><div style="margin:14px 0">Enter M-PESA PIN:</div><input style="width:100%;border:none;border-bottom:2px solid #2563eb;padding:8px;background:transparent;font-size:20px;letter-spacing:8px" type="password"><div style="display:flex;justify-content:space-between;margin-top:20px"><span style="color:#2563eb;font-weight:800;cursor:pointer" onclick="document.getElementById('stkBox').style.display='none'">Cancel</span><span style="color:#2563eb;font-weight:800;cursor:pointer" onclick="confirmDep()">Send</span></div></div><div style="text-align:center;margin-top:10px"><span style="color:#475569;font-size:12px;text-decoration:underline;cursor:pointer">Didn't receive prompt? Enter SMS code</span></div></div></div>
-
-<!-- OTHER PAGES -->
-<div id="page-history" class="page"><div class="card"><h3>Trade History</h3><div id="histList"></div><button class="inp" onclick="showPage('trade')">Back to Trade</button></div></div>
-<div id="page-withdraw" class="page"><div class="card"><h3>Withdraw to M-Pesa</h3><p style="color:#f59e0b;font-size:12px">Float 500 KES - Max 200 per withdraw</p><input id="wAmt" class="inp" type="number" placeholder="Amount 100-200"><input id="wPhone" class="inp" value="0716580098"><button class="btnGreen" style="background:#ff2040;color:#fff" onclick="doWithdraw()">Withdraw Now</button><button class="inp" onclick="showPage('trade')">Back</button></div></div>
+<div class="top"><div class="logo">B</div><div style="line-height:1"><b>BETA</b><br><b style="color:#00ff88">FX</b></div><div class="real" id="modeBtn" onclick="toggleMode()">REAL</div><div class="kBal"><span style="background:#f59e0b;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px">K</span><span id="bal">0.00</span></div><div class="add" onclick="location.href='#deposit'">+</div><div style="margin-left:auto;background:#1e293b;padding:8px 12px;border-radius:12px;font-weight:800;font-size:13px;max-width:90px;white-space:nowrap;overflow:hidden">Dragon ▼</div></div>
+<div class="priceRow"><div class="price" id="price">0.6929</div><div class="pct" id="pct">+69.29%</div><div style="margin-left:auto;color:#666;font-size:12px">Rate: <span id="rate">0.6929</span></div></div>
+<div class="tf"><button class="tfb on" id="b3" onclick="setTF(3)">3s</button><button class="tfb" id="b5" onclick="setTF(5)">5s</button><button class="tfb" id="b10" onclick="setTF(10)">10s</button><button class="tfb" id="b30" onclick="setTF(30)">30s</button></div>
+<div id="chartWrap"><canvas id="c"></canvas></div>
+<div class="stakeRow"><div class="chip on" onclick="setStake(100,this)">KES 100</div><div class="chip" onclick="setStake(500,this)">500</div><div class="chip" onclick="setStake(1000,this)">1,000</div><div class="chip" onclick="setStake(2500,this)">2,500</div></div>
+<div class="mid"><div style="display:flex;gap:10px;align-items:center"><div class="durCircle" id="dur" onclick="cycle()">3</div><span style="color:#666;font-size:12px">DURATION</span></div><div style="color:#666;font-size:12px">P&L <b style="color:#fff" id="pnl">KES 0.00</b></div></div>
+<div class="buySell"><button class="buy" onclick="trade('BUY')">BUY</button><button class="sell" onclick="trade('SELL')">SELL</button></div>
+<div class="nav"><div class="on">⌂<br>TRADE</div><div>$<br>DEPOSIT</div><div>📊<br>HISTORY</div><div>👤<br>PROFILE</div></div>
 
 <script>
-let mode='real', tf=3, stake=100, depAmt=0, balances={real:0,demo:10000}, trades=[], data=[], target=0, timer, active=[];
-let canvas=document.getElementById('c'), ctx=canvas.getContext('2d');
-function resize(){canvas.width=canvas.offsetWidth*2;canvas.height=canvas.offsetHeight*2}resize();window.onresize=resize;
-for(let i=0;i<70;i++)data.push((Math.random()-0.5)*1.5);
-function tick(){
- target+=(Math.random()-0.5)*0.25; target=Math.max(-2.4,Math.min(2.4,target));
- let last=data[data.length-1]; let next=last+(target-last)*0.22; if(Math.random()>0.92) next+=(Math.random()>0.5?0.9:-0.9);
- data.push(next); if(data.length>70)data.shift(); draw();
- let price=(0.2+Math.abs(next)*0.25+0.3).toFixed(4); document.getElementById('price').innerText=price; document.getElementById('rate').innerText=price;
- let pct=(next*30).toFixed(2); document.getElementById('pct').innerText=(next>=0?'+':'')+pct+'%';
- document.getElementById('pct').style.background=next>=0?'#00331a':'#33000a'; document.getElementById('pct').style.color=next>=0?'#00ff88':'#ff4444';
- document.getElementById('price').style.color=next>=0?'#00ff88':'#ff4444';
- updateActive();
+// FIXED CHART - FORCED DRAW
+let canvas=document.getElementById('c');
+let ctx=canvas.getContext('2d');
+let W,H,data=[],target=0,tf=3,stake=100,balance=0,pnl=0;
+function fixSize(){
+ let wrap=document.getElementById('chartWrap');
+ W=wrap.clientWidth*2;
+ H=wrap.clientHeight*2;
+ canvas.width=W;
+ canvas.height=H;
 }
+fixSize();
+window.addEventListener('resize',fixSize);
+for(let i=0;i<80;i++) data.push((Math.random()-0.5)*0.8);
+
 function draw(){
- let W=canvas.width,H=canvas.height; ctx.fillStyle='#000';ctx.fillRect(0,0,W,H);
- ctx.strokeStyle='#111';ctx.lineWidth=1;[0.25,0.5,0.75].forEach(p=>{ctx.beginPath();ctx.moveTo(0,H*p);ctx.lineTo(W,H*p);ctx.stroke()});
- ctx.strokeStyle='#1e293b';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,H/2);ctx.lineTo(W,H/2);ctx.stroke();
+ if(!W) fixSize();
+ ctx.fillStyle='#000000';
+ ctx.fillRect(0,0,W,H);
+ // grid
+ ctx.strokeStyle='#111111';
+ ctx.lineWidth=2;
+ ctx.beginPath(); ctx.moveTo(0,H*0.25); ctx.lineTo(W,H*0.25); ctx.stroke();
+ ctx.beginPath(); ctx.moveTo(0,H*0.5); ctx.lineTo(W,H*0.5); ctx.stroke();
+ ctx.beginPath(); ctx.moveTo(0,H*0.75); ctx.lineTo(W,H*0.75); ctx.stroke();
+ // center line
+ ctx.strokeStyle='#1e293b'; ctx.lineWidth=3;
+ ctx.beginPath(); ctx.moveTo(0,H/2); ctx.lineTo(W,H/2); ctx.stroke();
+ // labels
+ ctx.fillStyle='#334155'; ctx.font='bold 28px monospace';
+ ctx.fillText('3.0',20,H*0.15); ctx.fillText('1.5',20,H*0.35); ctx.fillText('0.0',20,H*0.52); ctx.fillText('-1.5',20,H*0.72); ctx.fillText('-3.0',20,H*0.92);
+
+ // UPDATE - orderly blocky like MaliCrush screenshot
+ target+=(Math.random()-0.5)*0.3;
+ target=Math.max(-2.2,Math.min(2.2,target));
+ let last=data[data.length-1];
+ let next=last+(target-last)*0.25;
+ if(Math.random()>0.88) next+=(Math.random()>0.5?1.1:-1.1); // spike
+ data.push(next); if(data.length>80) data.shift();
+
  let step=W/(data.length-1);
- // green filled
- ctx.beginPath();let s=false; data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.18; if(v>=0){if(!s){ctx.moveTo(x,y);s=true}else ctx.lineTo(x,y)}else s=false}); ctx.strokeStyle='#00ff88';ctx.lineWidth=3;ctx.stroke();
- ctx.beginPath();ctx.moveTo(0,H/2); data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.18; if(v>=0)ctx.lineTo(x,y); else ctx.lineTo(x,H/2)}); for(let i=data.length-1;i>=0;i--) if(data[i]>=0)ctx.lineTo(i*step,H/2); ctx.closePath();ctx.fillStyle='rgba(0,255,136,0.28)';ctx.fill();
- // red filled
- ctx.beginPath();s=false; data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.18; if(v<0){if(!s){ctx.moveTo(x,y);s=true}else ctx.lineTo(x,y)}else s=false}); ctx.strokeStyle='#ff4444';ctx.lineWidth=3;ctx.stroke();
- ctx.beginPath();ctx.moveTo(0,H/2); data.forEach((v,i)=>{let x=i*step,y=H/2 - v*H*0.18; if(v<0)ctx.lineTo(x,y); else ctx.lineTo(x,H/2)}); for(let i=data.length-1;i>=0;i--) if(data[i]<0)ctx.lineTo(i*step,H/2); ctx.closePath();ctx.fillStyle='rgba(255,68,68,0.28)';ctx.fill();
- let last=data[data.length-1], lx=(data.length-1)*step, ly=H/2 - last*H*0.18; ctx.fillStyle=last>=0?'#00ff88':'#ff4444';ctx.beginPath();ctx.arc(lx,ly,8,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(lx,ly,3,0,Math.PI*2);ctx.fill();
+ // GREEN AREA ABOVE 0
+ ctx.beginPath();
+ let started=false;
+ for(let i=0;i<data.length;i++){
+   let x=i*step, y=H/2 - data[i]*H*0.18;
+   if(data[i]>=0){ if(!started){ctx.moveTo(x,y); started=true} else ctx.lineTo(x,y); } else started=false;
+ }
+ ctx.strokeStyle='#00ff88'; ctx.lineWidth=6; ctx.lineJoin='round'; ctx.stroke();
+ ctx.lineTo(W,H/2); ctx.lineTo(0,H/2); ctx.closePath(); ctx.fillStyle='rgba(0,255,136,0.30)'; ctx.fill();
+
+ // RED AREA BELOW 0
+ ctx.beginPath(); started=false;
+ for(let i=0;i<data.length;i++){
+   let x=i*step, y=H/2 - data[i]*H*0.18;
+   if(data[i]<0){ if(!started){ctx.moveTo(x,y); started=true} else ctx.lineTo(x,y); } else started=false;
+ }
+ ctx.strokeStyle='#ff4444'; ctx.lineWidth=6; ctx.stroke();
+ ctx.lineTo(W,H/2); ctx.lineTo(0,H/2); ctx.closePath(); ctx.fillStyle='rgba(255,68,68,0.30)'; ctx.fill();
+
+ // dot
+ let ly=H/2 - data[data.length-1]*H*0.18, lx=(data.length-1)*step;
+ ctx.fillStyle=data[data.length-1]>=0?'#00ff88':'#ff4444'; ctx.beginPath(); ctx.arc(lx,ly,14,0,Math.PI*2); ctx.fill();
+ ctx.fillStyle='#fff'; ctx.beginPath(); ctx.arc(lx,ly,5,0,Math.PI*2); ctx.fill();
+
+ // price
+ let price=(0.4+Math.abs(next)*0.15+0.2).toFixed(4);
+ document.getElementById('price').innerText=price;
+ document.getElementById('rate').innerText=price;
+ let pct=(next*28).toFixed(2);
+ document.getElementById('pct').innerText=(next>=0?'+':'')+pct+'%';
+ document.getElementById('price').style.color=next>=0?'#00ff88':'#ff4444';
+ document.getElementById('pct').style.color=next>=0?'#00ff88':'#ff4444';
+ document.getElementById('pct').style.background=next>=0?'#00331a':'#33000a';
+ requestAnimationFrame(draw);
 }
-function setTF(v){tf=v; document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('on')); document.getElementById('t'+v).classList.add('on'); document.getElementById('durCircle').innerText=v; clearInterval(timer); timer=setInterval(tick, v===3?90:v===5?150:v===10?280:500);}
-function setStake(v,el){stake=v; document.querySelectorAll('.stakeChip').forEach(c=>c.classList.remove('on')); el.classList.add('on');}
-function toggleMode(){mode=mode==='real'?'demo':'real'; document.getElementById('modeToggle').innerText=mode.toUpperCase(); document.getElementById('modeToggle').className='real '+(mode==='demo'?'demoMode':''); updateBal();}
-function toggleDrop(){let d=document.getElementById('drop'); d.style.display=d.style.display==='block'?'none':'block';}
-function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on')); document.getElementById('page-'+p).classList.add('on'); document.getElementById('drop').style.display='none'; if(p==='wallet'){document.getElementById('wReal').innerText=balances.rea
+draw(); // START IMMEDIATELY
+
+function setTF(v){tf=v; document.querySelectorAll('.tfb').forEach(b=>b.classList.remove('on')); document.getElementById('b'+v).classList.add('on'); document.getElementById('dur').innerText=v;}
+function setStake(v,el){stake=v; document.querySelectorAll('.chip').forEach(c=>c.classList.remove('on')); el.classList.add('on');}
+function toggleMode(){let b=document.getElementById('modeBtn'); b.innerText=b.innerText==='REAL'?'DEMO':'REAL';}
+function cycle(){let seq=[3,5,10,30]; let idx=seq.indexOf(tf); setTF(seq[(idx+1)%seq.length]);}
+function trade(type){pnl+=(Math.random()>0.5?stake*0.8:-stake); document.getElementById('pnl').innerText='KES '+pnl.toFixed(2); document.getElementById('pnl').style.color=pnl>=0?'#00ff88':'#ff4444'; if(navigator.vibrate) navigator.vibrate(type==='BUY'?50:100);}
+</script></body></html>
