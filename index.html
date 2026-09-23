@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR V42 FIXED</title><style>
+!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR V42 FIXED</title><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0f;color:#fff;font-family:system-ui}
 #auth{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:14px;background:#0a0a0f}
 .card{width:100%;max-width:380px;background:#1a1c27;border:1px solid #252836;border-radius:20px;padding:18px}
@@ -113,4 +113,4 @@ function closeHistory(){document.getElementById('mHistory').classList.remove('on
 function doDep(){let amt=parseFloat(document.getElementById('dAmt').value)||0;if(!amt){alert('Enter amount');return;}bal+=amt;updateUI();closeDep();alert('Deposit KES '+amt+' added to CLIENT Real\nClient: 0'+cur.phone.slice(-9)+'\nAdmin 0716580098 received');setMode('real');}
 function doWit(){let amt=parseFloat(document.getElementById('wAmt').value)||0;if(!amt||amt>bal){alert('Low Real');return;}bal-=amt;updateUI();alert('Withdraw KES '+amt+' requested\nAdmin 0716580098 must Send Money');}
 let liveNames=[{user:'KevinM',phone:'0722 123 456'},{user:'BrianK',phone:'0733 444 555'},{user:'SharonW',phone:'0701 234 567'}];
-function addLive(u,p,a,c,w){let el=document.getElementById('liveBets');if(!el)return;let d=document.createElement('div');d.className='liveRow';d.innerHTML=`<span><b>${u}</b> <span style="color:#7a7e9a">${p}</span> • ${a.toFixed(0)}</span><span style="color:${c?'#00e676':'#ffcc00'}">${c?`CASH ${w.toFixed(0)} @${mult.toFixed(2)}x`:`BETTING`}</span>`;el.prepend(d);if(el.children.length>30)el.lastChild.
+function addLive(u,p,a,c,w){let el=document.getElementById('liveBets');if(!el)return;let d=document.createElement('div');d.className='liveRow';d.innerHTML=`<span><b>${u}</b> <span style="color:#7a7e9a">${p}</span> • ${a.toFixed(0)}</span><span style="color:${c?'#00e676':'#ffcc00'}">${c?`CASH ${w.toFixed(0)} @${mult.toFixed(2)}x`:`BETTING`}</span>`;el.prepend(d
