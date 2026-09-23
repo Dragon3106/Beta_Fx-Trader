@@ -1,36 +1,62 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR FIXED</title><style>
+
+ <!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR - Accounts</title><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0e0e11;color:#fff;font-family:system-ui}
-.top{height:52px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#1a1c25;border-bottom:1px solid #2a2d3e}
+.page{display:none;min-height:100vh;background:#0e0e11}.page.on{display:block}
+.top{height:52px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#1a1c25;border-bottom:1px solid #2a2d3e;position:sticky;top:0;z-index:99}
 .logo{width:34px;height:34px;border-radius:8px;background:#ff0a54;display:flex;align-items:center;justify-content:center;font-weight:900}
-.pill{padding:6px 12px;border-radius:20px;background:#212331;border:1px solid #ff0a54;color:#ff0a54;font-weight:800;font-size:11px}
-.bal{margin-left:auto;padding:7px 14px;background:#212331;border-radius:20px;color:#f5b731;font-weight:900}
+.pill{padding:6px 12px;border-radius:20px;background:#212331;border:1px solid #ff0a54;color:#ff0a54;font-weight:800;font-size:11px;cursor:pointer}.pill.demo{border-color:#f5b731;color:#f5b731}
+.bal{padding:7px 14px;background:#212331;border-radius:20px;color:#f5b731;font-weight:900;display:flex;gap:6px;align-items:center}
 .hist{height:38px;display:flex;gap:6px;padding:6px 10px;background:#1a1c25;overflow-x:auto}
 .h{padding:5px 10px;border-radius:20px;font-weight:800;font-size:12px;min-width:52px;text-align:center}.h.b{color:#3f90ff;background:#1a2a4a}.h.p{color:#c066ff;background:#2a1a4a}.h.g{color:#ff0a54;background:#3a1a2a}
-#gameWrap{width:100%;height:52vh;background:radial-gradient(ellipse at bottom,#2a1040 0%,#0e0e11 70%);position:relative;overflow:hidden;border-bottom:2px solid #ff0a5422}
-#c{width:100%;height:100%;display:block;background:transparent;position:absolute;left:0;top:0}
-#plane{position:absolute;left:2%;bottom:15%;font-size:42px;z-index:5;transform:rotate(5deg);transition:none;will-change:left,bottom}
+#gameWrap{width:100%;height:50vh;background:radial-gradient(ellipse at bottom,#2a1040 0%,#0e0e11 70%);position:relative;overflow:hidden;border-bottom:2px solid #ff0a5422}
+#c{width:100%;height:100%;display:block;position:absolute;left:0;top:0}
+#plane{position:absolute;left:2%;bottom:15%;font-size:42px;z-index:5;transform:rotate(5deg);will-change:left,bottom}
 #mult{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);font-size:64px;font-weight:900;z-index:4;text-shadow:0 0 30px #ff0a54}
 .centerMsg{position:absolute;left:50%;top:62%;transform:translate(-50%,-50%);text-align:center;z-index:6;background:rgba(0,0,0,0.7);padding:10px 20px;border-radius:12px;display:none}
 .bets{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px;background:#0e0e11}
 .bCard{background:#1a1c25;border:1px solid #2a2d3e;border-radius:16px;padding:12px}
 .row{display:flex;gap:8px;align-items:center;margin:6px 0}
-.inp{flex:1;padding:12px;background:#0e0e11;border:1px solid #2a2d3e;border-radius:12px;color:#fff;font-weight:800;text-align:center}
-.qBtn{padding:10px 12px;background:#212331;border:1px solid #2a2d3e;border-radius:10px;color:#8b8fa3;font-weight:800;cursor:pointer;min-width:42px}
-.qBtn.on{border-color:#ff0a54;color:#fff;background:#2a1a25}
-.betBtn{width:100%;padding:16px;border:none;border-radius:14px;font-weight:900;font-size:16px;cursor:pointer;margin-top:8px}
-.betBtn.bet{background:#00c853;color:#fff}.betBtn.cash{background:#f5b731;color:#000}.betBtn.wait{background:#212331;color:#8b8fa3}
+.inp{width:100%;padding:14px;background:#0e0e11;border:1px solid #2a2d3e;border-radius:12px;color:#fff;font-weight:800}.inp:focus{border-color:#ff0a54;outline:none}
+.qBtn{padding:10px 12px;background:#212331;border:1px solid #2a2d3e;border-radius:10px;color:#8b8fa3;font-weight:800;cursor:pointer;min-width:42px}.qBtn.on{border-color:#ff0a54;color:#fff;background:#2a1a25}
+.betBtn{width:100%;padding:16px;border:none;border-radius:14px;font-weight:900;font-size:16px;cursor:pointer;margin-top:8px}.betBtn.bet{background:#00c853;color:#fff}.betBtn.cash{background:#f5b731;color:#000}.betBtn.wait{background:#212331;color:#8b8fa3}
+.card{background:#1a1c25;border:1px solid #2a2d3e;border-radius:20px;padding:18px;max-width:440px;margin:12px auto}
+.btnG{width:100%;padding:16px;background:#ff0a54;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:16px;margin:10px 0;cursor:pointer}
+.lbl{font-size:11px;color:#8b8fa3;font-weight:700;margin-top:12px;display:block}
+.drop{position:absolute;top:52px;right:8px;width:240px;background:#212331;border:1px solid #2a2d3e;border-radius:14px;padding:8px;display:none;z-index:100}.drop div{padding:12px;border-radius:8px;cursor:pointer;color:#8b8fa3}
+.flagRow{display:flex}.flag{padding:14px 10px;background:#212331;border:1px solid #2a2d3e;border-right:none;border-radius:12px 0 0 12px;color:#8b8fa3}.phone{border-radius:0 12px 12px 0!important}
 </style></head><body>
-<div class="top"><div class="logo">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b><div class="pill" id="modePill" onclick="toggleMode()">REAL</div><div class="bal">K <span id="topBal">0.00</span></div></div>
+
+<!-- AVIATOR GAME PAGE -->
+<div id="pg-trade" class="page on">
+<div class="top"><div class="logo">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b><div class="pill" id="modePill" onclick="toggleMode()">REAL</div><div class="bal"><span style="background:#f5b731;color:#000;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px">K</span><span id="topBal">0.00</span></div><div style="margin-left:auto;background:#212331;padding:8px 10px;border-radius:10px;font-size:12px;font-weight:800;cursor:pointer" id="uBtn" onclick="toggleDrop()">Guest ▼</div><div class="drop" id="drop"><div onclick="showPg('wallet')">👤 Profile & Wallet</div><div onclick="showPg('deposit')">💰 Deposit</div><div onclick="showPg('withdraw')">↓ Withdraw M-Pesa</div><div style="color:#ff6b6b" onclick="logout()">↪ Sign Out</div></div></div>
 <div class="hist" id="hist"></div>
-<div id="gameWrap"><canvas id="c"></canvas><div id="plane">✈️</div><div id="mult">1.00x</div><div class="centerMsg" id="centerMsg"><div style="color:#ff0a54;font-weight:800">Waiting for next round</div><div id="cMult" style="font-size:28px;font-weight:900;margin-top:6px"></div></div></div>
+<div id="gameWrap"><canvas id="c"></canvas><div id="plane">✈️</div><div id="mult">1.00x</div><div class="centerMsg" id="centerMsg"></div></div>
 <div class="bets">
-<div class="bCard"><div style="font-size:11px;color:#8b8fa3">BET 1</div><div class="row"><button class="qBtn" onclick="chg(1,-10)">-</button><input id="amt1" class="inp" value="100.00"><button class="qBtn" onclick="chg(1,10)">+</button></div><div class="row"><button class="qBtn on" onclick="setQ(1,100,this)">100</button><button class="qBtn" onclick="setQ(1,200,this)">200</button><button class="qBtn" onclick="setQ(1,500,this)">500</button><button class="qBtn" onclick="setQ(1,1000,this)">1k</button></div><div class="row"><span style="font-size:11px;color:#8b8fa3">Auto Cash</span><input id="autoCash1" class="inp" placeholder="2.00" style="max-width:80px"></div><button class="betBtn bet" id="btn1" onclick="bet(1)">BET<br><span style="font-size:11px">KES 100</span></button></div>
-<div class="bCard"><div style="font-size:11px;color:#8b8fa3">BET 2</div><div class="row"><button class="qBtn" onclick="chg(2,-10)">-</button><input id="amt2" class="inp" value="200.00"><button class="qBtn" onclick="chg(2,10)">+</button></div><div class="row"><button class="qBtn" onclick="setQ(2,100,this)">100</button><button class="qBtn on" onclick="setQ(2,200,this)">200</button><button class="qBtn" onclick="setQ(2,500,this)">500</button><button class="qBtn" onclick="setQ(2,1000,this)">1k</button></div><div class="row"><span style="font-size:11px;color:#8b8fa3">Auto Cash</span><input id="autoCash2" class="inp" placeholder="2.00" style="max-width:80px"></div><button class="betBtn bet" id="btn2" onclick="bet(2)">BET<br><span style="font-size:11px">KES 200</span></button></div>
+<div class="bCard"><div style="font-size:11px;color:#8b8fa3">BET 1</div><div class="row"><button class="qBtn" onclick="chg(1,-10)">-</button><input id="amt1" class="inp" value="100.00" style="text-align:center"><button class="qBtn" onclick="chg(1,10)">+</button></div><div class="row"><button class="qBtn on" onclick="setQ(1,100,this)">100</button><button class="qBtn" onclick="setQ(1,200,this)">200</button><button class="qBtn" onclick="setQ(1,500,this)">500</button><button class="qBtn" onclick="setQ(1,1000,this)">1k</button></div><div class="row"><span style="font-size:11px;color:#8b8fa3">Auto Cash</span><input id="autoCash1" class="inp" placeholder="2.00" style="max-width:80px;text-align:center"></div><button class="betBtn bet" id="btn1" onclick="bet(1)">BET<br><span style="font-size:11px">KES 100</span></button></div>
+<div class="bCard"><div style="font-size:11px;color:#8b8fa3">BET 2</div><div class="row"><button class="qBtn" onclick="chg(2,-10)">-</button><input id="amt2" class="inp" value="200.00" style="text-align:center"><button class="qBtn" onclick="chg(2,10)">+</button></div><div class="row"><button class="qBtn" onclick="setQ(2,100,this)">100</button><button class="qBtn on" onclick="setQ(2,200,this)">200</button><button class="qBtn" onclick="setQ(2,500,this)">500</button><button class="qBtn" onclick="setQ(2,1000,this)">1k</button></div><div class="row"><span style="font-size:11px;color:#8b8fa3">Auto Cash</span><input id="autoCash2" class="inp" placeholder="2.00" style="max-width:80px;text-align:center"></div><button class="betBtn bet" id="btn2" onclick="bet(2)">BET<br><span style="font-size:11px">KES 200</span></button></div>
+</div>
+<div style="text-align:center;padding:6px;color:#2a2d3e;font-size:9px">BETA AVIATOR Thika 0716580098 • Float 500 KES • Licensed</div>
 </div>
 
+<!-- LOGIN -->
+<div id="pg-login" class="page"><div style="text-align:center;padding:50px 0 20px"><div style="width:60px;height:60px;background:#ff0a54;border-radius:16px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:28px;margin:0 auto">✈</div><h1 style="margin-top:12px">BETA <span style="color:#ff0a54">AVIATOR</span></h1><p style="color:#8b8fa3">Sign in to your account</p></div><div class="card"><span class="lbl">EMAIL / PHONE / USERNAME</span><input id="lId" class="inp" placeholder="254716580098 or Dragon" value="254716580098"><span class="lbl">PASSWORD</span><input id="lPass" type="password" class="inp" placeholder="••••••••"><button class="btnG" onclick="doLogin()">Sign In</button><div style="text-align:center;margin-top:10px;color:#8b8fa3;font-size:13px">No account? <b style="color:#ff0a54;cursor:pointer" onclick="showPg('register')">Sign Up - New Customer</b></div></div></div>
+
+<!-- REGISTER NEW CUSTOMER -->
+<div id="pg-register" class="page"><div style="text-align:center;padding:30px 0 10px"><h1>Create Account</h1><p style="color:#8b8fa3">New Customer - BETA AVIATOR</p></div><div class="card"><span class="lbl">USERNAME (Display name)</span><input id="rUser" class="inp" placeholder="Dragon" value="Dragon"><span class="lbl">EMAIL ADDRESS</span><input id="rEmail" class="inp" placeholder="you@gmail.com" value="kraytim85@gmail.com"><span class="lbl">M-PESA PHONE NUMBER - For Withdrawals</span><div class="flagRow"><div class="flag">🇰🇪 +254</div><input id="rPhone" class="inp phone" placeholder="716580098" value="716580098"></div><div style="color:#5a5e75;font-size:11px;margin-top:4px">9 digits after 254 - All winnings go here</div><span class="lbl">PASSWORD (min 6 chars)</span><input id="rPass" type="password" class="inp" placeholder="••••••••"><span class="lbl">CONFIRM PASSWORD</span><input id="rPass2" type="password" class="inp" placeholder="••••••••"><button class="btnG" onclick="doRegister()">Create BETA AVIATOR Account</button><div style="text-align:center;margin-top:10px;color:#8b8fa3;font-size:13px">Have account? <b style="color:#ff0a54;cursor:pointer" onclick="showPg('login')">Sign In</b></div></div></div>
+
+<!-- PROFILE WALLET -->
+<div id="pg-wallet" class="page"><div style="padding:16px"><h2>Profile & Wallet</h2><p style="color:#8b8fa3;font-size:13px">Manage your account - M-Pesa number for withdrawals</p></div><div class="card"><div style="display:flex;justify-content:space-between"><span style="color:#8b8fa3;font-size:11px">REAL BALANCE (Max 200)</span><span style="width:8px;height:8px;background:#ff0a54;border-radius:50%"></span></div><div style="font-size:32px;font-weight:900;margin:10px 0">KES <span id="wReal">0.00</span></div><button class="btnG" style="background:#00c853" onclick="showPg('trade')">Play Aviator</button></div><div class="card"><div style="display:flex;justify-content:space-between"><span style="color:#8b8fa3;font-size:11px">DEMO BALANCE</span><span style="width:8px;height:8px;background:#f5b731;border-radius:50%"></span></div><div style="font-size:32px;font-weight:900;color:#f5b731">KES <span id="wDemo">10,000.00</span></div><button style="width:100%;padding:14px;background:#212331;border:none;border-radius:12px;color:#fff;cursor:pointer" onclick="resetDemo()">Reset Demo to 10,000</button></div><div class="card"><h3>👤 Personal Information</h3><span class="lbl">USERNAME</span><input id="pUser" class="inp"><span class="lbl">EMAIL</span><input id="pEmail" class="inp"><span class="lbl">REGISTERED M-PESA PHONE</span><div class="flagRow"><div class="flag">🇰🇪 +254</div><input id="pPhone" class="inp phone"></div><div style="color:#5a5e75;font-size:11px;margin-top:4px">All withdrawals go to this number - Keep correct!</div><button style="float:right;margin-top:10px;padding:12px 20px;background:#2a2d3e;border:none;border-radius:12px;color:#fff;font-weight:700;cursor:pointer" onclick="saveProfile()">Save Changes</button><div style="clear:both"></div></div><div style="text-align:center;padding:10px"><button style="padding:12px 20px;background:#1a1c25;border:1px solid #2a2d3e;border-radius:12px;color:#fff;cursor:pointer" onclick="showPg('trade')">← Back to Aviator</button></div></div>
+
+<!-- DEPOSIT PAGE -->
+<div id="pg-deposit" class="page"><div class="card"><h3>💰 Deposit - M-Pesa 0716580098</h3><p style="color:#f5b731;font-size:11px">Float 500 KES Beta - Real Max 200 - Send to RAYLABS SOLUTIONS HQ</p><span class="lbl">AMOUNT</span><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:10px 0"><button class="qBtn" onclick="selDep(100,this)">100</button><button class="qBtn" onclick="selDep(200,this)">200</button><button class="qBtn" onclick="selDep(500,this)">500 DEMO</button></div><input id="depPhone" class="inp" value="254716580098" placeholder="M-Pesa number"><button id="depBtn" class="btnG" style="background:#212331;color:#5a5e75" onclick="doDeposit()">Select Amount First</button><div id="stk" style="display:none;background:#fff;color:#111;border-radius:16px;padding:16px;margin-top:12px"><div>Pay Kshs <span id="stkAmt">100</span> to RAYLABS HQ?</div><div style="margin-top:14px;display:flex;justify-content:space-between"><span style="color:#2563eb;font-weight:800;cursor:pointer" onclick="document.getElementById('stk').style.display='none'">Cancel</span><span style="color:#2563eb;font-weight:800;cursor:pointer" onclick="confirmDep()">Send PIN</span></div></div><button style="width:100%;padding:12px;background:#212331;border:none;border-radius:12px;color:#fff;margin-top:10px" onclick="showPg('trade')">Back to Game</button></div></div>
+
+<!-- WITHDRAW PAGE -->
+<div id="pg-withdraw" class="page"><div class="card"><h3>↓ Withdraw to M-Pesa</h3><p style="color:#f5b731;font-size:11px">Min 100 Max 200 - You must send manually from 0716580098</p><span class="lbl">AMOUNT</span><input id="wdAmt" type="number" class="inp" placeholder="100 - 200"><span class="lbl">M-PESA NUMBER TO RECEIVE</span><input id="wdPhone" class="inp" placeholder="0716580098"><button class="btnG" style="background:#ff0a54" onclick="doWithdraw()">Withdraw Now</button><button style="width:100%;padding:12px;background:#212331;border:none;border-radius:12px;color:#fff;margin-top:10px" onclick="showPg('trade')">Back</button></div></div>
+
 <script>
+// ====== FIXED PLANE ANIMATION - WILL MOVE ======
 let c=document.getElementById('c'), x=c.getContext('2d'), multEl=document.getElementById('mult'), plane=document.getElementById('plane'), msg=document.getElementById('centerMsg');
-let W,H, phase='wait', mult=1, crash=2, t=0, path=[], history=[2.34,1.23,8.12,1.05,3.45], bets={}, balances={real:0,demo:10000}, mode='real';
+let W,H, phase='wait', mult=1, crash=2, t=0, path=[], history=[2.34,1.23,8.12,1.05,3.45,12.5], bets={}, balances={real:0,demo:10000}, mode='real', users=[], current=null, depAmt=0;
 
 function resize(){let w=document.getElementById('gameWrap'); W=w.clientWidth*2; H=w.clientHeight*2; c.width=W; c.height=H;}
 resize(); window.addEventListener('resize',resize);
@@ -43,41 +69,65 @@ function drawCurve(){
  x.strokeStyle='#ff0a54'; x.lineWidth=10; x.lineCap='round'; x.lineJoin='round'; x.stroke();
  x.lineTo(path[path.length-1].x,H); x.lineTo(0,H); x.closePath(); x.fillStyle='rgba(255,10,84,0.18)'; x.fill();
 }
-function loop(){
+function gameLoop(){
  if(phase==='wait'){
-   mult=1; t=0; path=[]; plane.style.left='2%'; plane.style.bottom='15%'; plane.style.transform='rotate(5deg)'; multEl.innerText='1.00x'; multEl.style.color='#fff'; msg.style.display='block'; msg.innerHTML='<div style="color:#fff;font-weight:800">Waiting for next round</div><div style="color:#ff0a54;margin-top:4px">Bets open</div>';
-   document.querySelectorAll('.betBtn').forEach(b=>{if(b.className.includes('wait')){b.className='betBtn bet';}});
-   setTimeout(()=>{crash=Math.random()<0.5?1+Math.random()*0.8:Math.random()<0.85?2+Math.random()*3:5+Math.random()*15; if(Math.random()>0.93) crash=20+Math.random()*80; phase='fly'; msg.style.display='none'; t=0; path=[];},2500);
+   mult=1; t=0; path=[]; plane.style.left='2%'; plane.style.bottom='15%'; plane.style.opacity='1'; plane.style.transform='rotate(5deg)'; multEl.innerText='1.00x'; multEl.style.color='#fff'; msg.style.display='block'; msg.innerHTML='<div style="color:#fff;font-weight:800">Waiting for next round</div><div style="color:#f5b731;margin-top:4px;font-size:12px">Place your bets</div>';
+   setTimeout(()=>{crash=Math.random()<0.5?1+Math.random()*0.9:Math.random()<0.85?2+Math.random()*3:5+Math.random()*10; if(Math.random()>0.92) crash=15+Math.random()*85; phase='fly'; msg.style.display='none'; t=0; path=[];},2800);
  }else if(phase==='fly'){
-   t+=0.04; mult=Math.pow(1.08,t); if(mult>1.01) multEl.innerText=mult.toFixed(2)+'x';
-   // MOVE PLANE WITH %
-   let p=Math.min(t/20,1); // 0 to 1 progress
-   let left=2+p*78; // 2% to 80%
-   let bottom=15+Math.pow(p,1.7)*65; // 15% to 80%
-   plane.style.left=left+'%'; plane.style.bottom=bottom+'%'; plane.style.transform='rotate('+(5+p*25)+'deg)';
-   // trail for canvas
-   let cx=(left/100)*W, cy=H-(bottom/100)*H; path.push({x:cx,y:cy}); if(path.length>100) path.shift(); drawCurve();
-   // auto cash
+   t+=0.038; mult=Math.pow(1.075,t); multEl.innerText=mult.toFixed(2)+'x';
+   let p=Math.min(t/18,1); let left=2+p*78, bottom=15+Math.pow(p,1.6)*68;
+   plane.style.left=left+'%'; plane.style.bottom=bottom+'%'; plane.style.transform='rotate('+(5+p*28)+'deg)';
+   let cx=(left/100)*W, cy=H-(bottom/100)*H; path.push({x:cx,y:cy}); if(path.length>90) path.shift(); drawCurve();
    Object.keys(bets).forEach(k=>{if(bets[k].active){let ac=parseFloat(document.getElementById('autoCash'+k).value)||0; if(ac>0&&mult>=ac) doCash(k); let b=document.getElementById('btn'+k); if(b) b.innerHTML=`CASH OUT<br><span style="font-size:12px">KES ${(bets[k].amt*mult).toFixed(2)}</span>`;}});
    if(mult>=crash){
-     phase='crash'; multEl.style.color='#ff0a54'; multEl.innerText=crash.toFixed(2)+'x'; msg.style.display='block'; msg.innerHTML='<div style="color:#ff0a54;font-weight:900">FLEW AWAY!</div><div style="color:#fff;font-size:28px;font-weight:900;margin-top:6px">'+crash.toFixed(2)+'x</div>';
-     history.unshift(crash); if(history.length>20) history.pop(); renderHist(); plane.style.transform='rotate(45deg) scale(0.5)'; plane.style.opacity='0';
+     phase='crash'; multEl.style.color='#ff0a54'; multEl.innerText=crash.toFixed(2)+'x'; msg.style.display='block'; msg.innerHTML='<div style="color:#ff0a54;font-weight:900;font-size:20px">FLEW AWAY!</div><div style="color:#fff;font-size:28px;font-weight:900;margin-top:6px">'+crash.toFixed(2)+'x</div>';
+     history.unshift(crash); if(history.length>20) history.pop(); renderHist(); plane.style.transform='rotate(45deg) scale(0.3)'; plane.style.opacity='0';
      Object.keys(bets).forEach(k=>{if(bets[k].active){bets[k].active=false; let b=document.getElementById('btn'+k); b.className='betBtn bet'; b.innerHTML=`BET<br><span>KES ${bets[k].amt}</span>`;}});
-     setTimeout(()=>{plane.style.opacity='1'; phase='wait';},2000);
+     setTimeout(()=>{plane.style.opacity='1'; phase='wait';},2200);
    }
  }
- requestAnimationFrame(loop);
+ requestAnimationFrame(gameLoop);
 }
-requestAnimationFrame(loop);
-setInterval(drawCurve,60);
+requestAnimationFrame(gameLoop);
 
 function renderHist(){document.getElementById('hist').innerHTML=history.map(v=>{let cls=v<2?'b':v<10?'p':'g'; return `<div class="h ${cls}">${v.toFixed(2)}x</div>`}).join('');}
 renderHist();
 function chg(id,d){let i=document.getElementById('amt'+id); let v=Math.max(10,(parseFloat(i.value)||0)+d); if(mode==='real'&&v>200) v=200; i.value=v.toFixed(2);}
 function setQ(id,val,el){el.parentElement.querySelectorAll('.qBtn').forEach(b=>b.classList.remove('on')); el.classList.add('on'); document.getElementById('amt'+id).value=val.toFixed(2);}
-function toggleMode(){mode=mode==='real'?'demo':'real'; document.getElementById('modePill').innerText=mode.toUpperCase(); document.getElementById('topBal').innerText=balances[mode].toFixed(2);}
-function bet(id){let amt=parseFloat(document.getElementById('amt'+id).value)||0; if(amt>balances[mode]){alert('Low balance'); return;} if(mode==='real'&&amt>200){alert('Max 200'); return;} if(bets[id]?.active) return doCash(id); balances[mode]-=amt; document.getElementById('topBal').innerText=balances[mode].toFixed(2); bets[id]={amt:amt,active:true,mode:mode}; let b=document.getElementById('btn'+id); if(phase==='fly'){b.className='betBtn cash'; b.innerHTML=`CASH OUT<br><span>KES ${amt.toFixed(2)}</span>`;} else {b.className='betBtn wait'; b.innerHTML=`BET PLACED<br><span>Waiting</span>`;}}
-function doCash(id){if(!bets[id]?.active) return; let win=bets[id].amt*mult; balances[bets[id].mode]+=win; if(bets[id].mode===mode) document.getElementById('topBal').innerText=balances[mode].toFixed(2); bets[id].active=false; let b=document.getElementById('btn'+id); b.className='betBtn bet'; b.innerHTML=`BET<br><span>KES ${bets[id].amt}</span>`;}
-(function(){try{let u=JSON.parse(localStorage.getItem('beta_users')||'[]'); if(u.length>0){balances=u[0].balances||{real:0,demo:10000}; document.getElementById('topBal').innerText=balances[mode].toFixed(2);}}catch(e){}})();
-</script></body></html>
- 
+function toggleMode(){if(!current){showPg('login'); return;} mode=mode==='real'?'demo':'real'; document.getElementById('modePill').innerText=mode.toUpperCase(); document.getElementById('modePill').className='pill '+(mode==='demo'?'demo':''); document.getElementById('topBal').innerText=balances[mode].toFixed(2);}
+function toggleDrop(){let d=document.getElementById('drop'); d.style.display=d.style.display==='block'?'none':'block';}
+function showPg(p){document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on')); document.getElementById('pg-'+p).classList.add('on'); document.getElementById('drop').style.display='none'; if(p==='wallet'){document.getElementById('wReal').innerText=balances.real.toFixed(2); document.getElementById('wDemo').innerText=balances.demo.toFixed(2);} if(p==='trade') setTimeout(resize,100);}
+
+function bet(id){
+ if(!current){showPg('register'); return;}
+ let amt=parseFloat(document.getElementById('amt'+id).value)||0;
+ if(amt>balances[mode]){alert('Low '+mode+' balance: '+balances[mode].toFixed(2)+'. Deposit first!'); showPg('deposit'); return;}
+ if(mode==='real'&&amt>200){alert('REAL Max 200 KES - Float 500 Beta'); return;}
+ if(bets[id]?.active) return doCash(id);
+ balances[mode]-=amt; updBal();
+ bets[id]={amt:amt,active:true,mode:mode};
+ let b=document.getElementById('btn'+id);
+ if(phase==='fly'){b.className='betBtn cash'; b.innerHTML=`CASH OUT<br><span style="font-size:12px">KES ${amt.toFixed(2)}</span>`;}
+ else{b.className='betBtn wait'; b.innerHTML=`BET PLACED<br><span style="font-size:11px">Waiting ${amt}</span>`;}
+}
+function doCash(id){if(!bets[id]?.active) return; let win=bets[id].amt*mult; balances[bets[id].mode]+=win; if(bets[id].mode===mode) document.getElementById('topBal').innerText=balances[mode].toFixed(2); updBal(); bets[id].active=false; let b=document.getElementById('btn'+id); b.className='betBtn bet'; b.innerHTML=`BET<br><span style="font-size:11px">KES ${bets[id].amt}</span>`;}
+function updBal(){if(!current) return; current.balances=balances; localStorage.setItem('beta_avi_users',JSON.stringify(users)); document.getElementById('topBal').innerText=balances[mode].toFixed(2);}
+
+// ====== LOGIN / SIGN UP FOR NEW CUSTOMER ======
+function doRegister(){
+ let u=document.getElementById('rUser').value.trim(), e=document.getElementById('rEmail').value.trim(), ph=document.getElementById('rPhone').value.trim(), p=document.getElementById('rPass').value, p2=document.getElementById('rPass2').value;
+ if(!u||!ph||p.length<6){alert('Fill Username, Phone 9 digits, Password min 6'); return;}
+ if(p!==p2){alert('Passwords do NOT match'); return;}
+ if(ph.length!==9||isNaN(ph)){alert('Phone must be 9 digits like 716580098'); return;}
+ users=JSON.parse(localStorage.getItem('beta_avi_users')||'[]');
+ if(users.find(x=>x.phone===ph)){alert('This M-Pesa number already registered! Please Login'); showPg('login'); return;}
+ let nu={user:u,email:e,phone:ph,pass:p,balances:{real:0,demo:10000}};
+ users.push(nu); localStorage.setItem('beta_avi_users',JSON.stringify(users));
+ current=nu; balances=nu.balances;
+ document.getElementById('pUser').value=u; document.getElementById('pEmail').value=e; document.getElementById('pPhone').value=ph;
+ document.getElementById('uBtn').innerText=u+' ▼'; updBal();
+ alert('Welcome '+u+'! BETA AVIATOR account created! Demo KES 10,000 given. Real balance 0 - Deposit via M-Pesa 0716580098 to play REAL. Float 500 KES Beta protection.');
+ showPg('trade');
+}
+function doLogin(){
+ let id=document.getElement
