@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR V41 FIXED BUTTON</title><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR V42 FIXED</title><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0f;color:#fff;font-family:system-ui}
 #auth{min-height:100vh;display:flex;justify-content:center;align-items:center;padding:14px;background:#0a0a0f}
 .card{width:100%;max-width:380px;background:#1a1c27;border:1px solid #252836;border-radius:20px;padding:18px}
@@ -10,7 +10,7 @@
 .top{height:56px;background:#12131a;display:flex;align-items:center;padding:0 10px;gap:6px;border-bottom:1px solid #ff0a5422;position:sticky;top:0}
 .avatar{width:34px;height:34px;background:#ff0a54;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
 .bal{margin-left:auto;background:#1e202f;padding:6px 12px;border-radius:20px;color:#ffcc00;font-weight:900}
-#box{height:50vh;background:radial-gradient(at bottom,#1a0f2e,#0a0a0f);position:relative;overflow:hidden}#plane{position:absolute;left:4%;bottom:20%;font-size:52px}#mult{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:68px;font-weight:900}#status{position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000c;padding:10px 18px;border-radius:20px;font-weight:800;text-align:center}
+#box{height:50vh;background:radial-gradient(at bottom,#1a0f2e,#0a0a0f);position:relative;overflow:hidden}#plane{position:absolute;left:4%;bottom:20%;font-size:52px}#mult{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:68px;font-weight:900}#status{position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.8);padding:10px 18px;border-radius:20px;font-weight:800;text-align:center}
 .hist{display:flex;gap:6px;padding:8px;background:#12131a;overflow-x:auto}.h{padding:5px 10px;border-radius:16px;font-weight:800;font-size:11px;min-width:50px;text-align:center;background:#1e1630;color:#b86bff;flex-shrink:0}
 .bets{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}.bCard{background:#1a1c27;border:1px solid #252836;border-radius:14px;padding:10px}
 .modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;padding:12px;z-index:3000}.modal.on{display:flex!important}
@@ -18,109 +18,99 @@
 </style></head><body>
 
 <div id="auth"><div class="card">
-<div style="text-align:center"><div style="width:60px;height:60px;background:#ff0a54;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto">✈</div><h2 style="margin-top:10px">BETA AVIATOR</h2><p style="color:#7a7e9a;font-size:11px">V41 FIXED BUTTON • Tap Works</p></div>
+<div style="text-align:center"><div style="width:60px;height:60px;background:#ff0a54;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:30px;margin:0 auto">✈</div><h2 style="margin-top:10px">BETA AVIATOR</h2><p style="color:#7a7e9a;font-size:11px">V42 FIXED • Button Works • New User Plays</p></div>
 
 <div style="margin-top:14px;border:2px solid #ff0a54;border-radius:14px;padding:12px;background:#0e0f17">
 <div style="text-align:center;color:#ff0a54;font-weight:900;font-size:12px">👤 CREATE ACCOUNT - CLIENT</div>
 <input id="rUser" class="inp" placeholder="Username e.g. Dragon" value="Dragon">
-<input id="rPhone" class="inp" placeholder="CLIENT Phone e.g. 0716580098" value="0716580098">
+<input id="rPhone" class="inp" placeholder="Phone CLIENT e.g. 0716580098" value="0716580098">
 <input id="rPass" class="inp" type="password" placeholder="Password" value="1234">
-<!-- USEFUL BUTTON - NOW WITH ID AND DOUBLE BIND -->
 <button type="button" id="createBtn" class="btn">✨ CREATE ACCOUNT + DEMO 5K FREE →</button>
-<div style="text-align:center;color:#00e676;font-size:10px;margin-top:6px">Tap this → Creates CLIENT 0716580098 → Plays instantly</div>
+<div style="text-align:center;color:#00e676;font-size:10px;margin-top:6px">Tap → Creates CLIENT account → Game opens instantly</div>
 </div>
 
-<button type="button" id="playNowBtn" class="btnG" style="margin-top:10px">⚡ PLAY NOW DEMO - CLIENT WANTS TO PLAY →</button>
-
-<div style="margin-top:10px"><input id="lPhone" class="inp" placeholder="Phone CLIENT to Login"><input id="lPass" type="password" class="inp" placeholder="Password"><button type="button" id="loginBtn" class="btn" style="background:#1e202f;border:1px solid #2a2d40">LOGIN & PLAY AVIATOR →</button></div>
-
-<div style="margin-top:10px;background:#0e0f17;border:1px solid #2a2d40;border-radius:10px;padding:8px;font-size:10px;color:#666;text-align:center">✓ Profile = CLIENT number NOT admin • Deposit = Send Money ONLY 0716580098</div>
+<div style="margin-top:10px"><input id="lPhone" class="inp" placeholder="Phone CLIENT to Login"><input id="lPass" type="password" class="inp" placeholder="Password"><button type="button" id="loginBtn" class="btn" style="background:#1e202f;border:1px solid #2a2d40">LOGIN & PLAY AVIATOR →</button><button type="button" id="playNowBtn" class="btnG">⚡ PLAY NOW DEMO →</button></div>
+<div style="margin-top:10px;background:#0e0f17;border:1px solid #2a2d40;border-radius:10px;padding:8px;font-size:10px;color:#666;text-align:center">✓ Account Person = CLIENT number • Deposit = Admin 0716580098 • No Till • No Paybill • No STK</div>
 </div></div>
 
 <div id="game"><div class="top"><div style="width:32px;height:32px;background:#ff0a54;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b>
-<div style="margin-left:auto;display:flex;align-items:center;gap:8px;cursor:pointer" onclick="openProfile()"><div style="text-align:right"><div style="font-size:11px;font-weight:800" id="accName">Dragon</div><div style="font-size:9px;color:#00e676" id="accPhone">CLIENT 0716580098</div></div><div class="avatar" id="accAvatar">D</div></div>
+<div style="margin-left:auto;display:flex;align-items:center;gap:8px;cursor:pointer" onclick="openProfile()"><div style="text-align:right"><div style="font-size:11px;font-weight:800" id="accName">Dragon</div><div style="font-size:9px;color:#00e676" id="accPhone">CLIENT</div></div><div class="avatar" id="accAvatar">D</div></div>
 <div class="bal">KES <span id="bal">5000</span><div style="width:20px;height:20px;background:#00e676;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;margin-left:6px" onclick="openDep()">+</div></div><div style="background:#1e202f;padding:5px 8px;border-radius:8px;font-size:10px;margin-left:4px;cursor:pointer" onclick="goAuth()">Logout</div></div>
 <div style="display:flex;gap:6px;padding:6px 8px;background:#0e0f17"><button class="tab2 on" id="modeReal" onclick="setMode('real')">REAL <span id="realBal">0</span></button><button class="tab2 on" id="modeDemo" onclick="setMode('demo')">DEMO <span id="demoBalTop">5000</span></button></div>
 <div class="hist" id="hist"></div><div id="box"><svg style="position:absolute;left:0;top:0;width:100%;height:100%" viewBox="0 0 100 100" preserveAspectRatio="none"><path id="trail" d="M0,85 L0,85" stroke="#ff0a54" stroke-width="1.5" fill="none"/><path id="fill" d="M0,85 L0,85 L0,100 L0,100 Z" fill="rgba(255,10,84,0.15)"/></svg><div id="plane">✈️</div><div id="mult">1.00x</div><div id="status">Waiting<br><span style="color:#ffcc00;font-size:11px">Tap BET to play</span></div></div>
-<div class="bets"><div class="bCard"><input id="a1" class="inp" value="100" style="text-align:center"><button class="btnG" id="b1" onclick="bet(1)">BET 100</button></div><div class="bCard"><input id="a2" class="inp" value="200" style="text-align:center"><button class="btnG" id="b2" onclick="bet(2)">BET 200</button></div></div>
+<div class="bets"><div class="bCard"><input id="a1" class="inp" value="100" style="text-align:center"><button class="btnG" id="b1" onclick="bet(1)">BET KES 100</button></div><div class="bCard"><input id="a2" class="inp" value="200" style="text-align:center"><button class="btnG" id="b2" onclick="bet(2)">BET KES 200</button></div></div>
 <div style="display:flex;justify-content:space-between;padding:7px 12px;background:#12131a;color:#5a5e7a;font-size:10px;font-weight:800"><span>LIVE: USERNAME + CLIENT PHONE</span><span style="color:#00e676">● 324 Online</span></div><div id="liveBets" style="max-height:16vh;overflow:auto;background:#0e0f17"></div>
-<div style="display:flex;gap:6px;padding:6px 8px"><button class="tab2 on" style="flex:1" onclick="openHistory()">HISTORY</button><button class="tab2" style="flex:1" onclick="openProfile()">PROFILE CLIENT</button><button class="tab2" style="flex:1" onclick="openDep()">DEPOSIT 0716580098</button><button class="tab2" style="flex:1" onclick="openWit()">WITHDRAW</button></div>
+<div style="display:flex;gap:6px;padding:6px 8px"><button class="tab2 on" style="flex:1" onclick="openHistory()">📊 HISTORY</button><button class="tab2" style="flex:1" onclick="openProfile()">👤 PROFILE CLIENT</button><button class="tab2" style="flex:1" onclick="openDep()">💰 DEPOSIT 0716580098</button><button class="tab2" style="flex:1" onclick="openWit()">💸 WITHDRAW</button></div>
 </div>
 
 <div id="mProfile" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><h3>👤 Client Profile</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeProfile()">✕</span></div>
-<div style="text-align:center;background:#0e0f17;border:1px solid #2a2d40;border-radius:14px;padding:14px;margin:10px 0"><div class="avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto" id="pAvatar">D</div><div style="font-weight:900;margin-top:10px;font-size:20px" id="pName">Dragon</div><div style="font-size:14px;color:#00e676;font-weight:900" id="pPhone">CLIENT NUMBER: 0716580098</div><div style="font-size:11px;color:#666;margin-top:4px">Account Person = CLIENT number NOT mine 0716580098</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px"><div style="background:#1a1c27;padding:10px;border-radius:10px"><div style="font-size:10px;color:#7a7e9a">REAL</div><b style="color:#ffcc00">KES <span id="pReal">0</span></b></div><div style="background:#1a1c27;padding:10px;border-radius:10px"><div style="font-size:10px;color:#7a7e9a">DEMO</div><b style="color:#00e676">KES <span id="pDemo">5000</span></b></div></div></div><button class="btn" style="background:#1e202f;margin-top:10px" onclick="closeProfile()">Continue Playing</button></div></div>
+<div style="text-align:center;background:#0e0f17;border:1px solid #2a2d40;border-radius:14px;padding:14px;margin:10px 0"><div class="avatar" style="width:64px;height:64px;font-size:24px;margin:0 auto" id="pAvatar">D</div><div style="font-weight:900;margin-top:10px;font-size:20px" id="pName">Dragon</div><div style="font-size:14px;color:#00e676;font-weight:900" id="pPhone">CLIENT: 0716580098</div><div style="font-size:11px;color:#666;margin-top:4px">Account Person = CLIENT number NOT admin 0716580098</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px"><div style="background:#1a1c27;padding:10px;border-radius:10px"><div style="font-size:10px;color:#7a7e9a">REAL</div><b style="color:#ffcc00">KES <span id="pReal">0</span></b></div><div style="background:#1a1c27;padding:10px;border-radius:10px"><div style="font-size:10px;color:#7a7e9a">DEMO</div><b style="color:#00e676">KES <span id="pDemo">5000</span></b></div></div></div><button class="btn" style="background:#1e202f;margin-top:10px" onclick="closeProfile()">Continue Playing</button></div></div>
 
-<div id="mHistory" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><h3>Trading History</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeHistory()">✕</span></div><div id="historyList" style="max-height:50vh;overflow:auto;margin-top:10px"></div><button class="btn" style="background:#1e202f" onclick="closeHistory()">Close</button></div></div>
+<div id="mHistory" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><h3>📊 Trading History</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeHistory()">✕</span></div><div id="historyList" style="max-height:50vh;overflow:auto;margin-top:10px"></div><button class="btn" style="background:#1e202f" onclick="closeHistory()">Close</button></div></div>
 
-<div id="mDep" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><h3>Deposit Send Money ONLY</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeDep()">✕</span></div>
-<div style="background:#0e0f17;border:2px solid #00e676;padding:16px;border-radius:14px;margin:12px 0;text-align:center"><div style="color:#00e676;font-weight:900;font-size:12px">SEND MONEY ONLY 0716580098</div><div style="font-size:32px;font-weight:900;color:#00e676;margin:8px 0">0716580098</div><div style="font-size:11px;color:#fff">RAYLABS HQ</div><div style="text-align:left;font-size:11px;margin-top:10px;background:#1a1c27;padding:10px;border-radius:10px;line-height:1.8">1. M-Pesa → Send Money<br>2. To: 0716580098<br>3. Amount → PIN<br>4. Code QHX... → Paste below</div></div><input id="dAmt" class="inp" type="number" placeholder="Amount sent"><input id="dCode" class="inp" placeholder="M-Pesa Code"><button class="btnG" onclick="doDep()">SUBMIT CODE</button></div></div>
+<div id="mDep" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><h3>Deposit - Send Money ONLY</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeDep()">✕</span></div>
+<div style="background:#0e0f17;border:2px solid #00e676;padding:16px;border-radius:14px;margin:12px 0;text-align:center"><div style="color:#00e676;font-weight:900;font-size:12px">SEND MONEY ONLY 0716580098</div><div style="font-size:34px;font-weight:900;color:#00e676;margin:8px 0">0716580098</div><div style="font-size:11px;color:#fff">RAYLABS HQ</div><div style="text-align:left;font-size:11px;margin-top:10px;background:#1a1c27;padding:10px;border-radius:10px;line-height:1.8">1. M-Pesa → Send Money<br>2. To: 0716580098<br>3. Amount → PIN<br>4. Code QHX... → Paste below</div></div><input id="dAmt" class="inp" type="number" placeholder="Amount sent"><input id="dCode" class="inp" placeholder="M-Pesa Code"><button class="btnG" onclick="doDep()">SUBMIT CODE</button></div></div>
 
 <div id="mWit" class="modal"><div class="card"><div style="display:flex;justify-content:space-between"><h3>Withdraw</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeWit()">✕</span></div><div style="background:#1e202f;padding:10px;border-radius:10px;margin:10px 0;display:flex;justify-content:space-between"><span>Client Real</span><b style="color:#ffcc00">KES <span id="wBal">0</span></b></div><input id="wAmt" class="inp" type="number" placeholder="Amount 100-10000"><input id="wPhone" class="inp" placeholder="Client M-Pesa"><button class="btnG" onclick="doWit()">WITHDRAW ↓</button><div id="witList" style="margin-top:10px"></div></div></div>
 
 <script>
-// GAME LOOP
-let mult=1,crash=2,phase='wait',t=0,hist=[4.21,1.32,9.12,1.05,3.67],bets={},cur={user:'Dragon',phone:'0716580098',real:0,demo:5000},bal=0,demoBal=5000,mode='demo',myHistory=[];
+let mult=1,crash=2,phase='wait',t=0,hist=[4.21,1.32,9.12,1.05,3.67,12.4,2.11],bets={},cur=null,bal=0,demoBal=5000,mode='demo',myHistory=[];
 function renderHist(){document.getElementById('hist').innerHTML=hist.map(v=>`<div class="h">${v.toFixed(2)}x</div>`).join('');}renderHist();
-function loop(){if(phase==='wait'){t=0;mult=1;let m=document.getElementById('mult');if(m)m.innerText='1.00x';let p=document.getElementById('plane');p.style.left='4%';p.style.bottom='20%';p.style.opacity='1';p.style.transform='rotate(8deg)';document.getElementById('trail').setAttribute('d','M0,85 L0,85');document.getElementById('fill').setAttribute('d','M0,85 L0,85 L0,100 L0,100 Z');let s=document.getElementById('status');if(s)s.style.display='block';setTimeout(()=>{crash=Math.random()<0.5?1+Math.random():2+Math.random()*3;if(Math.random()>0.9) crash=10+Math.random()*20;phase='fly';if(s)s.style.display='none';t=0;},2500);}else if(phase==='fly'){t+=0.035;mult=Math.pow(1.08,t*1.15);let m=document.getElementById('mult');if(m)m.innerText=mult.toFixed(2)+'x';let prog=Math.min(t/16,1),left=4+prog*76,bottom=20+Math.pow(prog,1.5)*60;let p=document.getElementById('plane');p.style.left=left+'%';p.style.bottom=bottom+'%';p.style.transform=`rotate(${8+prog*24}deg)`;let d=`M0,85 Q${prog*40},${85-prog*30} ${left},${100-bottom}`;document.getElementById('trail').setAttribute('d',d);document.getElementById('fill').setAttribute('d',d+` L${left},100 L0,100 Z`);[1,2].forEach(id=>{if(bets[id]?.active){let b=document.getElementById('b'+id);if(b) b.innerText=`CASH OUT ${(bets[id].amt*mult).toFixed(0)}`;}});if(mult>=crash){phase='crash';if(m)m.innerText=crash.toFixed(2)+'x';let s=document.getElementById('status');if(s){s.style.display='block';s.innerHTML=`FLEW AWAY! ${crash.toFixed(2)}x`;}document.getElementById('plane').style.opacity='0';hist.unshift(crash);if(hist.length>18) hist.pop();renderHist();[1,2].forEach(id=>{if(bets[id]?.active){bets[id].active=false;addMyHistory(bets[id].amt,0,crash,false);let b=document.getElementById('b'+id);if(b)b.innerText=`BET ${bets[id].amt}`;}});setTimeout(()=>{phase='wait';},2500);}}requestAnimationFrame(loop);}requestAnimationFrame(loop);
+function loop(){if(phase==='wait'){t=0;mult=1;let el=document.getElementById('mult');if(el)el.innerText='1.00x';let p=document.getElementById('plane');p.style.left='4%';p.style.bottom='20%';p.style.opacity='1';p.style.transform='rotate(8deg)';document.getElementById('trail').setAttribute('d','M0,85 L0,85');document.getElementById('fill').setAttribute('d','M0,85 L0,85 L0,100 L0,100 Z');let s=document.getElementById('status');if(s)s.style.display='block';setTimeout(()=>{crash=Math.random()<0.5?1+Math.random():2+Math.random()*3;if(Math.random()>0.9) crash=10+Math.random()*20;phase='fly';if(s)s.style.display='none';t=0;},2500);}else if(phase==='fly'){t+=0.035;mult=Math.pow(1.08,t*1.15);let m=document.getElementById('mult');if(m)m.innerText=mult.toFixed(2)+'x';let prog=Math.min(t/16,1),left=4+prog*76,bottom=20+Math.pow(prog,1.5)*60;let p=document.getElementById('plane');p.style.left=left+'%';p.style.bottom=bottom+'%';p.style.transform=`rotate(${8+prog*24}deg)`;let d=`M0,85 Q${prog*40},${85-prog*30} ${left},${100-bottom}`;document.getElementById('trail').setAttribute('d',d);document.getElementById('fill').setAttribute('d',d+` L${left},100 L0,100 Z`);[1,2].forEach(id=>{if(bets[id]?.active){let b=document.getElementById('b'+id);if(b) b.innerText=`CASH OUT ${(bets[id].amt*mult).toFixed(0)}`;}});if(mult>=crash){phase='crash';if(m)m.innerText=crash.toFixed(2)+'x';let s=document.getElementById('status');if(s){s.style.display='block';s.innerHTML=`FLEW AWAY! ${crash.toFixed(2)}x`;}p.style.opacity='0';hist.unshift(crash);if(hist.length>18) hist.pop();renderHist();[1,2].forEach(id=>{if(bets[id]?.active){bets[id].active=false;addMyHistory(bets[id].amt,0,crash,false);let b=document.getElementById('b'+id);if(b)b.innerText=`BET ${bets[id].amt}`;}});setTimeout(()=>{phase='wait';},2500);}}requestAnimationFrame(loop);}requestAnimationFrame(loop);
 
-// CORE FUNCTIONS - GLOBAL
-window.createAccount = function(){
- try{
+window.showGame=function(){document.getElementById('auth').style.display='none';let g=document.getElementById('game');g.classList.add('on');g.style.display='flex';updateUI();addInitialLive();}
+
+window.createAccount=function(){
   let user=document.getElementById('rUser').value.trim()||'Dragon';
   let phoneRaw=document.getElementById('rPhone').value.trim();
   let phone=phoneRaw.replace(/\D/g,'').slice(-9);
   let pass=document.getElementById('rPass').value.trim()||'1234';
-  if(phone.length<9){alert('Enter CLIENT Phone 9 digits e.g. 0716580098');return;}
-  let users=[];
-  try{users=JSON.parse(localStorage.getItem('beta_v41')||'[]');}catch(e){users=[];}
-  let exists=users.find(u=>u.phone===phone);
-  if(exists){cur=exists;bal=exists.real||0;demoBal=exists.demo||5000;myHistory=exists.history||[];}
-  else{
-   let nu={user:user,phone:phone,pass:pass,real:0,demo:5000,history:[],withdraws:[]};
-   users.push(nu);localStorage.setItem('beta_v41',JSON.stringify(users));
-   cur=nu;bal=0;demoBal=5000;myHistory=[];mode='demo';
-   localStorage.setItem('beta_cur_v41',String(users.length-1));
-  }
+  if(!phone||phone.length<9){alert('Enter CLIENT Phone 9 digits e.g. 0716580098 - You typed: '+phoneRaw);return;}
+  let users=[]; try{users=JSON.parse(localStorage.getItem('beta_v42')||'[]');}catch(e){users=[];}
+  let found=users.find(u=>u.phone===phone);
+  if(found){cur=found;bal=found.real||0;demoBal=found.demo||5000;myHistory=found.history||[];window.showGame();alert('Phone exists - Logged in as CLIENT 0'+phone);return;}
+  let nu={user:user,phone:phone,pass:pass,real:0,demo:5000,history:[],withdraws:[]};
+  users.push(nu); localStorage.setItem('beta_v42',JSON.stringify(users));
+  localStorage.setItem('beta_cur_v42',String(users.length-1));
+  cur=nu; bal=0; demoBal=5000; myHistory=[]; mode='demo';
+  window.showGame();
+  alert('✅ CLIENT Account Created!\nUsername: '+user+'\nCLIENT Phone: 0'+phone+'\nDemo 5000 FREE\n\nProfile shows CLIENT number\nDeposit admin 0716580098\n\nNow PLAYING - Place BET!');
+};
+
+window.playNow=function(){
+  let user=document.getElementById('rUser').value.trim()||'Dragon';
+  let phone=document.getElementById('rPhone').value.trim().replace(/\D/g,'').slice(-9)||'0716580098';
+  cur={user:user,phone:phone,real:0,demo:5000,history:[],withdraws:[]};
+  bal=0;demoBal=5000;myHistory=[];mode='demo';
   document.getElementById('auth').style.display='none';
   let g=document.getElementById('game');g.classList.add('on');g.style.display='flex';
   updateUI();addInitialLive();
-  alert('✅ CLIENT Account Created!\nName: '+user+'\nCLIENT Phone: 0'+phone+'\n\nProfile = CLIENT number\nDeposit = Admin 0716580098\nDemo 5000 FREE - You can PLAY NOW');
- }catch(err){alert('Error: '+err.message); playNow();}
 };
 
-window.playNow = function(){
- cur={user:document.getElementById('rUser').value.trim()||'Dragon',phone:(document.getElementById('rPhone').value.trim().replace(/\D/g,'').slice(-9)||'0716580098'),real:0,demo:5000,history:[],withdraws:[]};
- bal=0;demoBal=5000;myHistory=[];mode='demo';
- document.getElementById('auth').style.display='none';
- let g=document.getElementById('game');g.classList.add('on');g.style.display='flex';
- updateUI();addInitialLive();
+window.loginAcc=function(){
+  let ph=document.getElementById('lPhone').value.trim().replace(/\D/g,'').slice(-9);
+  if(!ph){window.playNow();return;}
+  let users=[]; try{users=JSON.parse(localStorage.getItem('beta_v42')||'[]');}catch(e){users=[];}
+  let u=users.find(x=>x.phone===ph);
+  if(!u){alert('No account with 0'+ph+' - Tap CREATE ACCOUNT + DEMO 5K FREE above');return;}
+  cur=u;bal=u.real||0;demoBal=u.demo||5000;myHistory=u.history||[];
+  document.getElementById('auth').style.display='none';
+  let g=document.getElementById('game');g.classList.add('on');g.style.display='flex';
+  updateUI();addInitialLive();
 };
 
-window.login = function(){
- let ph=document.getElementById('lPhone').value.trim().replace(/\D/g,'').slice(-9);
- if(!ph){playNow();return;}
- let users=[];
- try{users=JSON.parse(localStorage.getItem('beta_v41')||'[]');}catch(e){users=[];}
- let u=users.find(x=>x.phone===ph);
- if(!u){alert('No account with 0'+ph+' - Tap CREATE ACCOUNT + DEMO 5K FREE above');return;}
- cur=u;bal=u.real||0;demoBal=u.demo||5000;myHistory=u.history||[];
- document.getElementById('auth').style.display='none';
- let g=document.getElementById('game');g.classList.add('on');g.style.display='flex';
- updateUI();addInitialLive();
-};
-
-function updateUI(){if(!cur) return;document.getElementById('accName').innerText=cur.user;document.getElementById('accPhone').innerText='CLIENT: 0'+cur.phone.slice(-9);document.getElementById('accAvatar').innerText=cur.user[0].toUpperCase();document.getElementById('pAvatar').innerText=cur.user[0].toUpperCase();document.getElementById('pName').innerText=cur.user;document.getElementById('pPhone').innerText='CLIENT NUMBER: 0'+cur.phone.slice(-9);document.getElementById('pPhone2').innerText='0'+cur.phone.slice(-9);document.getElementById('bal').innerText=mode==='real'?bal:demoBal;document.getElementById('realBal').innerText=bal;document.getElementById('demoBalTop').innerText=demoBal;document.getElementById('pReal').innerText=bal;document.getElementById('pDemo').innerText=demoBal;document.getElementById('wBal').innerText=bal;}
+function updateUI(){if(!cur)return;document.getElementById('accName').innerText=cur.user;document.getElementById('accPhone').innerText='CLIENT: 0'+cur.phone.slice(-9);document.getElementById('accAvatar').innerText=cur.user[0].toUpperCase();document.getElementById('pAvatar').innerText=cur.user[0].toUpperCase();document.getElementById('pName').innerText=cur.user;document.getElementById('pPhone').innerText='CLIENT NUMBER: 0'+cur.phone.slice(-9);document.getElementById('bal').innerText=mode==='real'?bal:demoBal;document.getElementById('realBal').innerText=bal;document.getElementById('demoBalTop').innerText=demoBal;document.getElementById('pReal').innerText=bal;document.getElementById('pDemo').innerText=demoBal;document.getElementById('wBal').innerText=bal;}
 function goAuth(){document.getElementById('game').classList.remove('on');document.getElementById('game').style.display='none';document.getElementById('auth').style.display='flex';}
 function setMode(m){mode=m;document.getElementById('modeReal').classList.toggle('on',m==='real');document.getElementById('modeDemo').classList.toggle('on',m==='demo');updateUI();}
-function bet(id){let amt=parseFloat(document.getElementById('a'+id).value)||0;let curBal=mode==='real'?bal:demoBal;if(amt>curBal){if(mode==='real') openDep();else alert('Demo low');return;}if(bets[id]?.active) return cash(id);if(mode==='real') bal-=amt; else demoBal-=amt;updateUI();bets[id]={amt:amt,active:true,mode:mode};document.getElementById('b'+id).innerText=`CASH OUT ${amt}`;document.getElementById('b'+id).style.background='#ffcc00';addLive(cur.user,'0'+cur.phone.slice(-9),amt,false);}
-function cash(id){if(!bets[id]?.active) return;let win=bets[id].amt*mult;if(bets[id].mode==='real') bal+=win; else demoBal+=win;updateUI();addMyHistory(bets[id].amt,win,mult,true);bets[id].active=false;let b=document.getElementById('b'+id);b.innerText=`BET ${bets[id].amt}`;b.style.background='#00e676';addLive(cur.user,'0'+cur.phone.slice(-9),bets[id].amt,true,win);}
-function addMyHistory(betAmt,win,multX,isWin){let h={time:new Date().toLocaleTimeString(),bet:betAmt,win:isWin?win:0,mult:multX.toFixed(2),isWin:isWin,mode:mode};myHistory.unshift(h);if(myHistory.length>100) myHistory.pop();}
+function bet(id){let amt=parseFloat(document.getElementById('a'+id).value)||0;let curBal=mode==='real'?bal:demoBal;if(amt>curBal){if(mode==='real')openDep();else alert('Demo low');return;}if(bets[id]?.active) return cash(id);if(mode==='real')bal-=amt;else demoBal-=amt;updateUI();bets[id]={amt:amt,active:true,mode:mode};document.getElementById('b'+id).innerText=`CASH OUT ${amt}`;document.getElementById('b'+id).style.background='#ffcc00';addLive(cur.user,'0'+cur.phone.slice(-9),amt,false);}
+function cash(id){if(!bets[id]?.active)return;let win=bets[id].amt*mult;if(bets[id].mode==='real')bal+=win;else demoBal+=win;updateUI();addMyHistory(bets[id].amt,win,mult,true);bets[id].active=false;let b=document.getElementById('b'+id);b.innerText=`BET ${bets[id].amt}`;b.style.background='#00e676';addLive(cur.user,'0'+cur.phone.slice(-9),bets[id].amt,true,win);}
+function addMyHistory(a,b,c,d){let h={time:new Date().toLocaleTimeString(),bet:a,win:d?b:0,mult:c.toFixed(2),isWin:d,mode:mode};myHistory.unshift(h);if(myHistory.length>100)myHistory.pop();}
 function openDep(){document.getElementById('mDep').classList.add('on');}function closeDep(){document.getElementById('mDep').classList.remove('on');}
 function openWit(){document.getElementById('mWit').classList.add('on');}function closeWit(){document.getElementById('mWit').classList.remove('on');}
 function openProfile(){document.getElementById('mProfile').classList.add('on');}function closeProfile(){document.getElementById('mProfile').classList.remove('on');}
-function openHistory(){let html='';if(myHistory.length===0) html='<div style="color:#666;text-align:center;padding:20px">No history - Place BET now</div>';else myHistory.slice(0,20).forEach(h=>{html+=`<div style="background:#0e0f17;border:1px solid #2a2d40;border-radius:10px;padding:10px;margin:6px 0;display:flex;justify-content:space-between;font-size:11px"><div><b style="color:${h.isWin?'#00e676':'#ff0a54'}">${h.isWin?'WIN':'LOSS'} ${h.mult}x</b><br><span style="color:#7a7e9a">${h.time}</span></div><div>Bet ${h.bet}<br><span style="color:${h.isWin?'#00e676':'#666'}">${h.isWin?'Win '+h.win.toFixed(0):'Lost'}</span></div></div>`;});document.getElementById('historyList').innerHTML=html;document.getElementById('mHistory').classList.add('on');}
+function openHistory(){let html='';if(myHistory.length===0)html='<div style="color:#666;text-align:center;padding:20px">No history - Place BET</div>';else myHistory.slice(0,20).forEach(h=>{html+=`<div style="background:#0e0f17;border:1px solid #2a2d40;border-radius:10px;padding:10px;margin:6px 0;display:flex;justify-content:space-between;font-size:11px"><div><b style="color:${h.isWin?'#00e676':'#ff0a54'}">${h.isWin?'WIN':'LOSS'} ${h.mult}x</b><br><span style="color:#7a7e9a">${h.time}</span></div><div>Bet ${h.bet}<br><span style="color:${h.isWin?'#00e676':'#666'}">${h.isWin?'Win '+h.win.toFixed(0):'Lost'}</span></div></div>`;});document.getElementById('historyList').innerHTML=html;document.getElementById('mHistory').classList.add('on');}
 function closeHistory(){document.getElementById('mHistory').classList.remove('on');}
 function doDep(){let amt=parseFloat(document.getElementById('dAmt').value)||0;if(!amt){alert('Enter amount');return;}bal+=amt;updateUI();closeDep();alert('Deposit KES '+amt+' added to CLIENT Real\nClient: 0'+cur.phone.slice(-9)+'\nAdmin 0716580098 received');setMode('real');}
-function doWit(){let amt=parseFloat(document.getElementById('wAmt').value)||0;if(!amt||amt>bal){alert('Low Real balance');return;}bal-=amt;updateUI();alert('Withdraw KES '+amt+' to client\nAdmin 0716580098 must Send Money');}
+function doWit(){let amt=parseFloat(document.getElementById('wAmt').value)||0;if(!amt||amt>bal){alert('Low Real');return;}bal-=amt;updateUI();alert('Withdraw KES '+amt+' requested\nAdmin 0716580098 must Send Money');}
 let liveNames=[{user:'KevinM',phone:'0722 123 456'},{user:'BrianK',phone:'0733 444 555'},{user:'SharonW',phone:'0701 234 567'}];
-function addLive(user,phone,amt,isCash,win){let el=document.getElementById('liveBets');if(!el)return;let d=document.createElement('div');d.className='liveRow';d.innerHTML=`<span><b>${user}</b> <span style="color:#7a7e9a">${phone}</span> • ${amt.t
+function addLive(u,p,a,c,w){let el=document.getElementById('liveBets');if(!el)return;let d=document.createElement('div');d.className='liveRow';d.innerHTML=`<span><b>${u}</b> <span style="color:#7a7e9a">${p}</span> • ${a.toFixed(0)}</span><span style="color:${c?'#00e676':'#ffcc00'}">${c?`CASH ${w.toFixed(0)} @${mult.toFixed(2)}x`:`BETTING`}</span>`;el.prepend(d);if(el.children.length>30)el.lastChild.
