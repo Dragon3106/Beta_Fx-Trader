@@ -2,114 +2,83 @@
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0f;color:#fff;font-family:system-ui}
 .page{display:none;min-height:100vh}.page.on{display:flex}
 #auth{justify-content:center;align-items:center;padding:16px;background:radial-gradient(at top,#1a1030,#0a0a0f)}
-.card{width:100%;max-width:360px;background:#1a1c27;border:1px solid #252836;border-radius:20px;padding:20px}
-.inp{width:100%;padding:14px;background:#0e0f17;border:1px solid #2a2d40;border-radius:12px;color:#fff;margin:8px 0}
-.btn{width:100%;padding:15px;background:#ff0a54;border:none;border-radius:12px;color:#fff;font-weight:900;margin:10px 0;cursor:pointer}
-.qBtn{flex:1;padding:11px;background:#1e202f;border:1px solid #2a2d40;border-radius:10px;color:#7a7e9a;font-weight:800;cursor:pointer}.qBtn.on{border-color:#ff0a54;color:#fff;background:#2a1620}
+.card{width:100%;max-width:360px;background:#1a1c27;border:1px solid #252836;border-radius:20px;padding:18px}
+.inp{width:100%;padding:13px;background:#0e0f17;border:1px solid #2a2d40;border-radius:12px;color:#fff;margin:7px 0;box-sizing:border-box}
+.btn{width:100%;padding:14px;background:#ff0a54;border:none;border-radius:12px;color:#fff;font-weight:900;margin:8px 0;cursor:pointer}
+.qBtn{flex:1;padding:10px;background:#1e202f;border:1px solid #2a2d40;border-radius:10px;color:#7a7e9a;font-weight:800;cursor:pointer;font-size:12px}.qBtn.on{border-color:#ff0a54;color:#fff;background:#2a1620}
 #game{flex-direction:column;position:fixed;inset:0;background:#0a0a0f;z-index:10;overflow:auto}
-.top{height:58px;background:#12131a;display:flex;align-items:center;padding:0 12px;gap:8px;border-bottom:1px solid #ff0a5422;position:sticky;top:0;z-index:20}
-.avatar{width:34px;height:34px;background:#ff0a54;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900}
-.bal{margin-left:auto;background:#1e202f;padding:7px 14px;border-radius:20px;color:#ffcc00;font-weight:900}
-#box{height:52vh;background:radial-gradient(at bottom,#1a0f2e,#0a0a0f);position:relative;overflow:hidden}
-#plane{position:absolute;left:4%;bottom:20%;font-size:52px;z-index:5}
-#mult{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:72px;font-weight:900;text-shadow:0 0 30px #ff0a54}
-#status{position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000c;padding:10px 20px;border-radius:20px;font-weight:800;text-align:center}
-.hist{display:flex;gap:6px;padding:8px;background:#12131a;overflow-x:auto}.h{padding:6px 12px;border-radius:16px;font-weight:800;font-size:12px;min-width:54px;text-align:center;background:#1e1630;color:#b86bff;flex-shrink:0}
+.top{height:56px;background:#12131a;display:flex;align-items:center;padding:0 10px;gap:6px;border-bottom:1px solid #ff0a5422;position:sticky;top:0;z-index:20}
+.avatar{width:34px;height:34px;background:#ff0a54;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;cursor:pointer}
+.bal{margin-left:auto;background:#1e202f;padding:6px 12px;border-radius:20px;color:#ffcc00;font-weight:900;display:flex;align-items:center;gap:5px;font-size:13px}
+#box{height:48vh;background:radial-gradient(at bottom,#1a0f2e,#0a0a0f);position:relative;overflow:hidden}
+#plane{position:absolute;left:4%;bottom:20%;font-size:50px;z-index:5}
+#mult{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:68px;font-weight:900;text-shadow:0 0 30px #ff0a54}
+#status{position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000c;padding:10px 20px;border-radius:20px;font-weight:800;text-align:center;z-index:6}
+.hist{display:flex;gap:6px;padding:8px;background:#12131a;overflow-x:auto}.h{padding:5px 10px;border-radius:16px;font-weight:800;font-size:11px;min-width:50px;text-align:center;background:#1e1630;color:#b86bff;flex-shrink:0}
 .bets{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}.bCard{background:#1a1c27;border:1px solid #252836;border-radius:14px;padding:10px}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;padding:14px;z-index:200}.modal.on{display:flex}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;padding:12px;z-index:200;overflow-y:auto}.modal.on{display:flex}
+.liveHead{display:flex;justify-content:space-between;padding:8px 12px;background:#12131a;color:#5a5e7a;font-size:10px;font-weight:800;letter-spacing:1px}
+.liveRow{display:flex;justify-content:space-between;padding:7px 12px;border-bottom:1px solid #1a1c27;font-size:11px}
+.tab2{flex:1;padding:8px;background:#1e202f;border-radius:8px;text-align:center;font-size:11px;font-weight:800;cursor:pointer;color:#7a7e9a}.tab2.on{background:#ff0a54;color:#fff}
 </style></head><body>
 
 <div id="auth" class="page on">
 <div class="card">
-<div style="text-align:center"><div style="width:56px;height:56px;background:#ff0a54;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto">✈</div><h2 style="margin-top:10px">BETA AVIATOR</h2><p style="color:#7a7e9a;font-size:11px">Create Account → Login → Play</p></div>
+<div style="text-align:center"><div style="width:56px;height:56px;background:#ff0a54;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto">✈</div><h2 style="margin-top:10px">BETA AVIATOR</h2><p style="color:#7a7e9a;font-size:11px">Create Account → Login → Play with Demo</p></div>
 <div style="display:flex;gap:8px;margin-top:16px"><button class="qBtn on" id="tL" onclick="tab('L')">LOGIN</button><button class="qBtn" id="tR" onclick="tab('R')">CREATE ACCOUNT</button></div>
-
-<div id="fL" style="margin-top:12px">
-<input id="lPhone" class="inp" placeholder="Phone 0716580098">
-<input id="lPass" type="password" class="inp" placeholder="Password">
-<button class="btn" onclick="doLogin()">LOGIN & PLAY AVIATOR →</button>
-<div style="text-align:center;color:#5a5e7a;font-size:11px">Demo? Create account first</div>
-</div>
-
-<div id="fR" style="display:none;margin-top:12px">
-<input id="rUser" class="inp" placeholder="Username e.g. Dragon">
-<input id="rPhone" class="inp" placeholder="Phone 0716580098 - Winnings go here">
-<input id="rPass" type="password" class="inp" placeholder="Password min 6">
-<input id="rPass2" type="password" class="inp" placeholder="Confirm Password">
-<label style="font-size:11px;color:#7a7e9a;display:flex;gap:6px;margin-top:8px"><input type="checkbox" id="age"> I am 18+ & accept Terms</label>
-<button class="btn" onclick="doReg()">CREATE ACCOUNT →</button>
-<div style="text-align:center;color:#5a7e9a;font-size:11px">After create → Go to LOGIN tab → Enter phone + password → Play</div>
-</div>
+<div id="fL" style="margin-top:12px"><input id="lPhone" class="inp" placeholder="Phone"><input id="lPass" type="password" class="inp" placeholder="Password"><button class="btn" onclick="doLogin()">LOGIN & PLAY →</button></div>
+<div id="fR" style="display:none;margin-top:12px"><input id="rUser" class="inp" placeholder="Username e.g. Dragon"><input id="rPhone" class="inp" placeholder="Phone e.g. 0716580098"><input id="rPass" type="password" class="inp" placeholder="Password min 6"><input id="rPass2" type="password" class="inp" placeholder="Confirm"><label style="font-size:11px;color:#7a7e9a;display:flex;gap:6px;margin-top:8px"><input type="checkbox" id="age"> I am 18+</label><button class="btn" onclick="doReg()">CREATE ACCOUNT →</button><div style="text-align:center;color:#00e676;font-size:10px;margin-top:6px">🎁 Demo KES 5,000 FREE on creation!</div></div>
 </div>
 </div>
 
 <div id="game" class="page">
-<div class="top"><div style="width:34px;height:34px;background:#ff0a54;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b>
-<div style="margin-left:auto;display:flex;align-items:center;gap:8px"><div style="text-align:right"><div style="font-size:11px;font-weight:800" id="accName">Player</div><div style="font-size:9px;color:#7a7e9a" id="accPhone">07XX</div></div><div class="avatar" id="accAvatar">P</div></div>
-<div class="bal">KES <span id="bal">0</span></div>
-<div style="background:#00e676;color:#000;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;margin-left:8px;cursor:pointer" onclick="openDep()">+</div>
-<div style="background:#1e202f;padding:6px 10px;border-radius:8px;font-size:11px;margin-left:6px;cursor:pointer" onclick="logout()">Logout</div>
-</div>
-<div class="hist" id="hist"></div>
-<div id="box"><svg style="position:absolute;left:0;top:0;width:100%;height:100%" viewBox="0 0 100 100" preserveAspectRatio="none"><path id="trail" d="M0,85 L0,85" stroke="#ff0a54" stroke-width="1.5" fill="none"/><path id="fill" d="M0,85 L0,85 L0,100 L0,100 Z" fill="rgba(255,10,84,0.15)"/></svg><div id="plane">✈️</div><div id="mult">1.00x</div><div id="status">Waiting<br><span style="color:#ffcc00;font-size:11px">Place bet to play</span></div></div>
-<div class="bets"><div class="bCard"><input id="a1" class="inp" value="100" style="text-align:center"><button class="btn" style="background:#00e676;color:#000;margin-top:6px" id="b1" onclick="bet(1)">BET KES 100</button></div><div class="bCard"><input id="a2" class="inp" value="200" style="text-align:center"><button class="btn" style="background:#00e676;color:#000;margin-top:6px" id="b2" onclick="bet(2)">BET KES 200</button></div></div>
+<div class="top"><div style="width:32px;height:32px;background:#ff0a54;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b>
+<div style="margin-left:auto;display:flex;align-items:center;gap:8px" onclick="openProfile()"><div style="text-align:right"><div style="font-size:11px;font-weight:800" id="accName">Player</div><div style="font-size:9px;color:#7a7e9a" id="accPhone">07XX</div></div><div class="avatar" id="accAvatar">P</div></div>
+<div class="bal">KES <span id="bal">0</span><div style="width:20px;height:20px;background:#00e676;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#000;font-weight:900;cursor:pointer;margin-left:6px" onclick="openDep()">+</div></div>
+<div style="background:#1e202f;padding:5px 8px;border-radius:8px;font-size:10px;cursor:pointer" onclick="logout()">Logout</div>
 </div>
 
-<!-- ONLY SEND MONEY 0716580098 -->
-<div id="mDep" class="modal"><div class="card" style="max-width:360px;width:100%"><div style="display:flex;justify-content:space-between"><h3>Deposit</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeDep()">✕</span></div>
-<div style="background:#0e0f17;border:2px solid #00e676;padding:16px;border-radius:14px;margin:12px 0;text-align:center">
+<div style="display:flex;gap:6px;padding:6px 8px;background:#0e0f17"><button class="tab2 on" id="modeReal" onclick="setMode('real')">REAL KES <span id="realBal">0</span></button><button class="tab2" id="modeDemo" onclick="setMode('demo')">DEMO 5000</button></div>
+
+<div class="hist" id="hist"></div>
+<div id="box"><svg style="position:absolute;left:0;top:0;width:100%;height:100%" viewBox="0 0 100 100" preserveAspectRatio="none"><path id="trail" d="M0,85 L0,85" stroke="#ff0a54" stroke-width="1.5" fill="none"/><path id="fill" d="M0,85 L0,85 L0,100 L0,100 Z" fill="rgba(255,10,84,0.15)"/></svg><div id="plane">✈️</div><div id="mult">1.00x</div><div id="status">Waiting<br><span style="color:#ffcc00;font-size:11px">Place bet</span></div></div>
+<div class="bets"><div class="bCard"><input id="a1" class="inp" value="100" style="text-align:center"><button class="btn" style="background:#00e676;color:#000;margin-top:6px" id="b1" onclick="bet(1)">BET 100</button></div><div class="bCard"><input id="a2" class="inp" value="200" style="text-align:center"><button class="btn" style="background:#00e676;color:#000;margin-top:6px" id="b2" onclick="bet(2)">BET 200</button></div></div>
+
+<div class="liveHead"><span id="liveCount">LIVE PLAYERS • SHOWING USERNAME + PHONE</span><span style="color:#00e676">● 324 Online</span></div>
+<div id="liveBets" style="max-height:20vh;overflow:auto;background:#0e0f17"></div>
+
+<div style="display:flex;gap:6px;padding:6px 8px"><button class="tab2 on" style="flex:1" onclick="openHistory()">MY TRADING HISTORY</button><button class="tab2" style="flex:1" onclick="openProfile()">MY PROFILE</button></div>
+</div>
+
+<!-- PROFILE MODAL -->
+<div id="mProfile" class="modal"><div class="card" style="max-width:360px;width:100%"><div style="display:flex;justify-content:space-between"><h3>Person Profile</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeProfile()">✕</span></div>
+<div style="text-align:center;background:#0e0f17;border:1px solid #2a2d40;border-radius:14px;padding:14px;margin:10px 0">
+<div class="avatar" style="width:60px;height:60px;font-size:22px;margin:0 auto" id="pAvatar">P</div>
+<div style="font-weight:900;margin-top:8px;font-size:16px" id="pName">Player</div>
+<div style="font-size:12px;color:#7a7e9a" id="pPhone">0716580098</div>
+<div style="font-size:10px;color:#5a5e7a;margin-top:2px" id="pUserId">ID: BETA-283112</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+<div style="background:#1a1c27;padding:8px;border-radius:8px"><div style="font-size:10px;color:#7a7e9a">REAL BALANCE</div><b style="color:#ffcc00;font-size:13px">KES <span id="pReal">0</span></b></div>
+<div style="background:#1a1c27;padding:8px;border-radius:8px"><div style="font-size:10px;color:#7a7e9a">DEMO BALANCE</div><b style="color:#00e676;font-size:13px">KES <span id="pDemo">5000</span></b></div>
+</div>
+<div style="background:#1a1c27;padding:8px;border-radius:8px;margin-top:8px;display:flex;justify-content:space-between"><span style="font-size:11px;color:#7a7e9a">Total Bets</span><b id="pBets">0</b></div>
+<div style="background:#1a1c27;padding:8px;border-radius:8px;margin-top:6px;display:flex;justify-content:space-between"><span style="font-size:11px;color:#7a7e9a">Total Wins</span><b style="color:#00e676" id="pWins">KES 0</b></div>
+</div>
+<button class="btn" style="background:#1e202f" onclick="closeProfile()">Close</button>
+</div></div>
+
+<!-- HISTORY MODAL -->
+<div id="mHistory" class="modal"><div class="card" style="max-width:360px;width:100%"><div style="display:flex;justify-content:space-between"><h3>Trading History</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeHistory()">✕</span></div>
+<div id="historyList" style="max-height:50vh;overflow:auto;margin-top:10px"></div>
+<button class="btn" style="background:#1e202f" onclick="closeHistory()">Close</button>
+</div></div>
+
+<!-- DEPOSIT - SEND MONEY 0716580098 -->
+<div id="mDep" class="modal"><div class="card" style="max-width:360px;width:100%"><div style="display:flex;justify-content:space-between"><h3>Deposit Send Money</h3><span style="cursor:pointer;background:#1e202f;padding:6px 10px;border-radius:8px" onclick="closeDep()">✕</span></div>
+<div style="background:#0e0f17;border:2px solid #00e676;padding:14px;border-radius:14px;margin:10px 0;text-align:center">
 <div style="color:#00e676;font-weight:900;font-size:12px">M-PESA SEND MONEY ONLY</div>
-<div style="font-size:11px;color:#7a7e9a;margin-top:6px">Send Money To:</div>
-<div style="font-size:26px;font-weight:900;color:#00e676;margin:4px 0">0716580098</div>
+<div style="font-size:26px;font-weight:900;color:#00e676;margin:6px 0">0716580098</div>
 <div style="font-size:10px;color:#fff">RAYLABS SOLUTIONS HQ</div>
 <div style="text-align:left;font-size:11px;margin-top:10px;background:#1a1c27;padding:8px;border-radius:8px;line-height:1.8">1. M-Pesa → Send Money<br>2. Phone: 0716580098<br>3. Amount → PIN<br>4. Code → Paste below</div>
 </div>
-<input id="dAmt" class="inp" type="number" placeholder="Amount you sent"><input id="dCode" class="inp" placeholder="M-Pesa Code QHX..."><button class="btn" style="background:#00e676;color:#000" onclick="doDep()">SUBMIT CODE - ADD BALANCE</button></div></div>
-
-<script>
-let mult=1,crash=2,phase='wait',t=0,hist=[2.1,1.4,5.6,3.2,8.1],bets={},users=[],cur=null,bal=0;
-function tab(k){document.getElementById('tL').classList.toggle('on',k==='L');document.getElementById('tR').classList.toggle('on',k==='R');document.getElementById('fL').style.display=k==='L'?'block':'none';document.getElementById('fR').style.display=k==='R'?'block':'none';}
-function renderHist(){document.getElementById('hist').innerHTML=hist.map(v=>`<div class="h">${v.toFixed(2)}x</div>`).join('');}renderHist();
-function loop(){if(phase==='wait'){t=0;mult=1;document.getElementById('mult').innerText='1.00x';let p=document.getElementById('plane');p.style.left='4%';p.style.bottom='20%';p.style.opacity='1';p.style.transform='rotate(8deg)';document.getElementById('trail').setAttribute('d','M0,85 L0,85');document.getElementById('fill').setAttribute('d','M0,85 L0,85 L0,100 L0,100 Z');document.getElementById('status').style.display='block';setTimeout(()=>{crash=Math.random()<0.5?1+Math.random():2+Math.random()*3;if(Math.random()>0.9) crash=10+Math.random()*20;phase='fly';document.getElementById('status').style.display='none';t=0;},2500);}else if(phase==='fly'){t+=0.035;mult=Math.pow(1.08,t*1.15);document.getElementById('mult').innerText=mult.toFixed(2)+'x';let prog=Math.min(t/16,1),left=4+prog*76,bottom=20+Math.pow(prog,1.5)*60;let p=document.getElementById('plane');p.style.left=left+'%';p.style.bottom=bottom+'%';p.style.transform=`rotate(${8+prog*24}deg)`;let d=`M0,85 Q${prog*40},${85-prog*30} ${left},${100-bottom}`;document.getElementById('trail').setAttribute('d',d);document.getElementById('fill').setAttribute('d',d+` L${left},100 L0,100 Z`);[1,2].forEach(id=>{if(bets[id]?.active){let b=document.getElementById('b'+id);if(b) b.innerText=`CASH OUT ${(bets[id].amt*mult).toFixed(0)}`;}});if(mult>=crash){phase='crash';document.getElementById('mult').innerText=crash.toFixed(2)+'x';document.getElementById('mult').style.color='#ff0a54';document.getElementById('status').style.display='block';document.getElementById('status').innerHTML=`FLEW AWAY! ${crash.toFixed(2)}x`;document.getElementById('plane').style.opacity='0';hist.unshift(crash);if(hist.length>18) hist.pop();renderHist();[1,2].forEach(id=>{if(bets[id]?.active){bets[id].active=false;document.getElementById('b'+id).innerText=`BET ${bets[id].amt}`;}});setTimeout(()=>{phase='wait';},2500);}}requestAnimationFrame(loop);}requestAnimationFrame(loop);
-
-function showGame(){
- document.getElementById('auth').classList.remove('on');document.getElementById('auth').style.display='none';
- let g=document.getElementById('game');g.classList.add('on');g.style.display='flex';
- document.getElementById('accName').innerText=cur.user;
- document.getElementById('accPhone').innerText='0'+cur.phone;
- document.getElementById('accAvatar').innerText=cur.user[0].toUpperCase();
- document.getElementById('bal').innerText=bal;
-}
-
-function doReg(){
- let user=document.getElementById('rUser').value.trim(),phone=document.getElementById('rPhone').value.trim().replace(/\D/g,'').slice(-9),p=document.getElementById('rPass').value,p2=document.getElementById('rPass2').value;
- if(!user||phone.length!=9||p.length<6){alert('Fill: Username, Phone 9 digits e.g. 716580098, Password 6');return;}
- if(p!==p2){alert('Passwords not match');return;}
- if(!document.getElementById('age').checked){alert('Tick 18+');return;}
- users=JSON.parse(localStorage.getItem('beta_v30')||'[]');
- if(users.find(u=>u.phone===phone)){alert('Phone exists, now LOGIN');tab('L');return;}
- let nu={user:user,phone:phone,pass:p,real:0};users.push(nu);localStorage.setItem('beta_v30',JSON.stringify(users));
- alert('Account Created! Username: '+user+' Phone: 0'+phone+'\nNow click LOGIN tab → Enter phone + password → PLAY');
- tab('L');document.getElementById('lPhone').value='0'+phone;
-}
-
-function doLogin(){
- let ph=document.getElementById('lPhone').value.trim().replace(/\D/g,'').slice(-9);
- let ps=document.getElementById('lPass').value.trim();
- if(!ph||!ps){alert('Enter phone and password');return;}
- users=JSON.parse(localStorage.getItem('beta_v30')||'[]');
- let u=users.find(x=>x.phone===ph&&x.pass===ps);
- if(!u){alert('Wrong phone/password. If new, click CREATE ACCOUNT');tab('R');return;}
- cur=u;bal=u.real||0;
- localStorage.setItem('beta_cur_v30',users.findIndex(x=>x.phone===ph));
- showGame();
-}
-
-function logout(){cur=null;localStorage.removeItem('beta_cur_v30');document.getElementById('game').classList.remove('on');document.getElementById('game').style.display='none';let a=document.getElementById('auth');a.classList.add('on');a.style.display='flex';}
-function bet(id){let amt=parseFloat(document.getElementById('a'+id).value)||0;if(amt>bal){alert('Low balance. Click + to Deposit Send Money to 0716580098');openDep();return;}if(bets[id]?.active) return cash(id);bal-=amt;save();bets[id]={amt:amt,active:true};document.getElementById('b'+id).innerText=`CASH OUT ${amt}`;document.getElementById('b'+id).style.background='#ffcc00';}
-function cash(id){if(!bets[id]?.active) return;let win=bets[id].amt*mult;bal+=win;save();bets[id].active=false;let b=document.getElementById('b'+id);b.innerText=`BET ${bets[id].amt}`;b.style.background='#00e676';}
-function save(){document.getElementById('bal').innerText=bal;if(cur){cur.real=bal;let idx=users.findIndex(u=>u.phone===cur.phone);if(idx>=0){users[idx].real=bal;localStorage.setItem('beta_v30',JSON.stringify(users));}}}
-function openDep(){document.getElementById('mDep').classList.add('on');}function closeDep(){document.getElementById('mDep').classList.remove('on');}
-function doDep(){let amt=parseFloat(document.getElementById('dAmt').value)||0,code=document.getElementById('dCode').value.trim();if(!amt||!code){alert('Enter amount and M-Pesa code');return;}bal+=amt;save();closeDep();alert('Deposit KES '+amt+' Code '+code+' added via Send Money to 0716580098');document.getElementById('dAmt').value='';document.getElementById('dCode').value='';}
-(function(){try{users=JSON.parse(localStorage.getItem('beta_v30')||'[]');let i=localStorage.getItem('beta_cur_v30');if(i!==null&&users[i]){cur=users[i];bal=cur.real||0;showGame();}}catch(e){}})();
-</script></body></html>
+<input id="dAmt" class="inp" type="number" placeholder="Amount you sent"><input id="dCode" class="inp" placeholder="M-Pesa Code QHX..."><button class="btn" style="background:#00e676;color:#000" onclick="doDep()">SUBMIT CODE
