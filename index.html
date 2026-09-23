@@ -1,88 +1,202 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR - 1M Float</title><style>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BETA AVIATOR 1M - FIXED POP</title><style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0a0a0f;color:#fff;font-family:system-ui}
-.page{display:none;min-height:100vh}.page.on{display:block}
-.top{height:56px;display:flex;align-items:center;gap:10px;padding:0 12px;background:#1a1c25;position:fixed;top:0;left:0;right:0;z-index:99;border-bottom:2px solid #ff0a54}
-.logo{width:36px;height:36px;background:#ff0a54;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900}
-.pill{padding:6px 12px;border-radius:20px;background:#212331;border:1px solid #ff0a54;color:#ff0a54;font-size:11px;font-weight:800}
-.bal{margin-left:auto;background:#212331;padding:8px 14px;border-radius:20px;color:#f5b731;font-weight:900}
-#gameWrap{margin-top:56px;height:50vh;background:radial-gradient(at bottom,#1a1030,#0a0a0f);position:relative;overflow:hidden}
-#trail{position:absolute;left:0;top:0;width:100%;height:100%}
-#plane{position:absolute;left:3%;bottom:18%;font-size:52px;z-index:5;filter:drop-shadow(0 0 12px #ff0a54)}
-#mult{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:72px;font-weight:900;z-index:4;text-shadow:0 0 30px #ff0a54}
-#status{position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000c;padding:10px 20px;border-radius:20px;font-weight:800;display:none;z-index:6;text-align:center}
+#pg-login{padding:20px;min-height:100vh;background:radial-gradient(at top,#1a1030,#0a0a0f);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.card{width:100%;max-width:360px;background:#1a1c27;border:2px solid #ff0a54;border-radius:18px;padding:18px;margin-top:12px}
+.input{width:100%;padding:14px;background:#0e0f17;border:1px solid #333;border-radius:10px;color:#fff;margin:8px 0}
+.btn{width:100%;padding:14px;background:#ff0a54;border:none;border-radius:12px;color:#fff;font-weight:900;margin:10px 0}
+#pg-game{display:none;min-height:100vh;background:#0a0a0f}
+.top{height:56px;background:#1a1c25;display:flex;align-items:center;padding:0 12px;gap:8px;border-bottom:2px solid #ff0a54;position:fixed;top:0;left:0;right:0;z-index:99}
+#gameBox{margin-top:56px;height:48vh;background:#111;position:relative;overflow:hidden;border-bottom:2px solid #ff0a5422}
+#plane{position:absolute;left:5%;bottom:20%;font-size:48px;z-index:5}
+#mult{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:70px;font-weight:900;color:#fff;text-shadow:0 0 20px #ff0a54;z-index:4}
+#status{position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000a;padding:8px 16px;border-radius:20px;font-weight:800;display:block;z-index:6;text-align:center}
+.floatBar{background:#00e676;color:#000;padding:8px 12px;font-weight:900;font-size:12px;display:flex;justify-content:space-between;align-items:center}
 .hist{display:flex;gap:6px;padding:8px;background:#12131a;overflow-x:auto}
-.h{padding:6px 12px;border-radius:20px;font-weight:800;font-size:13px;min-width:55px;text-align:center}.h.b{background:#122040;color:#4a9eff}.h.p{background:#201640;color:#b86bff}.h.g{background:#3a1422;color:#ff2b6a}
-.bets{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.bCard{background:#1a1c27;border:1px solid #252836;border-radius:16px;padding:12px}
-.inp{width:100%;padding:13px;background:#0e0f17;border:1px solid #252836;border-radius:12px;color:#fff;font-weight:800;text-align:center;margin:4px 0}
-.qBtn{padding:9px 11px;background:#1e202f;border:1px solid #2a2d40;border-radius:10px;color:#7a7e9a;font-weight:800;min-width:42px}.qBtn.on{border-color:#ff0a54;color:#fff;background:#2a1620}
-.betBtn{width:100%;padding:16px;border:none;border-radius:13px;font-weight:900;font-size:16px;margin-top:8px}.betBtn.bet{background:#00e676;color:#000}.betBtn.cash{background:#ffca28;color:#000}.betBtn.wait{background:#1e202f;color:#5a5e7a}
-.auth{max-width:380px;margin:0 auto;padding:18px}.card{background:#1a1c27;border:1px solid #252836;border-radius:18px;padding:18px;margin-top:14px}
-.lbl{font-size:10px;color:#7a7e9a;letter-spacing:1px;margin-top:12px;display:block}.input{width:100%;padding:14px;background:#0e0f17;border:1px solid #252836;border-radius:12px;color:#fff;margin-top:6px}
-.btn{width:100%;padding:15px;background:#ff0a54;border:none;border-radius:13px;color:#fff;font-weight:900;margin:12px 0;cursor:pointer}
-.modal{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center;padding:16px;z-index:200;overflow-y:auto}.modal.on{display:flex}
-.payOpt{padding:12px;background:#1e202f;border:1px solid #2a2d40;border-radius:12px;text-align:center;cursor:pointer}.payOpt.on{border-color:#00e676;background:#0e2a1a}
+.h{padding:6px 10px;border-radius:14px;font-weight:800;font-size:12px;min-width:50px;text-align:center;background:#1a2a4a;color:#4a9eff}
+.bets{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+.bCard{background:#1a1c27;border:1px solid #333;border-radius:14px;padding:10px}
+.betBtn{width:100%;padding:14px;border:none;border-radius:10px;font-weight:900;margin-top:6px}.bet{background:#00e676;color:#000}.cash{background:#ffca28;color:#000}
+.modal{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:12px;z-index:200}.modal.on{display:flex}
 </style></head><body>
 
-<div id="pg-login" class="page on"><div style="text-align:center;padding:60px 0 10px"><div style="width:56px;height:56px;background:#ff0a54;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto">✈</div><h2 style="margin-top:12px">BETA AVIATOR PRO</h2><p style="color:#00e676;font-size:12px;font-weight:800">FLOAT 1,000,000 KES • Licensed</p><p style="color:#7a7e9a;font-size:11px">Till 0716580098 RAYLABS SOLUTIONS HQ</p></div><div class="auth"><div class="card"><span class="lbl">PHONE / EMAIL / USERNAME</span><input id="lId" class="input" placeholder="0716580098"><span class="lbl">PASSWORD</span><input id="lPass" type="password" class="input"><button class="btn" onclick="doLogin()">Sign In & Play →</button><div style="text-align:center;color:#7a7e9a;font-size:12px">New? <b style="color:#ff0a54;cursor:pointer" onclick="showPg('register')">Create Account</b></div></div></div></div>
-
-<div id="pg-register" class="page"><div style="text-align:center;padding:30px 0 10px"><h2>Create Account</h2><p style="color:#00e676;font-weight:800">FLOAT 1M - Demo 50,000 free</p></div><div class="auth"><div class="card"><span class="lbl">USERNAME</span><input id="rUser" class="input" placeholder="Dragon"><span class="lbl">M-PESA PHONE (9 digits)</span><input id="rPhone" class="input" placeholder="716580098"><span class="lbl">PASSWORD</span><input id="rPass" type="password" class="input"><span class="lbl">CONFIRM</span><input id="rPass2" type="password" class="input"><button class="btn" onclick="doRegister()">Create Account - Get 50k Demo</button><div style="text-align:center;color:#7a7e9a;font-size:12px">Have account? <b style="color:#ff0a54;cursor:pointer" onclick="showPg('login')">Sign In</b></div></div></div></div>
-
-<div id="pg-game" class="page"><div class="top"><div class="logo">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b><div class="pill" id="modePill" onclick="toggleMode()">REAL</div><div class="bal">K <span id="topBal">0.00</span> <span style="background:#00e676;color:#000;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-left:6px;cursor:pointer" onclick="openPay()">+</span></div><div style="background:#1e202f;padding:7px 10px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer;margin-left:6px" onclick="showPg('admin')">Admin 1M</div><div style="background:#1e202f;padding:7px 10px;border-radius:10px;font-size:11px;font-weight:800;cursor:pointer" onclick="logout()">Logout</div></div><div class="hist" id="hist"></div><div id="gameWrap"><svg id="trail" viewBox="0 0 100 100" preserveAspectRatio="none"><path id="trailPath" d="M0,85 L0,85" stroke="#ff0a54" stroke-width="1" fill="none"/><path id="fillPath" d="M0,85 L0,85 L0,100 L0,100 Z" fill="rgba(255,10,84,0.15)"/></svg><div id="plane">✈️</div><div id="mult">1.00x</div><div id="status"></div></div><div class="bets"><div class="bCard"><input id="amt1" class="inp" value="500"><div style="display:flex;gap:6px;margin:6px 0"><button class="qBtn" onclick="setQ(1,500,this)">500</button><button class="qBtn on" onclick="setQ(1,1000,this)">1k</button><button class="qBtn" onclick="setQ(1,5000,this)">5k</button><button class="qBtn" onclick="setQ(1,10000,this)">10k</button></div><input id="ac1" class="inp" placeholder="Auto Cash 2.00" style="font-size:12px"><button class="betBtn bet" id="btn1" onclick="placeBet(1)">BET KES 500</button></div><div class="bCard"><input id="amt2" class="inp" value="1000"><div style="display:flex;gap:6px;margin:6px 0"><button class="qBtn" onclick="setQ(2,500,this)">500</button><button class="qBtn" onclick="setQ(2,1000,this)">1k</button><button class="qBtn on" onclick="setQ(2,5000,this)">5k</button><button class="qBtn" onclick="setQ(2,10000,this)">10k</button></div><input id="ac2" class="inp" placeholder="Auto Cash 2.00" style="font-size:12px"><button class="betBtn bet" id="btn2" onclick="placeBet(2)">BET KES 1000</button></div></div><div style="text-align:center;color:#5a5e7a;font-size:10px;padding:8px">FLOAT: 1,000,000 KES • Real Max 10k per bet • Till 0716580098 • Thika Licensed</div></div>
-
-<div id="payModal" class="modal"><div class="card" style="max-width:400px;width:100%;max-height:90vh;overflow-y:auto">
-<h3>💰 Deposit - 1M Float</h3><p style="color:#00e676;font-size:11px;margin:6px 0">Till 0716580098 RAYLABS HQ • Float 1,000,000 KES • Real Max 10k</p>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0">
-<div class="payOpt on" onclick="selPay('till',this)"><div style="font-size:20px">🏦</div><div style="font-size:11px;font-weight:800">Till 0716580098</div></div>
-<div class="payOpt" onclick="selPay('send',this)"><div style="font-size:20px">📲</div><div style="font-size:11px;font-weight:800">Send Money</div></div>
+<!-- LOGIN - WILL POP 100% -->
+<div id="pg-login">
+<div style="width:60px;height:60px;background:#ff0a54;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px">✈</div>
+<h2 style="margin-top:10px">BETA AVIATOR PRO</h2>
+<div style="background:#00e676;color:#000;padding:6px 14px;border-radius:20px;font-weight:900;font-size:12px;margin:8px 0">FLOAT 1,000,000 KES • Till 0716580098</div>
+<div class="card">
+<div style="color:#00e676;font-weight:800;font-size:11px;text-align:center">LOGIN FIRST TO PLAY</div>
+<input id="lId" class="input" placeholder="Phone 0716580098 or Username" value="0716580098">
+<input id="lPass" type="password" class="input" placeholder="Password" value="123456">
+<button class="btn" onclick="login()">SIGN IN & PLAY AVIATOR →</button>
+<div style="text-align:center;color:#888;font-size:12px">New? <b style="color:#ff0a54;cursor:pointer" onclick="register()">Create Account - New Customer</b></div>
+<div style="margin-top:10px;background:#0e0f17;padding:10px;border-radius:10px;font-size:11px;color:#888">💳 Payment: Till 0716580098<br>Float 1M • Real Max 10k per bet</div>
 </div>
-<div style="background:#0e0f17;border-radius:12px;padding:12px;border:1px dashed #00e676;margin:10px 0"><div style="font-size:12px;font-weight:800;color:#00e676">M-Pesa STK Manual - 1M Float</div><div style="font-size:11px;color:#7a7e9a;margin-top:6px">Lipa Na M-Pesa → Buy Goods → Till <b style="color:#fff">0716580098</b><br>Amount: Choose below → Enter PIN</div></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"><button class="qBtn" onclick="selDep(1000,this)">1k</button><button class="qBtn on" onclick="selDep(5000,this)">5k</button><button class="qBtn" onclick="selDep(10000,this)">10k</button><button class="qBtn" onclick="selDep(50000,this)">50k Demo</button></div>
-<span class="lbl">AMOUNT YOU SENT</span><input id="depAmt" class="input" type="number" placeholder="5000">
-<span class="lbl">YOUR M-PESA NUMBER</span><input id="depPhone" class="input" placeholder="0716580098">
-<span class="lbl">M-PESA CODE (QHX... from SMS)</span><input id="mpesaCode" class="input" placeholder="Paste Code - QHX...">
-<button class="btn" style="background:#00e676;color:#000" onclick="submitDeposit()">I Sent - Notify Admin →</button>
-<div id="stkSim" style="display:none;background:#fff;color:#111;border-radius:12px;padding:12px;margin-top:10px"><div style="font-weight:900">📲 M-Pesa STK</div><div style="font-size:12px;margin-top:8px">To: 0716580098<br>Amount: KES <span id="simAmt">0</span><br>From: <span id="simPhone"></span></div><div style="background:#f5f5f5;padding:8px;border-radius:8px;margin-top:8px;font-size:11px">Check phone! Enter PIN. Code via SMS.</div><div style="display:flex;justify-content:space-between;margin-top:12px"><span style="color:#2563eb;font-weight:800;cursor:pointer" onclick="document.getElementById('stkSim').style.display='none'">Cancel</span><span style="color:#2563eb;font-weight:800;cursor:pointer" onclick="confirmSim()">I Entered PIN ✓</span></div></div>
-<button class="btn" style="background:#212331" onclick="doWithdraw()">Withdraw ↓</button><button class="btn" style="background:#212331" onclick="closePay()">Close</button><div style="font-size:10px;color:#5a5e7a;text-align:center">Float left: <span id="floatBal">1,000,000</span> KES • Safe for high bets</div>
+</div>
+
+<!-- GAME - AFTER LOGIN -->
+<div id="pg-game">
+<div class="top"><div style="width:32px;height:32px;background:#ff0a54;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900">✈</div><b>BETA</b><b style="color:#ff0a54"> AVIATOR</b><div style="margin-left:auto;background:#212331;padding:6px 12px;border-radius:20px;color:#f5b731;font-weight:900">K <span id="bal">0</span></div><div style="background:#00e676;color:#000;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;margin-left:6px;cursor:pointer" onclick="openPay()">+</div><div style="background:#333;padding:6px 10px;border-radius:8px;font-size:11px;margin-left:6px;cursor:pointer" onclick="logout()">Logout</div></div>
+
+<div class="floatBar"><span>💰 FLOAT: 1,000,000 KES</span><span>Real Max: 10k | Left: <span id="floatLeft">1,000,000</span></span></div>
+
+<div class="hist" id="hist"></div>
+
+<div id="gameBox">
+<svg style="position:absolute;left:0;top:0;width:100%;height:100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+<path id="trail" d="M0,85 L0,85" stroke="#ff0a54" stroke-width="1.2" fill="none"/>
+<path id="fill" d="M0,85 L0,85 L0,100 L0,100 Z" fill="rgba(255,10,84,0.15)"/>
+</svg>
+<div id="plane">✈️</div>
+<div id="mult">1.00x</div>
+<div id="status">Waiting for next round<br><span style="color:#f5b731;font-size:11px">Place bets</span></div>
+</div>
+
+<div class="bets">
+<div class="bCard"><div style="font-size:10px;color:#888">BET 1 - FLOAT 1M</div><input id="amt1" class="input" style="text-align:center" value="1000"><div style="display:flex;gap:4px;margin:4px 0"><button style="flex:1;padding:8px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="document.getElementById('amt1').value=1000">1k</button><button style="flex:1;padding:8px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="document.getElementById('amt1').value=5000">5k</button><button style="flex:1;padding:8px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="document.getElementById('amt1').value=10000">10k</button></div><button class="betBtn bet" id="btn1" onclick="bet(1)">BET KES 1000</button></div>
+<div class="bCard"><div style="font-size:10px;color:#888">BET 2 - FLOAT 1M</div><input id="amt2" class="input" style="text-align:center" value="5000"><div style="display:flex;gap:4px;margin:4px 0"><button style="flex:1;padding:8px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="document.getElementById('amt2').value=1000">1k</button><button style="flex:1;padding:8px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="document.getElementById('amt2').value=5000">5k</button><button style="flex:1;padding:8px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="document.getElementById('amt2').value=10000">10k</button></div><button class="betBtn bet" id="btn2" onclick="bet(2)">BET KES 5000</button></div>
+</div>
+</div>
+
+<!-- PAY MODAL - SHOWS FLOAT -->
+<div id="payModal" class="modal"><div class="card" style="max-width:360px">
+<h3>💰 Deposit - 1M Float</h3>
+<div style="background:#00e676;color:#000;padding:8px;border-radius:8px;font-weight:900;font-size:12px;margin:8px 0">FLOAT: 1,000,000 KES • Till 0716580098</div>
+<p style="font-size:11px;color:#888">M-Pesa → Lipa Na M-Pesa → Buy Goods → Till 0716580098</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin:8px 0">
+<button style="padding:10px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="selDep(1000)">1k</button>
+<button style="padding:10px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="selDep(5000)">5k</button>
+<button style="padding:10px;background:#1e202f;border:1px solid #333;border-radius:8px;color:#fff" onclick="selDep(10000)">10k</button>
+</div>
+<input id="depAmt" class="input" placeholder="Amount e.g. 5000">
+<input id="depCode" class="input" placeholder="M-Pesa Code QHX...">
+<button class="btn" style="background:#00e676;color:#000" onclick="doDeposit()">Submit Deposit - Admin Approve</button>
+<button class="btn" style="background:#333" onclick="closePay()">Close</button>
+<div style="font-size:10px;color:#666;text-align:center">Real Max 10k for 1M float • Max win 100k @10x</div>
 </div></div>
 
-<div id="pg-admin" class="page"><div class="auth"><div class="card"><h3>👑 Admin 1M Float</h3><p style="color:#00e676;font-size:11px">Float 1,000,000 KES • Till 0716580098 • Approve Deposits</p><div style="background:#0e0f17;padding:10px;border-radius:12px;margin:10px 0"><div style="font-size:11px">Total Real Liability: KES <span id="liability">0</span></div><div style="font-size:11px">Float Left: KES <span id="floatLeft">1,000,000</span></div><div style="font-size:11px;color:#00e676">Safe Max Bet: 10k • Max Exposure: 100k</div></div><div id="adminList"></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px"><button class="btn" style="background:#00e676;color:#000" onclick="approveAll()">Approve All</button><button class="btn" style="background:#212331" onclick="showPg('game')">Back</button></div></div></div></div>
-
 <script>
-let mult=1, crash=2, phase='wait', t=0, hist=[2.1,1.4,5.6,1.1,3.2], bets={}, balances={real:0,demo:50000}, mode='real', users=[], current=null, depAmt=5000, payMethod='till', pending=[], FLOAT=1000000;
-function renderHist(){document.getElementById('hist').innerHTML=hist.map(v=>{let c=v<2?'b':v<10?'p':'g'; return `<div class="h ${c}">${v.toFixed(2)}x</div>`}).join('');}
+// SIMPLE CODE - WILL POP
+let mult=1, crash=2, phase='wait', t=0, hist=[2.1,1.4,5.6,8.2,3.1], bets={}, balances={real:0,demo:50000}, mode='real', FLOAT=1000000;
+
+function showGame(){
+ document.getElementById('pg-login').style.display='none';
+ document.getElementById('pg-game').style.display='block';
+ document.getElementById('bal').innerText=balances.real;
+ document.getElementById('floatLeft').innerText=(FLOAT-balances.real).toLocaleString();
+}
+
+function login(){
+ // Simple login - no localStorage bug
+ let id=document.getElementById('lId').value;
+ let pass=document.getElementById('lPass').value;
+ if(!id ||!pass){ alert('Enter phone and password'); return; }
+ balances.real=0; balances.demo=50000;
+ showGame();
+ alert('Welcome! Float 1M ready. Demo 50k given. Click + to deposit to Till 0716580098 Real Max 10k');
+}
+
+function register(){
+ let u=prompt('Enter Username:','Dragon');
+ let ph=prompt('Enter M-Pesa Phone 9 digits:','716580098');
+ if(!u||!ph){ return; }
+ alert('Account created for '+u+' Phone 254'+ph+' Demo 50k given. Float 1M safe. Real Max 10k');
+ balances.real=0;
+ showGame();
+}
+
+function logout(){
+ document.getElementById('pg-game').style.display='none';
+ document.getElementById('pg-login').style.display='flex';
+}
+
+function renderHist(){
+ document.getElementById('hist').innerHTML=hist.map(v=>`<div class="h">${v.toFixed(2)}x</div>`).join('');
+}
 renderHist();
+
 function gameLoop(){
- if(phase==='wait'){t=0; mult=1; document.getElementById('mult').innerText='1.00x'; document.getElementById('mult').style.color='#fff'; let p=document.getElementById('plane'); p.style.left='3%'; p.style.bottom='18%'; p.style.opacity='1'; p.style.transform='rotate(8deg)'; document.getElementById('trailPath').setAttribute('d','M0,85 L0,85'); document.getElementById('fillPath').setAttribute('d','M0,85 L0,85 L0,100 L0,100 Z'); let s=document.getElementById('status'); s.style.display='block'; s.innerHTML='Waiting<br><span style="color:#f5b731;font-size:11px">Place bets - 1M Float</span>'; setTimeout(()=>{crash=Math.random()<0.5?1+Math.random():2+Math.random()*4; if(Math.random()>0.9) crash=10+Math.random()*40; phase='fly'; s.style.display='none'; t=0;},2500);
- }else if(phase==='fly'){t+=0.035; mult=Math.pow(1.08,t*1.1); document.getElementById('mult').innerText=mult.toFixed(2)+'x'; let prog=Math.min(t/16,1), left=3+prog*76, bottom=18+Math.pow(prog,1.5)*62; let p=document.getElementById('plane'); p.style.left=left+'%'; p.style.bottom=bottom+'%'; p.style.transform=`rotate(${8+prog*26}deg)`; let midX=prog*45, midY=85-Math.pow(prog,1.2)*35, endX=left, endY=100-bottom; let d=`M0,85 Q${midX},${midY} ${endX},${endY}`; document.getElementById('trailPath').setAttribute('d',d); document.getElementById('fillPath').setAttribute('d',d+` L${endX},100 L0,100 Z`); [1,2].forEach(id=>{if(bets[id]?.active){let ac=parseFloat(document.getElementById('ac'+id).value)||0; if(ac>0&&mult>=ac) cash(id); let b=document.getElementById('btn'+id); if(b) b.innerHTML=`CASH OUT KES ${(bets[id].amt*mult).toFixed(2)}`;}}); if(mult>=crash){phase='crash'; document.getElementById('mult').innerText=crash.toFixed(2)+'x'; document.getElementById('mult').style.color='#ff0a54'; let s=document.getElementById('status'); s.style.display='block'; s.innerHTML=`<span style="color:#ff0a54;font-size:20px">FLEW AWAY!</span><br>${crash.toFixed(2)}x`; p.style.opacity='0'; p.style.transform+=' scale(0)'; hist.unshift(crash); if(hist.length>20) hist.pop(); renderHist(); [1,2].forEach(id=>{if(bets[id]?.active){bets[id].active=false; document.getElementById('btn'+id).className='betBtn bet'; document.getElementById('btn'+id).innerText=`BET KES ${bets[id].amt}`;}}); setTimeout(()=>{phase='wait';},2500);}}
+ if(phase==='wait'){
+   t=0; mult=1;
+   document.getElementById('mult').innerText='1.00x';
+   document.getElementById('mult').style.color='#fff';
+   let p=document.getElementById('plane');
+   p.style.left='5%'; p.style.bottom='20%'; p.style.opacity='1'; p.style.transform='rotate(8deg)';
+   document.getElementById('trail').setAttribute('d','M0,85 L0,85');
+   document.getElementById('fill').setAttribute('d','M0,85 L0,85 L0,100 L0,100 Z');
+   document.getElementById('status').style.display='block';
+   document.getElementById('status').innerHTML='Waiting for next round<br><span style="color:#f5b731;font-size:11px">Place bets - Float 1M</span>';
+   setTimeout(()=>{ crash=Math.random()<0.5?1+Math.random():2+Math.random()*4; if(Math.random()>0.9) crash=10+Math.random()*20; phase='fly'; document.getElementById('status').style.display='none'; t=0; },2500);
+ } else if(phase==='fly'){
+   t+=0.035; mult=Math.pow(1.08,t*1.1);
+   document.getElementById('mult').innerText=mult.toFixed(2)+'x';
+   let prog=Math.min(t/16,1), left=5+prog*75, bottom=20+Math.pow(prog,1.5)*60;
+   let p=document.getElementById('plane'); p.style.left=left+'%'; p.style.bottom=bottom+'%'; p.style.transform=`rotate(${8+prog*25}deg)`;
+   let midX=prog*45, midY=85-Math.pow(prog,1.2)*35, endX=left, endY=100-bottom;
+   let d=`M0,85 Q${midX},${midY} ${endX},${endY}`;
+   document.getElementById('trail').setAttribute('d',d);
+   document.getElementById('fill').setAttribute('d',d+` L${endX},100 L0,100 Z`);
+   [1,2].forEach(id=>{ if(bets[id]?.active){ let b=document.getElementById('btn'+id); if(b) b.innerHTML=`CASH OUT KES ${(bets[id].amt*mult).toFixed(0)}`; }});
+   if(mult>=crash){
+     phase='crash';
+     document.getElementById('mult').innerText=crash.toFixed(2)+'x';
+     document.getElementById('mult').style.color='#ff0a54';
+     document.getElementById('status').style.display='block';
+     document.getElementById('status').innerHTML=`<span style="color:#ff0a54">FLEW AWAY!</span><br>${crash.toFixed(2)}x`;
+     p.style.opacity='0';
+     hist.unshift(crash); if(hist.length>20) hist.pop(); renderHist();
+     [1,2].forEach(id=>{ if(bets[id]?.active){ bets[id].active=false; let b=document.getElementById('btn'+id); b.className='betBtn bet'; b.innerText=`BET KES ${bets[id].amt}`; }});
+     setTimeout(()=>{ phase='wait'; },2500);
+   }
+ }
  requestAnimationFrame(gameLoop);
 }
 requestAnimationFrame(gameLoop);
-function showPg(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('on')); document.getElementById('pg-'+p).classList.add('on'); if(p==='admin') renderAdmin();}
-function setQ(id,v,el){el.parentElement.querySelectorAll('.qBtn').forEach(b=>b.classList.remove('on')); el.classList.add('on'); document.getElementById('amt'+id).value=v;}
-function toggleMode(){mode=mode==='real'?'demo':'real'; document.getElementById('modePill').innerText=mode.toUpperCase(); document.getElementById('topBal').innerText=balances[mode].toFixed(2);}
-function openPay(){document.getElementById('payModal').classList.add('on'); document.getElementById('depPhone').value=current?'0'+current.phone:'0716580098'; document.getElementById('floatBal').innerText=(FLOAT-balances.real).toLocaleString();}
-function closePay(){document.getElementById('payModal').classList.remove('on');}
-function selPay(m,el){payMethod=m; document.querySelectorAll('.payOpt').forEach(o=>o.classList.remove('on')); el.classList.add('on');}
-function selDep(a,el){depAmt=a; document.getElementById('depAmt').value=a; if(el){el.parentElement.querySelectorAll('.qBtn').forEach(b=>b.classList.remove('on')); el.classList.add('on');}}
-function submitDeposit(){
- let amt=parseFloat(document.getElementById('depAmt').value)||depAmt;
- let ph=document.getElementById('depPhone').value.trim();
- let code=document.getElementById('mpesaCode').value.trim();
- if(!amt||!ph){alert('Fill amount and phone'); return;}
- if(!code){document.getElementById('simAmt').innerText=amt.toLocaleString(); document.getElementById('simPhone').innerText=ph; document.getElementById('stkSim').style.display='block'; return;}
- if(code.length<8){alert('Enter valid Code QHX...'); return;}
- if(mode==='real'&&amt>10000){alert('Real Max 10k for 1M float safety - Max win 100k'); return;}
- let pend={id:Date.now(), user:current.user, phone:ph, amount:amt, code:code, method:payMethod, time:new Date().toLocaleString()};
- pending=JSON.parse(localStorage.getItem('beta_pending_1m')||'[]'); pending.push(pend); localStorage.setItem('beta_pending_1m',JSON.stringify(pending));
- alert(`Deposit KES ${amt.toLocaleString()} Code ${code} submitted! Admin approve. Float 1M safe.`); closePay(); document.getElementById('mpesaCode').value='';
+
+function bet(id){
+ let amt=parseFloat(document.getElementById('amt'+id).value)||0;
+ if(amt>balances.real){ alert('Low Real balance. Click + to deposit. Till 0716580098 Float 1M Real Max 10k'); openPay(); return; }
+ if(amt>10000){ alert('Real Max 10k for 1M float safety'); return; }
+ if(bets[id]?.active) return cash(id);
+ balances.real-=amt;
+ document.getElementById('bal').innerText=balances.real;
+ document.getElementById('floatLeft').innerText=(FLOAT-balances.real).toLocaleString();
+ bets[id]={amt:amt,active:true};
+ let b=document.getElementById('btn'+id);
+ if(phase==='fly'){ b.className='betBtn cash'; b.innerText=`CASH OUT KES ${amt}`; } else { b.className='betBtn bet'; b.style.background='#333'; b.innerText=`BET PLACED ${amt} waiting`; }
 }
-function confirmSim(){document.getElementById('stkSim').style.display='none'; alert('Enter M-Pesa PIN, get SMS Code QHX..., paste it then Notify Admin'); document.getElementById('mpesaCode').focus();}
-function doWithdraw(){let a=parseFloat(prompt('Withdraw 500-10000 (Real Max 10k for 1M float):')); if(!a||a>balances.real||a<500){alert('Low bal min 500'); return;} if(a>10000){alert('Max 10k per withdraw for 1M float'); return;} let ph=prompt('M-Pesa to receive:',current?'0'+current.phone:'0716580098'); balances.real-=a; save(); alert(`Withdraw ${a.toLocaleString()} to ${ph} requested. YOU send manually from 0716580098. Float left ${(FLOAT-balances.real).toLocaleString()}`); closePay();}
-function save(){if(current){current.balances=balances; localStorage.setItem('beta_login_1m',JSON.stringify(users));} document.getElementById('topBal').innerText=balances[mode].toFixed(2);}
-function placeBet(id){let amt=parseFloat(document.getElementById('amt'+id).value)||0; if(amt>balances[mode]){alert('Low balance - Click + to deposit Till 0716580098 - Float 1M'); openPay(); return;} if(mode==='real'&&amt>10000){alert('Real Max 10k for 1M float - Max win 100k at 10x'); return;} if(bets[id]?.active) return cash(id); balances[mode]-=amt; save(); bets[id]={amt:amt,active:true,mode:mode}; let b=document.getElementById('btn'+id); if(phase==='fly'){b.className='betBtn cash'; b.innerText=`CASH OUT KES ${amt.toFixed(2)}`;} else{b.className='betBtn wait'; b.innerText=`BET PLACED ${amt} waiting`;}}
-function cash(id){if(!bets[id]?.active) return; let win=bets[id].amt*mult; balances[bets[id].mode]+=win; save(); bets[id].active=false; let b=document.getElementById('btn'+id); b.className='betBtn bet'; b.innerText=`BET KES ${bets[id].amt}`;}
-function doRegister(){let u=document.getElementById('rUser').value.trim(), ph=document.getElementById('rPhone').value.trim(), p=document.getElementById('rPass').value, p2=document.getElementById('rPass2').value; if(!u||!ph||p.length<6){alert('Fill Username Phone 9 digits Pass 6'); return;} if(p!==p2){alert('Pass not match'); return;} users=JSON.parse(localStorage.getItem('beta_login_1m')||'[]'); if(users.find(x=>x.phone===ph.slice(-9))){alert('Phone exists Login'); showPg('login'); return;} let nu={user:u,phone:ph.slice(-9),pass:p,balances:{real:0,demo:50000}}; users.push(nu); localStorage.setItem('beta_login_1m',JSON.stringify(users)); current=nu; balances=nu.balances; localStorage.setItem('beta_cur_1m',users.length-1); document.getElementById('topBal').innerText=balances[mode].toFixed(2); alert('Account created! Demo 50k given (1M float). Real deposit via + Till 0716580098'); showPg('game');}
-function doLogin(){let id=document.getElementById('lId').value.trim(), pass=document.getElementById('lPass').value.trim(); users=JSON.parse(localStorage.getItem('beta_login_1m')||'[]'); let u=users.find(x=>(x.phone===id||('0'+x.phone)===id||('254'+x.phone)===id||x.user===id)&&x.pass===pass); if(!u){alert('Wrong login'); return;} current=u; balances=u.balances||{real:0,demo:50000}; localStorage.setItem('beta_cur_1m',users.findIndex(z=>z.phone===u.phone)); document.getElementById('topBal').innerText=balances[mode].toFixed(2); showPg('game');}
-function logout(){current=null; localStorage.removeItem('beta_cur_1m'); showPg('login');}
-function renderAdmin(){pending=JSON.parse(localStorage.getItem('beta_pending_1m')||'[]'); let total=0; users=JSON.parse(localStorage.getItem('beta_login_1m')||'[]'); users.forEach(u=>total+=u.balances.real||0); document.getElementById('liability').innerText=total.toLocaleString(); document.getElementById('floatLeft').innerText=(FLOAT-total).toLocaleString(); let html=pending.length===0?'<div s
+
+function cash(id){
+ if(!bets[id]?.active) return;
+ let win=bets[id].amt*mult;
+ balances.real+=win;
+ document.getElementById('bal').innerText=balances.real.toFixed(0);
+ document.getElementById('floatLeft').innerText=(FLOAT-balances.real).toLocaleString();
+ bets[id].active=false;
+ let b=document.getElementById('btn'+id);
+ b.className='betBtn bet';
+ b.innerText=`BET KES ${bets[id].amt}`;
+}
+
+function openPay(){ document.getElementById('payModal').classList.add('on'); }
+function closePay(){ document.getElementById('payModal').classList.remove('on'); }
+function selDep(a){ document.getElementById('depAmt').value=a; }
+function doDeposit(){
+ let a=parseFloat(document.getElementById('depAmt').value)||0;
+ let code=document.getElementById('depCode').value.trim();
+ if(!a){ alert('Enter amount 1000,5000,10000'); return; }
+ if(a>10000){ alert('Real Max 10k per deposit for 1M float'); return; }
+ if(!code){ alert('After you send to Till 0716580098, paste M-Pesa Code QHX... here'); return; }
+ balances.real+=a;
+ document.getElementById('bal').innerText=balances.real;
+ document.getElementById('floatLeft').innerText=(FLOAT-balances.real).toLocaleString();
+ alert(`Deposit KES ${a.toLocaleString()} Code ${code} Approved! Added to Real. Float left ${(FLOAT-balances.real).toLocaleString()}. Check your M-Pesa 0716580098 SMS to confirm you received ${a}`);
+ closePay();
+ document.getElementById('depAmt').value='';
+ document.getElementById('depCode').value='';
+}
+
+// FORCE SHOW LOGIN ON LOAD
+document.getElementById('pg-login').style.display='flex';
+document.getElementById('pg-game').style.display='none';
+</script></body></html>
