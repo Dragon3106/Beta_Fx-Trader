@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BETA AVIATOR V44 SIMPLE</title>
+<title>BETA AVIATOR V45 TAP LOGIN</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}body{background:#0f0f14;color:#fff;font-family:system-ui}
-.box{max-width:360px;margin:40px auto;background:#1c1e2b;padding:20px;border-radius:18px;border:1px solid #2a2d40}
-.inp{width:100%;padding:14px;margin:6px 0;background:#0e0f17;border:1px solid #333;border-radius:10px;color:#fff;font-size:16px}
-.btn{width:100%;padding:16px;background:#ff0a54;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:10px;font-size:16px}
-.btn2{width:100%;padding:16px;background:#00e676;color:#000;border:none;border-radius:12px;font-weight:900;margin-top:8px}
+.box{max-width:360px;margin:30px auto;background:#1c1e2b;padding:20px;border-radius:18px;border:1px solid #2a2d40}
+.inp{width:100%;padding:16px;margin:6px 0;background:#0e0f17;border:1px solid #333;border-radius:12px;color:#fff;font-size:18px}
+.btn{width:100%;padding:18px;background:#ff0a54;color:#fff;border:none;border-radius:14px;font-weight:900;margin-top:10px;font-size:17px;touch-action:manipulation}
+.btn2{width:100%;padding:18px;background:#00e676;color:#000;border:none;border-radius:14px;font-weight:900;margin-top:10px;font-size:17px}
 #game{display:none;position:fixed;inset:0;background:#0a0a0f;flex-direction:column}
-#plane{position:absolute;left:5%;bottom:30%;font-size:48px;transition:all 0.1s linear}
-#mult{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:64px;font-weight:900}
+#plane{position:absolute;left:5%;bottom:30%;font-size:48px}
+#mult{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:70px;font-weight:900}
 </style>
 </head>
 <body>
@@ -20,119 +20,150 @@
 <div id="auth">
 <div class="box">
 <h2 style="text-align:center">✈ BETA AVIATOR</h2>
-<p style="text-align:center;color:#888;font-size:12px;margin:6px 0">V44 SIMPLE - Create & Play Works 100%</p>
-<input id="u" class="inp" placeholder="Your Name">
-<input id="p" class="inp" placeholder="Your Phone e.g. 0722123456" type="tel">
+<p style="text-align:center;color:#00e676;font-size:12px;margin:8px 0">V45 TAP = LOGIN INSTANTLY</p>
+
+<input id="u" class="inp" placeholder="Name e.g. Don">
+<input id="p" class="inp" placeholder="Phone e.g. 0716580098" type="tel">
 <input id="pw" class="inp" placeholder="Password" type="password">
-<button id="createBtn" class="btn">CREATE ACCOUNT + PLAY NOW</button>
-<button id="demoBtn" class="btn2">PLAY DEMO 5000 FREE</button>
-<p style="text-align:center;color:#555;font-size:10px;margin-top:10px">Account = CLIENT number • Deposit = 0716580098 Send Money Only</p>
+
+<button type="button" id="createBtn" class="btn">TAP TO CREATE & PLAY →</button>
+<button type="button" id="demoBtn" class="btn2">PLAY DEMO 5000 FREE →</button>
+
+<p style="text-align:center;color:#666;font-size:11px;margin-top:12px">Tap button = Opens game immediately<br>Profile = CLIENT number • Deposit = 0716580098</p>
 </div>
 </div>
 
 <div id="game">
 <div style="height:56px;background:#15151f;display:flex;align-items:center;padding:0 12px;gap:8px">
-<b>BETA AVIATOR</b>
-<div style="margin-left:auto;text-align:right">
-<div id="nameTop" style="font-size:12px;font-weight:800">Client</div>
-<div id="phoneTop" style="font-size:10px;color:#00e676">CLIENT</div>
-</div>
-<div id="avatarTop" style="width:32px;height:32px;background:#ff0a54;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900">C</div>
-<div style="background:#222;padding:6px 10px;border-radius:20px;color:#ffcc00;font-weight:900">KES <span id="balTop">5000</span></div>
-<div onclick="location.reload()" style="background:#222;padding:6px 10px;border-radius:8px;font-size:11px;cursor:pointer">Logout</div>
-</div>
-
-<div style="display:flex;gap:6px;padding:6px">
-<div style="flex:1;background:#222;padding:8px;border-radius:8px;text-align:center">DEMO: <span id="demoBal">5000</span></div>
-<div style="flex:1;background:#222;padding:8px;border-radius:8px;text-align:center">REAL: <span id="realBal">0</span></div>
+<b>BETA</b><b style="color:#ff0a54"> AVIATOR</b>
+<div style="margin-left:auto;text-align:right"><div id="nameTop" style="font-size:12px;font-weight:800">Don</div><div id="phoneTop" style="font-size:10px;color:#00e676">CLIENT</div></div>
+<div id="avatarTop" style="width:32px;height:32px;background:#ff0a54;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900">D</div>
+<div style="background:#222;padding:6px 12px;border-radius:20px;color:#ffcc00;font-weight:900">KES <span id="balTop">5000</span></div>
+<div onclick="document.getElementById('game').style.display='none';document.getElementById('auth').style.display='block'" style="background:#222;padding:6px 10px;border-radius:8px;font-size:11px">Logout</div>
 </div>
 
 <div id="playBox" style="flex:1;background:#120f22;position:relative;overflow:hidden">
 <div id="mult">1.00x</div>
 <div id="plane">✈️</div>
-<div id="msg" style="position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000a;padding:10px 16px;border-radius:20px">Waiting for next round</div>
+<div id="msg" style="position:absolute;left:50%;top:70%;transform:translate(-50%,-50%);background:#000a;padding:12px 18px;border-radius:20px;text-align:center">Waiting for next round<br><span style="color:#ffcc00">Place BET to play</span></div>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px">
-<div style="background:#1c1e2b;padding:10px;border-radius:12px">
-<input id="bet1" class="inp" value="100" style="text-align:center">
-<button id="b1" class="btn2" style="margin:0">BET 100</button>
+<div style="background:#1c1e2b;padding:10px;border-radius:12px"><input id="bet1" value="100" class="inp" style="text-align:center"><button id="b1" class="btn2" style="margin:0">BET 100</button></div>
+<div style="background:#1c1e2b;padding:10px;border-radius:12px"><input id="bet2" value="200" class="inp" style="text-align:center"><button id="b2" class="btn2" style="margin:0">BET 200</button></div>
 </div>
-<div style="background:#1c1e2b;padding:10px;border-radius:12px">
-<input id="bet2" class="inp" value="200" style="text-align:center">
-<button id="b2" class="btn2" style="margin:0">BET 200</button>
-</div>
+
+<div style="display:flex;gap:6px;padding:6px">
+<button style="flex:1;padding:10px;background:#1e202f;border-radius:8px;color:#aaa;border:1px solid #2a2d40" onclick="alert('Profile: '+document.getElementById('nameTop').innerText+' CLIENT: '+document.getElementById('phoneTop').innerText+'\nDeposit Admin: 0716580098 Send Money ONLY')">PROFILE CLIENT</button>
+<button style="flex:1;padding:10px;background:#1e202f;border-radius:8px;color:#aaa;border:1px solid #2a2d40" onclick="alert('Deposit: Send Money ONLY to 0716580098\nRAYLABS HQ\nNo Till, No Paybill')">DEPOSIT 0716580098</button>
 </div>
 </div>
 
 <script>
-// --- SIMPLE ACCOUNT + PLAY ---
+// FORCE OPEN GAME - NO BLOCKING VALIDATION
+let curName = 'Don';
+let curPhone = '0716580098';
 let balDemo = 5000;
-let balReal = 0;
-let curUser = null;
-let mult = 1;
-let crash = 2;
-let flying = false;
-let t = 0;
-let bets = {};
+let mult = 1, crash = 2, flying = false, t = 0, bets = {};
 
-function openGame(){
+function openGameNow(){
+  let nameInput = document.getElementById('u').value.trim() || curName;
+  let phoneInput = document.getElementById('p').value.trim() || curPhone;
+  if(phoneInput.length < 7) phoneInput = '0716580098';
+  curName = nameInput;
+  curPhone = phoneInput;
   document.getElementById('auth').style.display='none';
-  document.getElementById('game').style.display='flex';
-  document.getElementById('nameTop').innerText = curUser.name;
-  document.getElementById('phoneTop').innerText = 'CLIENT: 0'+curUser.phone.slice(-9);
-  document.getElementById('avatarTop').innerText = curUser.name[0].toUpperCase();
-  document.getElementById('demoBal').innerText = balDemo;
-  document.getElementById('realBal').innerText = balReal;
+  let g = document.getElementById('game');
+  g.style.display='flex';
+  document.getElementById('nameTop').innerText = curName;
+  document.getElementById('phoneTop').innerText = 'CLIENT: '+curPhone;
+  document.getElementById('avatarTop').innerText = curName[0].toUpperCase();
   document.getElementById('balTop').innerText = balDemo;
 }
 
-document.getElementById('createBtn').onclick = function(){
-  let name = document.getElementById('u').value.trim();
-  let phone = document.getElementById('p').value.trim().replace(/\D/g,'').slice(-9);
-  let pass = document.getElementById('pw').value.trim();
-  if(!name){ alert('Enter Your Name'); return; }
-  if(phone.length<9){ alert('Enter Your Phone 9 digits e.g. 0722123456'); return; }
-  if(pass.length<4){ alert('Password min 4'); return; }
-  curUser = {name:name, phone:phone, pass:pass};
-  localStorage.setItem('beta_user_'+phone, JSON.stringify(curUser));
-  balDemo = 5000; balReal = 0;
-  openGame();
-  alert('✅ Account Created!\nName: '+name+'\nPhone: 0'+phone+'\nDemo 5000 FREE\nNow you can BET!');
-};
+// ALL BUTTONS = TAP = OPEN GAME INSTANTLY
+window.addEventListener('DOMContentLoaded', function(){
+  let c = document.getElementById('createBtn');
+  let d = document.getElementById('demoBtn');
 
-document.getElementById('demoBtn').onclick = function(){
-  let name = document.getElementById('u').value.trim() || 'Guest'+Math.floor(Math.random()*900);
-  let phone = document.getElementById('p').value.trim().replace(/\D/g,'').slice(-9) || '722'+Math.floor(Math.random()*900000);
-  curUser = {name:name, phone:phone, pass:'1234'};
-  balDemo = 5000; balReal = 0;
-  openGame();
-};
+  function tapCreate(e){
+    if(e) e.preventDefault();
+    openGameNow();
+  }
+  function tapDemo(e){
+    if(e) e.preventDefault();
+    curName = document.getElementById('u').value.trim() || 'Don';
+    curPhone = document.getElementById('p').value.trim() || '0716580098';
+    balDemo = 5000;
+    openGameNow();
+  }
 
-// --- SIMPLE AVIATOR LOGIC ---
-function gameLoop(){
+  // bind 4 ways so it MUST work on your phone
+  c.addEventListener('click', tapCreate);
+  c.addEventListener('touchend', tapCreate);
+  c.addEventListener('touchstart', tapCreate);
+  c.onclick = tapCreate;
+
+  d.addEventListener('click', tapDemo);
+  d.addEventListener('touchend', tapDemo);
+  d.addEventListener('touchstart', tapDemo);
+  d.onclick = tapDemo;
+
+  // also if user presses Enter
+  document.getElementById('pw').addEventListener('keydown', function(e){
+    if(e.key==='Enter') tapCreate();
+  });
+});
+
+// AVIATOR LOOP
+function loop(){
   if(!flying){
     t=0; mult=1;
-    document.getElementById('mult').innerText='1.00x';
-    document.getElementById('plane').style.left='5%';
-    document.getElementById('plane').style.bottom='30%';
-    document.getElementById('plane').style.opacity='1';
-    document.getElementById('msg').style.display='block';
-    document.getElementById('msg').innerText='Waiting... Place BET';
+    let m = document.getElementById('mult');
+    if(m) m.innerText='1.00x';
+    let pl = document.getElementById('plane');
+    pl.style.left='5%'; pl.style.bottom='30%'; pl.style.opacity='1';
+    let msg = document.getElementById('msg');
+    if(msg) msg.style.display='block';
     setTimeout(()=>{
-      crash = Math.random()<0.5? 1+Math.random() : 2+Math.random()*4;
-      if(Math.random()>0.9) crash = 10+Math.random()*20;
+      crash = Math.random()<0.5? 1+Math.random() : 2+Math.random()*3;
+      if(Math.random()>0.88) crash = 8+Math.random()*15;
       flying=true; t=0;
-      document.getElementById('msg').style.display='none';
+      if(msg) msg.style.display='none';
     },2000);
   }else{
-    t+=0.03;
-    mult = Math.pow(1.08, t*1.1);
-    document.getElementById('mult').innerText = mult.toFixed(2)+'x';
+    t+=0.032;
+    mult = Math.pow(1.082, t*1.1);
+    let m = document.getElementById('mult');
+    if(m) m.innerText = mult.toFixed(2)+'x';
     let prog = Math.min(t/14,1);
-    document.getElementById('plane').style.left = (5+prog*70)+'%';
-    document.getElementById('plane').style.bottom = (30+prog*50)+'%';
-    // update cashout buttons
+    let pl = document.getElementById('plane');
+    pl.style.left = (5+prog*70)+'%';
+    pl.style.bottom = (30+prog*50)+'%';
     for(let id in bets){
       if(bets[id].active){
-        document.getElementById('b'+id).innerText = 'CASH OUT '+(bets[id].amt*mult).toFixed(0);
+        let b = document.getElementById('b'+id);
+        if(b) b.innerText = 'CASH OUT '+(bets[id].amt*mult).toFixed(0);
+      }
+    }
+    if(mult>=crash){
+      flying=false;
+      if(m) m.innerText = crash.toFixed(2)+'x';
+      let msg = document.getElementById('msg');
+      if(msg){ msg.style.display='block'; msg.innerHTML='FLEW AWAY! '+crash.toFixed(2)+'x'; }
+      pl.style.opacity='0';
+      for(let id in bets){
+        if(bets[id].active){
+          bets[id].active=false;
+          let b = document.getElementById('b'+id);
+          if(b){ b.innerText='BET '+bets[id].amt; b.style.background='#00e676'; }
+        }
+      }
+    }
+  }
+  requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+
+function bet(id){
+  let amt = parseFloat(document.getElementById
